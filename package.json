@@ -22,6 +22,7 @@
     "react-merge-refs": "^1.1.0",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
+    "shopify-buy": "^2.11.0",
     "theme-ui": "^0.8.4"
   },
   "devDependencies": {

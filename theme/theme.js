@@ -2,13 +2,12 @@ const palette = {
   white: '#ffffff',
   gray: '#36393D',
   offBlack: '#161616',
-  offBlack20: 'rgba(22, 22, 22, 0.2)',
-  offBlack50: 'rgba(22, 22, 22, 0.5)',
+  offBlack20: '#16161620',
+  offBlack50: '#16161650',
   black: '#000000',
-  cream: '#f3efec',
-  bone: '#F7F4F2',
+  bone: '#f5f3f4',
   darkBone: '#F6F1EE',
-  night: '#35353A',
+  funnyName: '#ff0000',
 }
 
 const theme = {
@@ -30,10 +29,16 @@ const theme = {
     body: 1.3125,
     heading: 1.125,
   },
+  initialColorModeName: 'light',
   colors: {
     ...palette,
     text: palette.offBlack,
     background: palette.bone,
+    primary: palette.offBlack,
+    accent: palette.white,
+    muted: palette.gray,
+    softPrimary: palette.offBlack20,
+    softSecondary: palette.offBlack50,
   },
   text: {
     heading: {
@@ -139,16 +144,16 @@ const theme = {
       textTransform: 'uppercase',
     },
     hero: {
-      color: 'white',
+      color: 'accent',
     },
     main: {
-      color: 'gray',
+      color: 'muted',
       fontSize: 1,
       fontWeight: 400,
     },
     footer: {
-      color: 'white',
-      backgroundColor: 'offBlack',
+      color: 'accent',
+      backgroundColor: 'primary',
       fontSize: 1,
       fontWeight: 400,
       lineHeight: 'heading',
@@ -156,8 +161,8 @@ const theme = {
   },
   buttons: {
     primary: {
-      bg: 'offBlack',
-      color: 'white',
+      bg: 'primary',
+      color: 'accent',
       fontFamily: 'body',
       fontSize: 1,
       fontWeight: 'bold',

@@ -77,7 +77,6 @@ const FooterNav = ({ children, ...props }) => (
       flexDirection: 'column',
       flexWrap: 'wrap',
       position: 'relative',
-      variant: 'layout.footer.links',
     }}
     {...props}
   >

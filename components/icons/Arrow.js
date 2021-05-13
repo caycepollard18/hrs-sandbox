@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 const Arrow = ({
-  color = 'offBlack50',
+  color,
   variant = 'left',
   ...props
 }) => {
@@ -17,9 +17,10 @@ const Arrow = ({
     >
       <path
         d="M6.65685 0.999884L1 6.65674L6.65685 12.3136"
-        sx={{
-          stroke: color,
-        }}
+        sx={(theme) => ({
+            stroke: color || theme.colors?.softSecondary
+          })
+        }
       />
     </svg>
   )

@@ -1,4 +1,5 @@
 /** @jsxImportSource theme-ui */
+import { client } from '../shopify'
 import {
   Button,
   Hero
@@ -13,6 +14,7 @@ import {
   Grid
 } from 'theme-ui'
 
+
 const placeholderProducts = [
   {
     name: 'Belmont',
@@ -20,7 +22,7 @@ const placeholderProducts = [
     description: 'Inspired by the legendary Los Angeles skate spot, the Belmont is a skate take on a classic apron front derby. Woven, waxed, gold-tipped laces tie it all together with a louche elegance.',
     images: [
       {
-        url: 'https://cdn.shopify.com/s/files/1/2172/7963/products/Belmont-BoneBlack-LeftShoeLeftSide.jpg?v=1593729840',
+        url: '/products/HRS_C2_PROFILE_06.jpg',
       },
     ],
     variants: [
@@ -42,7 +44,7 @@ const placeholderProducts = [
     description: 'Our spin on the classic sneaker featuring striking combinations of richly textured Italian calfskin leathers adorned with our signature goldplated dog tags.',
     images: [
       {
-        url: 'https://cdn.shopify.com/s/files/1/2172/7963/products/Belmont-BoneBlack-LeftShoeLeftSide.jpg?v=1593729840',
+        url: '/products/HRS_C2_OVER_21.jpg',
       },
     ],
     variants: [
@@ -79,7 +81,17 @@ const placeholderProducts = [
   }
 ]
 
-export default function Home() {
+export async function getStaticProps(context) {
+  const products = await client.product.fetchAll()
+  return {
+    props: {
+      products: JSON.parse(JSON.stringify(products))
+    }
+  }
+}
+
+export default function Home({ products }) {
+  console.log(products)
   return (
     <>
       <Hero
@@ -91,7 +103,7 @@ export default function Home() {
       />
       <ProductCard product={placeholderProducts[0]} />
       <Grid
-        columns={2}
+        columns={[1, 1, 2]}
         gap={0}
         sx={{
           minHeight: '1185px',
@@ -100,7 +112,7 @@ export default function Home() {
       >
         <ProductImageCard
           image='/campaign/102.jpg'
-          product={placeholderProducts[0]}
+          product={placeholderProducts[1]}
         />
         <Flex
           sx={{
@@ -128,6 +140,7 @@ export default function Home() {
             </p>
           </Box>
           <ProductImageCard
+            color='white'
             image='/campaign/103.jpg'
             layout='top right'
             product={placeholderProducts[0]}

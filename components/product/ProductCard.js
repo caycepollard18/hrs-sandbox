@@ -15,7 +15,7 @@ const ProductCardWrapper = ({ children }) => (
     sx={{
       alignItems: 'center',
       alignSelf: 'stretch',
-      backgroundColor: 'theme.colors.background',
+      backgroundColor: '#f5f3f4',
       flexDirection: ['column', 'row'],
       justifyContent: 'center',
       height: ['auto', '596px'],
@@ -77,7 +77,7 @@ const ProductCard = ({
             backgroundImage: `url(${product.images[0].url})`,
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
+            backgroundSize: 'contain',
           }}
         />
       )}

@@ -8,7 +8,12 @@ import {
 import { Selector } from '../product'
 import { Button } from '../ui'
 
-const Description = ({ layout, children }) => (
+const Description = ({
+  color = 'default',
+  layout,
+  children
+}) => {
+  return (
   <Flex
     sx={{
       width: '252px',
@@ -20,14 +25,18 @@ const Description = ({ layout, children }) => (
       mb: 4,
       'h2, button': {
         alignSelf: ['center', layout.includes('left') ? 'flex-start' : 'flex-end'],
+      },
+      '& > div, h2': {
+        color: color != 'default' ? color : 'inherit',
       }
     }}
   >
     {children}
   </Flex>
-)
+)}
 
 const ProductImageCard = ({
+  color = 'default',
   image,
   layout = 'top left',
   product,
@@ -47,7 +56,7 @@ const ProductImageCard = ({
         p: [4, 4, 5],
       }}
     >
-      <Description layout={layout}>
+      <Description color={color} layout={layout}>
         <Heading as="h2" my={0} variant="styles.h2">{product.name}</Heading>
         <Text
           as="div"
