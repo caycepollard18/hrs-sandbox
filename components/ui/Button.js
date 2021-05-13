@@ -1,18 +1,22 @@
 /** @jsxImportSource theme-ui */
 import React from 'react'
 // import mergeRefs from 'react-merge-refs'
-import { Button } from 'theme-ui'
+import {
+  Button as ThemeButton
+} from 'theme-ui'
 
 // todo: sort out mergeRefs issues
 
 // todo: implement loading for button
 
-const StyledButton = React.forwardRef((props, ref) => {
+const Button = React.forwardRef((props, ref) => {
   const {
     className,
     children,
     active,
     width,
+    onClick,
+    href,
     loading = false,
     disabled = false,
     style = {},
@@ -23,18 +27,30 @@ const StyledButton = React.forwardRef((props, ref) => {
   const fallbackRef = React.useRef<typeof Component>(null)
 
   return (
-    <Button
+    <ThemeButton
       as={Component}
       aria-pressed={active}
-      // ref={mergeRefs([fallbackRef, ref])}
       className={className}
+      href={href}
       disabled={disabled}
+      onClick={onClick}
+      ref={ref}
+      // ref={mergeRefs([fallbackRef, ref])}
+      sx={{
+        height: 40,
+        minWidth: [175, 250],
+        border: 0,
+        borderRadius: 0,
+        cursor: 'pointer',
+        display: 'inline-block',
+        px: 30,
+      }}
       {...rest}
     >
       {children}
-    </Button>
+    </ThemeButton>
   )
 })
 
-export default StyledButton
+export default Button
 

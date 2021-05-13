@@ -14,13 +14,18 @@
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
     "babel-plugin-emotion": "^11.0.0",
+    "date-fns": "^2.21.3",
+    "gray-matter": "^4.0.3",
     "next": "10.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-merge-refs": "^1.1.0",
+    "remark": "^13.0.0",
+    "remark-html": "^13.0.1",
     "theme-ui": "^0.8.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.0"
+    "@babel/core": "^7.14.0",
+    "html-loader": "^2.1.2"
   }
 }

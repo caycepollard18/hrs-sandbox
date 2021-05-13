@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {
   Box,
   Flex,
-  Text,
+  Text
 } from 'theme-ui'
 import {
   Logo,
@@ -32,19 +32,19 @@ const sitePages = [
     page: 'Contact'
   },
   {
-    url: '/privacy',
+    url: '/policy/privacy-policy',
     page: 'Privacy Policy'
   },
   {
-    url: '/terms',
+    url: '/policy/terms',
     page: 'Terms of Use'
   },
   {
-    url: '/refunds',
-    page: 'Sales & Refunds'
+    url: '/policy/shipping-and-returns',
+    page: 'Shipping & Returns'
   },
   {
-    url: '/legal',
+    url: '/policy/legal',
     page: 'Legal'
   },
   {
@@ -85,14 +85,14 @@ const FooterNav = ({ children, ...props }) => (
   </Flex>
 )
 
-const NavLink = ({ key, href, page, ...props }) => (
+const NavLink = ({ href, page, ...props }) => (
   <Box
     sx={{
       height: 28,
       width: ['100%', 'auto'],
       alignItems: 'center',
-      borderBottom: ['1px solid #434343', 'none'],
       display: ['flex', 'block'],
+      variant: 'links.footer',
     }}
     {...props}
   >
@@ -107,10 +107,11 @@ const NavLink = ({ key, href, page, ...props }) => (
 
 const Copyright = ({ ...props }) => (
   <Text
+    as="span"
     sx={{
-      variant: 'text.small',
       textAlign: ['left', 'right'],
     }}
+    variant="text.small"
     {...props}
   >
     &copy; {`
@@ -122,14 +123,15 @@ const Copyright = ({ ...props }) => (
 
 const Accessibility = ({ ...props }) => (
   <Text
+    as="span"
     sx={{
-      variant: 'text.small',
       textAlign: ['left', 'right'],
     }}
+    variant="text.small"
     {...props}
   >
-    <Link href='/'>
-      Accessibility Statement
+    <Link href='/policy/accessibility'>
+      <a>Accessibility Statement</a>
     </Link>
   </Text>
 )

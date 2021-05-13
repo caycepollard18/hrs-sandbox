@@ -4,36 +4,40 @@
 
 @font-face {
   font-family: "GranbyEF";
-  src: url("/fonts/GranbyEF-Bold.woff2") format("woff2"),
-    url("/fonts/GranbyEF-Bold.woff") format("woff");
+  src: url("/fonts/GranbyEF/GranbyEF-Light.woff2") format("woff2"),
+    url("/fonts/GranbyEF/GranbyEF-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  /* ${fontOptimizations}; */
+}
+
+@font-face {
+  font-family: "GranbyEF";
+  src: url("/fonts/GranbyEF/GranbyEF-Medium.woff2") format("woff2"),
+    url("/fonts/GranbyEF/GranbyEF-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  /* ${fontOptimizations}; */
+}
+
+@font-face {
+  font-family: "GranbyEF";
+  src: url("/fonts/GranbyEF/GranbyEF-Bold.woff2") format("woff2"),
+    url("/fonts/GranbyEF/GranbyEF-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
   /* ${fontOptimizations}; */
 }
 
 @font-face {
   font-family: "GranbyEF-Hippo";
-  src: url("/fonts/GranbyEF-Hippo.woff2") format("woff2"),
-    url("/fonts/GranbyEF-Hippo.woff") format("woff");
+  src: url("/fonts/GranbyEF/GranbyEF-Hippo.woff2") format("woff2"),
+    url("/fonts/GranbyEF/GranbyEF-Hippo.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  /* ${fontOptimizations}; */
-}
-
-@font-face {
-  font-family: "GranbyEF";
-  src: url("/fonts/GranbyEF-Light.woff2") format("woff2"),
-    url("/fonts/GranbyEF-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-  /* ${fontOptimizations}; */
-}
-
-@font-face {
-  font-family: "GranbyEF";
-  src: url("/fonts/GranbyEF-Medium.woff2") format("woff2"),
-    url("/fonts/GranbyEF-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
+  font-display: swap;
   /* ${fontOptimizations}; */
 }

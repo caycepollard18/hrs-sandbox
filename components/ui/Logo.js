@@ -1,37 +1,45 @@
 import Link from 'next/link'
 
-export const Logo = ({ className = '', ...props }) => (
-  <Link href="/">
+const LinkedLogoWrapper = ({ children, href }) => (
+  <Link href={href}>
+    <a
+      sx={{
+        display: 'block',
+      }}
+    >
+      { children }
+    </a>
+  </Link>
+)
+
+export const Logo = ({ className = '', variant='links.visible', ...props }) => (
+  <LinkedLogoWrapper href="/">
     <svg
       width="40"
       height="43"
       viewBox="0 0 31.001 31.001"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      variant={variant}
       {...props}
     >
       <path
-        id="logo"
-        data-name="Subtraction 3"
         d="M15,30A15,15,0,1,1,30,15,15.017,15.017,0,0,1,15,30Zm0-14.028h0l4.029,2.74V23.1h3.506V6.9H19.029v4.388L15,14.028l-4.028-2.741V6.9H7.464V23.1h3.507V18.712L15,15.972Zm4.029.8h0L16.429,15l2.6-1.769v3.537Zm-8.058,0V13.232L13.571,15l-2.6,1.767Z"
-        transform="translate(0.501 0.501)"
         fill="currentColor"
-        stroke="rgba(0,0,0,0)"
-        strokeMiterlimit="10"
-        strokeWidth="1"
       />
     </svg>
-  </Link>
+  </LinkedLogoWrapper>
 )
 
-export const LogoAlt = ({ className = '', ...props }) => (
-  <Link href="/">
+export const LogoAlt = ({ className = '', variant='links.visible', ...props }) => (
+  <LinkedLogoWrapper href="/">
     <svg
       width="145"
       height="50"
       viewBox="0 0 145 50"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      variant={variant}
       {...props}
     >
       <g transform="translate(-50 -1065)">
@@ -62,5 +70,5 @@ export const LogoAlt = ({ className = '', ...props }) => (
         <path d="M605.364,269.57V255.913h2.18v11.528a3.091,3.091,0,0,1-.02.43c.081,0,.163-.02.244-.02h5.911v1.72Z" transform="translate(-418.835 826.516)" fill="currentColor"/>
       </g>
     </svg>
-  </Link>
+  </LinkedLogoWrapper>
 )

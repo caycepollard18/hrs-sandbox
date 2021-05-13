@@ -1,89 +1,83 @@
 /** @jsxImportSource theme-ui */
-import React from 'react'
-import Image from 'next/image'
-
+import {
+  Button,
+  Hero
+} from '../components/ui/'
+import {
+  ProductCard,
+  ProductImageCard
+} from '../components/product'
 import {
   Box,
-  Button,
   Flex,
-  Themed
+  Grid
 } from 'theme-ui'
 
-import Hero from '../components/common/Hero'
-
-import styled from '@emotion/styled'
-
-
-const Section = styled.section`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`
-
-const Caption = styled.div``
-
-const ImageWrapper = styled.div``
-
-const ProductSection = styled(Section)`
-  min-height: 360px;
-  background-color: #F5F2F3;
-
-  ${Caption} {
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    width: 370px;
-    padding: 2rem;
+const placeholderProducts = [
+  {
+    name: 'Belmont',
+    slug: 'belmont-bone-black',
+    description: 'Inspired by the legendary Los Angeles skate spot, the Belmont is a skate take on a classic apron front derby. Woven, waxed, gold-tipped laces tie it all together with a louche elegance.',
+    images: [
+      {
+        url: 'https://cdn.shopify.com/s/files/1/2172/7963/products/Belmont-BoneBlack-LeftShoeLeftSide.jpg?v=1593729840',
+      },
+    ],
+    variants: [
+      {
+        name: 'Bone Croc / Black Snake',
+        color: '#191714',
+        price: '695.00',
+      },
+      {
+        name: 'Blue Croc / Bone Snake',
+        color: '#76A9AD',
+        price: '695.00',
+      }
+    ] 
+  },
+  {
+    name: 'Mongoose',
+    slug: 'mongoose-bone-wine',
+    description: 'Our spin on the classic sneaker featuring striking combinations of richly textured Italian calfskin leathers adorned with our signature goldplated dog tags.',
+    images: [
+      {
+        url: 'https://cdn.shopify.com/s/files/1/2172/7963/products/Belmont-BoneBlack-LeftShoeLeftSide.jpg?v=1593729840',
+      },
+    ],
+    variants: [
+      {
+        name: 'Bone / Black / Red',
+        color: '#DE1E00',
+        secondaryColor: '#FFF5E5',
+        price: '695.00',
+      },
+      {
+        name: 'Bone / Black / Blue',
+        color: '#52A2E8',
+        secondaryColor: '#FFF5E5',
+        price: '695.00',
+      },
+      {
+        name: 'Black Croc',
+        color: '#161616',
+        price: '695.00',
+      },
+      {
+        name: 'Bone / Black',
+        color: '#161616',
+        secondaryColor: '#FFF5E5',
+        price: '695.00',
+      },
+      {
+        name: 'Bone / Wine',
+        color: '#480000',
+        secondaryColor: '#FFF5E5',
+        price: '695.00',
+      },
+    ] 
   }
-
-  ${ImageWrapper} {
-    align-self: stretch;
-    width: 745px;
-    position: relative;
-    background-color: #9D8673;
-  }
-`
-
-const GridSection = styled(Section)`
-  flex-wrap: wrap;
-
-  @media (max-width: 600px) {
-    width: 100%;
-    flex-direction: column;
-  }
-`
-
-const Card = styled.a`
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  width: 45%;
-
-  &:hover, &:focus, &:active {
-    color: #0070f3;
-    border-color: #0070f3;
-  }
-
-  h2 {
-    margin: 0 0 1rem 0;
-    font-size: 1.5rem;
-  }
-
-  p {
-    margin: 0;
-    font-size: 1.25rem;
-    line-height: 1.5;
-  }
-`
+]
 
 export default function Home() {
   return (
@@ -91,57 +85,65 @@ export default function Home() {
       <Hero
         title="A Dream Escape"
         subtitle="Discover Chapter Two"
+        image="/campaign/101.jpg"
         link="Shop The Collection"
         variant="layout.hero.homepage"
       />
-
-      <ProductSection>
-        <ImageWrapper />
-        <Caption>
-          <h2>Belmont</h2>
-          <p>
-            Inspired by the legendary Los Angeles skate spot, the Belmont is a skate take on a classic apron front derby. Woven, waxed, gold-tipped laces tie it all together with a louche elegance.  
-          </p>
-          <Button>Shop Now</Button>
-        </Caption>
-      </ProductSection>
-
-      <GridSection>
-        <Card href="https://nextjs.org/docs">
-          <h2>Documentation &rarr;</h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </Card>
-
-        <Card href="https://nextjs.org/learn">
-          <h2>Learn &rarr;</h2>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </Card>
-
-        <Card
-          href="https://github.com/vercel/next.js/tree/master/examples">
-          <h2>Examples &rarr;</h2>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </Card>
-
-        <Card
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app">
-          <h2>Deploy &rarr;</h2>
-          <p>
-            Instantly deploy your Next.js site to a public URL with Vercel.
-          </p>
-        </Card>
-      </GridSection>
-
-      <ProductSection>
-        <ImageWrapper />
-        <Caption>
-          <h2>Mongoose</h2>
-          <p>
-            Our spin on the classic sneaker featuring striking combination of richly textured Italian calfskin leathers adorned with our signature goldplated dog tags.
-          </p>
-          <Button>Shop Now</Button>
-        </Caption>
-      </ProductSection>
+      <ProductCard product={placeholderProducts[0]} />
+      <Grid
+        columns={2}
+        gap={0}
+        sx={{
+          minHeight: '1185px',
+          width: '100%',
+        }}
+      >
+        <ProductImageCard
+          image='/campaign/102.jpg'
+          product={placeholderProducts[0]}
+        />
+        <Flex
+          sx={{
+            flexDirection: 'column',
+            '& > *': {
+              flexBasis: '50%',
+              flexGrow: 1,
+            }
+          }}>
+          <Box
+            sx={{
+              alignItems: 'center',
+              bg: 'black',
+              color: 'white',
+              display: ['none', 'flex'],
+              justifyContent: 'center',
+              'p': {
+                maxWidth: '465px',
+                mx: 4,
+                textAlign: 'center'
+              }
+            }}>
+            <p>
+              The Chapter 2 collection features loafers, slip-ons, mules, and sneakers, which are all handmade in Italy using premium materials like box calf leathers, exotic prints, pony hair, and gold-plated hardware — quality footwear made to last that reflects Ellington and Rajan’s joined aesthetic.
+            </p>
+          </Box>
+          <ProductImageCard
+            image='/campaign/103.jpg'
+            layout='top right'
+            product={placeholderProducts[0]}
+          />
+        </Flex>
+      </Grid>
+      <ProductCard product={placeholderProducts[1]} />
+      <Hero
+        title="A Dream Escape"
+        subtitle="Discover Chapter Two"
+        image="/campaign/104.jpg"
+        backgroundPosition="center 0%"
+        link="Shop The Collection"
+        size="large"
+        variant="layout.hero.homepage"
+      />
     </>
   )
 }
