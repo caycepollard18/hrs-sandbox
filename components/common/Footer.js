@@ -8,7 +8,7 @@ import {
 import {
   Logo,
   LogoAlt,
-} from '../ui/Logo'
+} from '@components/ui'
 
 const sitePages = [
   {

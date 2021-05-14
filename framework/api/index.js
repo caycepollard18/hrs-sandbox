@@ -4,7 +4,7 @@ import {
   SHOPIFY_CHECKOUT_ID_COOKIE,
   SHOPIFY_CUSTOMER_TOKEN_COOKIE,
   STORE_DOMAIN
-} from '../const'
+} from '@framework/const'
 import Client from 'shopify-buy'
 
 

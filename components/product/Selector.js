@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import Link from 'next/link'
-import { Arrow } from '../icons'
-import { Swatch } from '../product'
+import { Arrow } from '@components/icons'
+import { Swatch } from '@components/product'
 import { Flex, Text } from 'theme-ui'
 
 
@@ -37,8 +37,8 @@ const Selector = ({
         }}>
         {colors.map((color, i) => (
           <Swatch
-            key={color.substring(1).concat(i)}
-            color={color}
+            key={color ? color.substring(1).concat(i) : i}
+            color={color ? color : '#FFFFFF'}
             active={i === 1}
           />
           )

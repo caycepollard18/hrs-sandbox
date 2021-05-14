@@ -5,8 +5,8 @@ import {
   Heading,
   Text
 } from 'theme-ui'
-import { Selector } from '../product'
-import { Button } from '../ui'
+import { Selector } from '@components/product'
+import { Button } from '@components/ui'
 
 const Description = ({
   color = 'default',

@@ -1,8 +1,10 @@
+import { Layout } from '@components/common'
 import React from 'react'
-import Layout from '../components/common/Layout'
+import theme from '@theme'
 import { ThemeProvider } from 'theme-ui'
-import fonts from '../styles/fonts.css'
-import theme from '../theme/theme.js'
+
+// Seems to work best with theme-ui to import fonts as global CSS
+import '@styles/fonts.css'
 
 export default function MyApp({ Component, pageProps }) {
   return (

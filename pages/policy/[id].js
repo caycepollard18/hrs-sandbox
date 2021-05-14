@@ -4,14 +4,14 @@ import {
   format
 } from 'date-fns'
 import {
+  getAllPolicyIds,
+  getPolicyData
+} from '@lib/policy'
+import {
   Flex,
   Heading
 } from 'theme-ui'
 
-import {
-  getAllPolicyIds,
-  getPolicyData
-} from '../../lib/policy'
 
 export async function getStaticProps({ params }) {
   const policyData = await getPolicyData(params.id)

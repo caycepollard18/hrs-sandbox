@@ -1,19 +1,16 @@
 /** @jsxImportSource theme-ui */
-import { client } from '../shopify'
-import {
-  Button,
-  Hero
-} from '../components/ui/'
 import {
   ProductCard,
   ProductImageCard
-} from '../components/product'
+} from '@components/product'
+import { Hero } from '@components/ui'
+import { client } from '@framework/index'
+import { getProduct } from '@framework/product/getProduct'
 import {
   Box,
   Flex,
   Grid
 } from 'theme-ui'
-
 
 const placeholderProducts = [
   {
@@ -83,15 +80,20 @@ const placeholderProducts = [
 
 export async function getStaticProps(context) {
   const products = await client.product.fetchAll()
+  const testProduct = await getProduct("belmont-bone-black")
   return {
     props: {
-      products: JSON.parse(JSON.stringify(products))
+      products: JSON.parse(JSON.stringify(products)),
+      testProduct: JSON.parse(JSON.stringify(testProduct))
     }
   }
 }
 
-export default function Home({ products }) {
+export default function Home({ products, testProduct }) {
   console.log(products)
+  console.log("Handle is " + products[0].handle)
+  console.log("Running test ...")
+  console.log(testProduct)
   return (
     <>
       <Hero
@@ -147,7 +149,7 @@ export default function Home({ products }) {
           />
         </Flex>
       </Grid>
-      <ProductCard product={placeholderProducts[1]} />
+      <ProductCard product={products[6]} />
       <Hero
         title="A Dream Escape"
         subtitle="Discover Chapter Two"

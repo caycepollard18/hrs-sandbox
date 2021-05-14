@@ -1,8 +1,8 @@
 /** @jsxImportSource theme-ui */
+import { Selector } from '@components/product'
+import { Button } from '@components/ui'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Selector } from '../product'
-import { Button } from '../ui'
 import {
   Box,
   Flex,
@@ -69,12 +69,13 @@ const ProductCard = ({
   imgProps,
   ...props
 }) => {
+  const variantName = product.title
   return (
     <ProductCardWrapper {...props}>
       {product?.images && (
         <ImageWrapper
           sx={{
-            backgroundImage: `url(${product.images[0].url})`,
+            backgroundImage: `url(${product.images[1] && product.images[1].src})`,
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'contain',
@@ -82,7 +83,7 @@ const ProductCard = ({
         />
       )}
       <Description>
-        <Heading as="h2" mt={0} mb={1} variant="styles.h2">{product.name}</Heading>
+        <Heading as="h2" mt={0} mb={1} variant="styles.h2">{product.productType}</Heading>
         <Text as="div" sx={{ textAlign: ['center', 'left'] }}>{product.description}</Text>
         <Selector
           colors={product.variants.map((variant) => variant.color)}
@@ -98,12 +99,12 @@ const ProductCard = ({
             mb: 3,
           }}
         >
-          <Text as="div" variant="text.micro">{product.variants[0].name}</Text>
+          <Text as="div" variant="text.micro">{product.title && product.title.split(" ")[1]}</Text>
           <Text as="div">{product.variants[0].price} USD</Text>
         </Flex>
         <Link href={'/product/${product.slug}'} passHref>
           <Button>
-            Shop {product.name}
+            Shop {product.productType}
           </Button>
         </Link>
       </Description>

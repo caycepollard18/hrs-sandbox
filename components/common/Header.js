@@ -1,15 +1,15 @@
 /** @jsxImportSource theme-ui */
+import {
+  Bag as BagLogo,
+  Hamburger as HamburgerLogo,
+  Search as SearchLogo
+} from '@components/icons'
+import { Logo } from '@components/ui'
 import Link from 'next/link'
 import {
   Box,
   Flex
 } from 'theme-ui'
-import { Logo } from '../ui'
-import {
-  Bag as BagLogo,
-  Hamburger as HamburgerLogo,
-  Search as SearchLogo
-} from '../icons'
 
 const sitePages = [
   {
