@@ -4,8 +4,7 @@ import {
   ProductImageCard
 } from '@components/product'
 import { Hero } from '@components/ui'
-import { client } from '@framework/index'
-import { getProduct } from '@framework/product/getProduct'
+import { getAllProductsInCollection } from '@framework/shopify'
 import {
   Box,
   Flex,
@@ -77,10 +76,8 @@ const placeholderProducts = [
     ] 
   }
 ]
-
-export async function getStaticProps(context) {
+/* export async function getStaticProps(context) {
   const products = await client.product.fetchAll()
-  const testProduct = await getProduct("belmont-bone-black")
   return {
     props: {
       products: JSON.parse(JSON.stringify(products)),
@@ -88,12 +85,10 @@ export async function getStaticProps(context) {
     }
   }
 }
+*/
 
-export default function Home({ products, testProduct }) {
+export default function Home({ products }) {
   console.log(products)
-  console.log("Handle is " + products[0].handle)
-  console.log("Running test ...")
-  console.log(testProduct)
   return (
     <>
       <Hero
@@ -149,7 +144,7 @@ export default function Home({ products, testProduct }) {
           />
         </Flex>
       </Grid>
-      <ProductCard product={products[6]} />
+      <ProductCard product={placeholderProducts[1]} />
       <Hero
         title="A Dream Escape"
         subtitle="Discover Chapter Two"
@@ -161,4 +156,14 @@ export default function Home({ products, testProduct }) {
       />
     </>
   )
+}
+
+export async function getStaticProps() {
+  const products = await getAllProductsInCollection()
+
+  return {
+    props: {
+      products
+    },
+  }
 }
