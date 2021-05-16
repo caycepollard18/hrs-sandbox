@@ -37,13 +37,13 @@ const Button = React.forwardRef((props, ref) => {
       ref={ref}
       // ref={mergeRefs([fallbackRef, ref])}
       sx={{
-        height: 40,
-        minWidth: [175, 250],
+        height: '40px',
+        minWidth: ['175px', '250px'],
         border: 0,
         borderRadius: 0,
         cursor: 'pointer',
         display: 'inline-block',
-        px: 30,
+        px: '30px',
       }}
       {...rest}
     >

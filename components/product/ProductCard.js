@@ -53,7 +53,7 @@ const Description = ({ children }) => (
       flexDirection: 'column',
       justifyContent: 'center',
       mt: 2,
-      mb: 4,
+      mb: 5,
       'h2, button': {
         alignSelf: ['center', 'flex-start'],
       }
@@ -69,7 +69,6 @@ const ProductCard = ({
   imgProps,
   ...props
 }) => {
-  const variantName = product.title
   return (
     <ProductCardWrapper {...props}>
       {product?.images && (
@@ -83,8 +82,20 @@ const ProductCard = ({
         />
       )}
       <Description>
-        <Heading as="h2" mt={0} mb={1} variant="styles.h2">{product.productType}</Heading>
-        <Text as="div" sx={{ textAlign: ['center', 'left'] }}>{product.description}</Text>
+        <Heading
+          as="h2"
+          mt={0}
+          mb={1}
+          variant="styles.h2"
+        >
+          {product.productType}
+        </Heading>
+        <Text
+          as="div"
+          sx={{ textAlign: ['center', 'left'] }}
+        >
+          {product.description}
+        </Text>
         <Selector
           colors={product.variants.map((variant) => variant.color)}
           variant="borders"

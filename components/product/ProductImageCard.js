@@ -22,7 +22,7 @@ const Description = ({
       flexShrink: 1,
       justifyContent: 'center',
       mt: 2,
-      mb: 4,
+      mb: 5,
       'h2, button': {
         alignSelf: ['center', layout.includes('left') ? 'flex-start' : 'flex-end'],
       },
@@ -53,7 +53,7 @@ const ProductImageCard = ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: layout.includes('top') ? 'flex-start' : 'flex-end',
-        p: [4, 4, 5],
+        p: [5, 5, 6],
       }}
     >
       <Description color={color} layout={layout}>

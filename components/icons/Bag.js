@@ -1,3 +1,5 @@
+// todo: add "color" prop like in Arrow.js if needed (?)
+
 const Bag = ({ ...props }) => {
   return (
     <svg

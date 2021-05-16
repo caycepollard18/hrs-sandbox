@@ -18,8 +18,8 @@ const HeroContainer = ({
   size,
   ...props
 }) => {
-  const defaultSizes = [550, 550, 550, 800]
-  const largeSizes = [550, 550, 720, 1200]
+  const defaultSizes = ['550px', '550px', '550px', '800px']
+  const largeSizes = ['550px', '550px', '720px', '1200px']
   
   return (
     <Flex
@@ -33,8 +33,8 @@ const HeroContainer = ({
         backgroundSize: 'cover',
         flexDirection: 'column',
         justifyContent: 'center',
-        px: 60,
-        py: 30,
+        px: 7,
+        py: 5,
         variant: 'layout.hero',
       }}
       {...props}
@@ -44,12 +44,12 @@ const HeroContainer = ({
   )
 }
 
-const Headline = ({ title, subtitle, ...props }) => (
+const Headline = ({ title, subtitle }) => (
   <Flex
     sx={{
       flexDirection: 'column',
       alignItems: 'center',
-      mb: [3, 3, 5],
+      mb: [3, 3, 6],
     }}
   >
     <Heading
@@ -65,7 +65,7 @@ const Headline = ({ title, subtitle, ...props }) => (
       as="span"
       sx={{
         m: 0,
-        minHeight: 16,
+        minHeight: 3,
         variant: 'text.subtitle'
       }}
     >

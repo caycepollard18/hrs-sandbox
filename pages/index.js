@@ -4,7 +4,10 @@ import {
   ProductImageCard
 } from '@components/product'
 import { Hero } from '@components/ui'
-import { getAllProductsInCollection } from '@framework/shopify'
+import {
+  getAllProductHandles,
+  getProductsByCollection
+} from '@framework/api'
 import {
   Box,
   Flex,
@@ -87,8 +90,10 @@ const placeholderProducts = [
 }
 */
 
-export default function Home({ products }) {
+export default function Home({ handles, products }) {
   console.log(products)
+  console.log(handles)
+  console.log("Products[0] = " + products[0].title)
   return (
     <>
       <Hero
@@ -159,10 +164,12 @@ export default function Home({ products }) {
 }
 
 export async function getStaticProps() {
-  const products = await getAllProductsInCollection()
+  const products = await getProductsByCollection()
+  const handles = await getAllProductHandles()
 
   return {
     props: {
+      handles,
       products
     },
   }

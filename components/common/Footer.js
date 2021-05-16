@@ -71,7 +71,7 @@ const FooterNav = ({ children, ...props }) => (
     sx={{
       maxWidth: ['100%', 400],
       maxHeight: ['100%', 100],
-      mt: ['24px', 4],
+      mt: [4, 5],
       mb: [3, 0],
       alignItems: 'flex-start',
       flexDirection: 'column',
@@ -87,7 +87,7 @@ const FooterNav = ({ children, ...props }) => (
 const NavLink = ({ href, page, ...props }) => (
   <Box
     sx={{
-      height: 28,
+      height: '28px',
       width: ['100%', 'auto'],
       alignItems: 'center',
       display: ['flex', 'block'],
@@ -139,28 +139,29 @@ const Footer = ({ ...props }) => {
   return (
     <footer
       sx={{
-        minHeight: [750, '100%'],
+        minHeight: ['750px', '100%'],
         width: ['100%'],
-        px: [28, 60],
-        pt: [28, 80],
-        pb: [28, 45],
+        px: [4, 7],
+        pt: [4, 9],
+        pb: [4, 6],
         display: 'flex',
         flexDirection: ['column', 'row'],
         justifyContent: ['flex-start', 'center'],
         alignItems: 'stretch',
         variant: 'layout.footer',
       }}
+      {...props}
     >
       <InnerContainer
         sx={{
           justifyContent: ['flex-start', 'space-between'],
-          minWidth: ['100%', 400, 0],
+          minWidth: ['100%', '400px', 0],
         }}
       >
         <LogoAlt
           sx={{
-            width: 145,
-            height: 50,
+            width: '145px',
+            height: '50px',
           }}
         />
         <FooterNav>
@@ -187,7 +188,7 @@ const Footer = ({ ...props }) => {
             flexDirection: 'column',
             order: [-1, 2],
             maxWidth: ['100%', '170px', '100%'],
-            mb: [4, 0],
+            mb: [5, 0],
           }}
         >
           <Copyright />

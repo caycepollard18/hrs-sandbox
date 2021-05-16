@@ -12,7 +12,7 @@ const palette = {
 
 const theme = {
   breakpoints: ['650px', '960px', '1280px', '1920px'],
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  space: [0, 4, 8, 16, 24, 32, 48, 64, 72, 80, 128, 256, 512],
   fonts: {
     body: 'GranbyEF, system-ui, sans-serif',
     heading: 'inherit',
@@ -150,6 +150,9 @@ const theme = {
       color: 'muted',
       fontSize: 1,
       fontWeight: 400,
+    },
+    product: {
+      backgroundColor: 'white',
     },
     footer: {
       color: 'accent',

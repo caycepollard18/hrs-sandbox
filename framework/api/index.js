@@ -1,28 +1,141 @@
-import {  
-  API_URL,
-  API_TOKEN,
-  SHOPIFY_CHECKOUT_ID_COOKIE,
-  SHOPIFY_CUSTOMER_TOKEN_COOKIE,
-  STORE_DOMAIN
-} from '@framework/const'
-import Client from 'shopify-buy'
+const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN
+const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN
+const collection = process.env.SHOPIFY_COLLECTION
 
 
-if (!API_URL) {
-  throw new Error(
-    `The environment variable NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN is missing and it's required to access your store`
-  )
+// todo: add variables to accommodate other types of fetch
+//  see -- https://github.com/vercel/commerce/blob/d838f34c73dc1fb6a44965750024d2cb934907be/framework/shopify/fetcher.ts
+// todo: add handleFetchResponse (see link above)
+async function fetcher(query) {
+  const url = `https://${domain}/api/2021-01/graphql.json`;
+
+  const options = {
+    endpoint: url,
+    method: "POST",
+    headers: {
+      "X-Shopify-Storefront-Access-Token": storefrontAccessToken,
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query }),
+  }
+
+  try {
+    const data = await fetch(url, options).then((res) =>
+      res.json(),
+    )
+    return data
+  } catch (error) {
+    throw new Error("Error occurred while attempting to fetch from Shopify")
+  }
 }
 
-if (!API_TOKEN) {
-  throw new Error(
-    `The environment variable NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN is missing and it's required to access your store`
-  )
+export async function getProductsByCollection() {
+  const query = `
+    {
+      collectionByHandle(handle: "${collection}") {
+        id
+        title
+        products(first: 250) {
+          edges {
+            node {
+              id
+              title
+              description
+              handle
+              images(first: 250) {
+                edges {
+                  node {
+                    id
+                    originalSrc
+                    height
+                    width     
+                    altText             
+                  }
+                }
+              }
+              variants(first: 250) {
+                edges {
+                  node {
+                    id
+                    title
+                    price                
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `
+
+  const { data } = await fetcher(query)
+
+  const products = data.collectionByHandle?.products?.edges?.map(
+      ({ node: p }) => p
+    ) ?? []
+
+  return products
 }
 
-const client = Client.buildClient({
-  domain: STORE_DOMAIN,
-  storefrontAccessToken: API_TOKEN
-})
+export async function getAllProductHandles() {
+  const query = `
+    query getAllProductPaths($first: Int = 250) {
+      products(first: $first, query:"status:active") {
+        edges {
+          node {
+            handle
+          }
+        }
+      }
+    }
+  `
 
-export default client
+  const { data } = await fetcher(query)
+
+  const handles = data.products.edges || []
+
+  return handles
+}
+
+export async function getProduct(handle) {
+  const query = `
+    {
+      productByHandle(handle: "${handle}") {
+        id
+        title
+        handle
+        description
+        productType
+        images(first: 250) {
+          edges {
+            node {
+              id
+              originalSrc
+              height
+              width     
+              altText             
+            }
+          }
+        }
+        variants(first: 250) {
+          edges {
+            node {
+              id
+              title
+              price                
+            }
+          }
+        }
+      }
+    }
+  `
+  const { data } = await fetcher(query)
+
+  const product = data.productByHandle
+    ? data.productByHandle
+    : []
+
+  return product
+}

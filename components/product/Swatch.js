@@ -4,6 +4,7 @@ import {
 
 const Swatch = ({
   color = '',
+  size = 'small',
   variant = 'color',
   active,
   ...props

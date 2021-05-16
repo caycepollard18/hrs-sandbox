@@ -6,10 +6,8 @@ import {
 } from '@components/icons'
 import { Logo } from '@components/ui'
 import Link from 'next/link'
-import {
-  Box,
-  Flex
-} from 'theme-ui'
+import { useRouter } from 'next/router'
+import { Flex } from 'theme-ui'
 
 const sitePages = [
   {
@@ -26,37 +24,17 @@ const sitePages = [
   }
 ]
 
-const Hamburger = ({...props}) => (
+const Hamburger = () => (
   <Flex
     sx={{
       display: ['block', 'block', 'none'],
     }}
-    {...props}
   >
     <Link href="/">
       <a>
         <HamburgerLogo />
       </a>
     </Link>
-  </Flex>
-)
-
-const HeaderContainer = ({ children }) => (
-  <Flex
-    as="header"
-    sx={{
-      height: '70px',
-      width: '100%',
-      alignItems: 'center',
-      flexDirection: 'row',
-      justifyContent: 'center',
-      position: 'absolute',
-      px: ['24px', '24px', 5],
-      py: '24px',
-      variant: 'layout.header'
-    }}
-  >
-    { children }
   </Flex>
 )
 
@@ -73,7 +51,7 @@ const NavMenu = () => (
         flexDirection: 'row',
         display: ['none', 'none', 'block'],
         'a': {
-          pr: '24px',
+          pr: 4,
         },
       }}
     >
@@ -91,10 +69,8 @@ const NavMenu = () => (
   </Flex>
 )
 
-const Bag = ({...props}) => (
-  <Flex
-    {...props}
-  >
+const Bag = () => (
+  <Flex>
     <Link href="/">
       <a>
         <BagLogo />
@@ -103,12 +79,11 @@ const Bag = ({...props}) => (
   </Flex>
 )
 
-const Search = ({...props}) => (
+const Search = () => (
   <Flex
     sx={{
       display: ['none', 'none', 'block'],
     }}
-    {...props}
   >
     <Link href="/">
       <a>
@@ -121,33 +96,45 @@ const Search = ({...props}) => (
 const UserMenu = () => (
   <Flex
     sx={{
+      alignItems: 'center',
       flex: 1,
       flexDirection: 'row',
-      alignItems: 'center',
+      gap: 5,
       justifyContent: 'flex-end',
     }}
   >
-    <Search
-      sx={{
-        mr: 4,
-      }}
-    />
+    <Search />
     <Bag />
   </Flex>
 )
 
-const Header = ({ ...props }) => {
+const Header = () => {
+  const router = useRouter()
   return (
-    <HeaderContainer>
-        <NavMenu />
+    <Flex
+      as="header"
+      sx={{
+        height: router.pathname === '/' ? ['70px', '70px', '100px'] : ['48px', '48px', '100px'],
+        width: '100%',
+        alignItems: 'center',
+        backgroundColor: router.pathname === '/' ? null : 'black',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        position: router.pathname === '/' ? 'absolute' : null,
+        px: [4, 4, 6],
+        py: router.pathname === '/' ? 4 : 3,
+        variant: 'layout.header'
+      }}
+    >
+      <NavMenu />
       <Logo
         sx={{
-          height: [20, 20, 30],
-          width: [20, 20, 30],
+          height: ['20px', '20px', '30px'],
+          width: ['20px', '20px', '30px'],
         }}
       />
       <UserMenu />
-    </HeaderContainer>
+    </Flex>
   )
 }
 

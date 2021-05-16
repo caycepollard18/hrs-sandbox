@@ -1,8 +1,9 @@
 /** @jsxImportSource theme-ui */
 import {
-  Container
-} from 'theme-ui'
-import { Header, Footer } from './index'
+  Footer,
+  Header
+ } from '@components/common'
+import { Container } from 'theme-ui'
 
 export default function Layout({ children, home }) {
   return (
@@ -20,11 +21,11 @@ export default function Layout({ children, home }) {
       <main
         sx={{
           width: ['100%'],
+          alignItems: 'center',
           display: 'flex',
-          flex: '1',
+          flex: 1,
           flexDirection: 'column',
           justifyContent: 'flex-start',
-          alignItems: 'center',
           variant: 'layout.main',
         }}
       >
