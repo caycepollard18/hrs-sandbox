@@ -4,10 +4,9 @@ import {
 import {
   getProduct,
   getAllProductHandles
-} from '@framework/api'
+} from '@framework/product'
 
 export default function Product({ product }) {
-  console.log(product)
   return (
     <ProductView product={product} />
   )

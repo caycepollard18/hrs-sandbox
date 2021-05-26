@@ -2,34 +2,81 @@
 import Link from 'next/link'
 import { Arrow } from '@components/icons'
 import { Swatch } from '@components/product'
-import { Flex, Text } from 'theme-ui'
+import PropTypes from 'prop-types'
+import { useState } from 'react'
+import { Flex } from 'theme-ui'
 
+const propTypes = {
+  colors: PropTypes.arrayOf(PropTypes.object),
+  selected: PropTypes.object,
+  setVariant: PropTypes.func,
+  size: PropTypes.oneOf(['small', 'large']),
+  sx: PropTypes.object,
+  variant: PropTypes.oneOf(['no-borders', 'borders']),
+}
+
+const defaultColors = [
+  {
+    color: "Black Multi Combo",
+    handle: "",
+    id: "id8271398ffdsf",
+    swatch: "/swatches/Belmont - Black Combo.jpg",
+  },
+  {
+    color: "Bone Black",
+    handle: "",
+    id: "id8271398fsdja",
+    swatch: "/swatches/Belmont - Bone Black.jpg",
+  }
+]
+
+const defaultProps = {
+  colors: defaultColors,
+  selected: {},
+  setVariant: null,
+  size: 'small',
+  sx: {},
+  variant: 'no-borders',
+}
 
 // todo: implement isSelected
 // todo: implement colors.map
+
 const Selector = ({
-  colors = ['#191714', '#76A9AD'],
-  variant = '',
+  colors,
+  selected,
+  setVariant,
+  size,
+  sx,
+  variant,
   ...props
 }) => {
+  const hasBorders = variant === 'borders'
+
+  const [selectedColor, setColor] = useState(selected)
+
+  const handleOnClick = (color) => {
+    setColor(color)
+    setVariant(color)
+  }
+  
   return (
     <Flex
       sx={{
-        minHeight: `${variant === 'borders' ? '38px' : '18px'}`,
-        width: `${variant === 'borders' ? '100%' : 'auto'}`,
+        minHeight: hasBorders ? '38px' : '18px',
+        width: hasBorders && '100%',
         alignItems: 'center',
-        borderTop: `${variant === 'borders' ? '1px solid' : 'none'}`,
-        borderBottom: `${variant === 'borders' ? '1px solid' : 'none'}`,
+        borderTop: hasBorders ? '1px solid' : 'none',
+        borderBottom: hasBorders ? '1px solid' : 'none',
         borderColor: 'offBlack20',
+        flexShrink: 1,
         gap: 2,
-        justifyContent: 'space-between',
-        '& > svg': {
-          display: `${variant === '' ? 'none' : 'block'}`,
-        }
+        justifyContent: hasBorders && 'space-between', 
+        ...sx
       }}
       {...props}
     >
-      <Arrow variant="left" />
+      {hasBorders && <Arrow variant="left" />}
       <Flex
         sx={{
           flexDirection: 'row',
@@ -37,16 +84,21 @@ const Selector = ({
         }}>
         {colors.map((color, i) => (
           <Swatch
-            key={color ? color.substring(1).concat(i) : i}
-            color={color ? color : '#FFFFFF'}
-            active={i === 1}
+            key={color.id}
+            color={color.swatch}
+            onClick={() => handleOnClick(color)}
+            active={selectedColor ? color.id === selectedColor.id : i === 1}
+            size={size}
           />
           )
         )}
       </Flex>
-      <Arrow variant="right" />
+      {hasBorders && <Arrow variant="right" />}
     </Flex>
   )
 }
+
+Selector.propTypes = propTypes
+Selector.defaultProps = defaultProps
 
 export default Selector

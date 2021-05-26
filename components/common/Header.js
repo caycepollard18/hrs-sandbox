@@ -11,12 +11,12 @@ import { Flex } from 'theme-ui'
 
 const sitePages = [
   {
-    url: '/shop',
-    page: 'Shop',
-  },
-  {
     url: '/collection',
     page: 'Collection',
+  },
+  {
+    url: '/press',
+    page: 'Press',
   },
   {
     url: '/about',

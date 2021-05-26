@@ -1,17 +1,24 @@
 /** @jsxImportSource theme-ui */
 import { Button } from '@components/ui'
 import { Selector } from '@components/product'
+import Image from 'next/image'
+import PropTypes from 'prop-types'
 import {
   Flex,
   Heading,
   Text
 } from 'theme-ui'
 
+const propTypes = {
+  product: PropTypes.object.isRequired,
+}
+
 const ProductContainer = ({ children, ...props }) => (
   <Flex
     sx={{
       flex: 1,
       flexBasis: '50%',
+      flexDirection: 'column',
     }}
     {...props}
   >
@@ -38,7 +45,7 @@ const Description = ({ children }) => (
 )
 
 const ProductView = ({ product }) => {
-  console.log(product.title)
+  console.log(product)
   return (
     <Flex
       sx={{
@@ -49,22 +56,50 @@ const ProductView = ({ product }) => {
       }}
     >
       <ProductContainer>
-        Column 1
+        {product.images?.map((image) => (
+          <Image
+            key={image.id}
+            src={image.src}
+            alt={image.alt}
+            height={image.height}
+            width={image.width}
+          />
+        ))}
       </ProductContainer>
       <ProductContainer
         p={5}
+        sx={{
+          borderLeft: '1px solid #16161620',
+        }}
         variant="layout.product"
       >
         <Description>
-          <Heading as="h1" mt={0} mb={2} variant="styles.h1">{product.productType}</Heading>
+          <Heading as="h1" mt={0} mb={2} variant="styles.h1">{product.style}</Heading>
           <Selector
-            colors={['lightblue', 'gray', 'black']}
+            colors={product.colors}
+            size="large"
           />
+          <Flex sx={{
+            flexDirection: 'row',
+            gap: 2,
+            mt: 3,
+            mb: 2,
+            }}
+          >
+            {product.variants?.map((variant) => (
+              <Text key={variant.id}>
+                {variant.title}
+              </Text>
+            )
+            )}
+          </Flex>
           <Text as="div" sx={{ textAlign: ['center', 'left'] }}>{product.description}</Text>
         </Description>
       </ProductContainer>
     </Flex>
   )
 }
+
+ProductView.propTypes = propTypes
 
 export default ProductView

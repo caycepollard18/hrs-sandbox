@@ -1,11 +1,12 @@
 const palette = {
   white: '#ffffff',
   gray: '#36393D',
+  lightGray: '#35353A50',
   offBlack: '#161616',
   offBlack20: '#16161620',
   offBlack50: '#16161650',
   black: '#000000',
-  bone: '#f5f3f4',
+  bone: '#f3efec',
   darkBone: '#F6F1EE',
   funnyName: '#ff0000',
 }
@@ -37,6 +38,7 @@ const theme = {
     primary: palette.offBlack,
     accent: palette.white,
     muted: palette.gray,
+    superMuted: palette.lightGray,
     softPrimary: palette.offBlack20,
     softSecondary: palette.offBlack50,
   },
@@ -73,6 +75,13 @@ const theme = {
       lineHeight: 'heading',
       textTransform: 'uppercase'
     }
+  },
+  shadows: {
+    0: 'none',
+    card: 'inset 1px 1px 0px 0 #16161620',
+    cardHover: 'inset 8px 8px 0px 0 #FFFFFF, inset -8px -8px 0px 0 #FFFFFF, 0px 3px 22px #00000059',
+    inactiveButton: '1px 1px 1px #00000040',
+    activeButton: '0px 3px 6px #00000029',
   },
   styles: {
     root: {
@@ -145,6 +154,24 @@ const theme = {
     },
     hero: {
       color: 'accent',
+      homepage: {
+        h1: {
+          variant: 'text.title'
+        },
+        span: {
+          variant: 'text.subtitle'
+        }
+      },
+      collection: {
+        h1: {
+          variant: 'text.heading',
+          fontSize: [5, 5, 6],
+          textTransform: 'uppercase',
+        },
+        span: {
+          variant: 'text.subtitle'
+        }
+      }
     },
     main: {
       color: 'muted',
@@ -161,6 +188,37 @@ const theme = {
       fontWeight: 400,
       lineHeight: 'heading',
     },
+    collection: {
+      card: {
+        boxShadow: [0, 'card'],
+        '&:hover': {
+          border: ['none'],
+          boxShadow: [0, 'cardHover'],
+        },
+        a: {
+          '&:hover': {
+            opacity: 1,
+          },
+        },
+        description: {
+          color: 'superMuted',
+        }
+      },
+    },
+    selector: {
+      swatch: {
+        border: '1px solid #ffffff00',
+        boxShadow: '1px 1px 1px #00000040',
+        '&:hover': {
+          border: '1px solid #ffffff40',
+          boxShadow: '1px 1px 1px #00000040, 0px 2px 4px #00000029',
+        },
+        active: {
+          border: '1px solid white',
+          boxShadow: '0px 3px 6px #00000029',
+        }
+      }
+    }
   },
   buttons: {
     primary: {
