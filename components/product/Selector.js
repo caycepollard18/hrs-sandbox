@@ -1,20 +1,11 @@
 /** @jsxImportSource theme-ui */
-import Link from 'next/link'
 import { Arrow } from '@components/icons'
 import { Swatch } from '@components/product'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { Flex } from 'theme-ui'
+import { Flex, Text } from 'theme-ui'
 
-const propTypes = {
-  colors: PropTypes.arrayOf(PropTypes.object),
-  selected: PropTypes.object,
-  setVariant: PropTypes.func,
-  size: PropTypes.oneOf(['small', 'large']),
-  sx: PropTypes.object,
-  variant: PropTypes.oneOf(['no-borders', 'borders']),
-}
-
+/* use for troubleshooting
 const defaultColors = [
   {
     color: "Black Multi Combo",
@@ -28,50 +19,60 @@ const defaultColors = [
     id: "id8271398fsdja",
     swatch: "/swatches/Belmont - Bone Black.jpg",
   }
-]
+] */
+
+const propTypes = {
+  colors: PropTypes.arrayOf(PropTypes.object),
+  createLinkProps: PropTypes.func,
+  onChange: PropTypes.func,
+  selected: PropTypes.object,
+  iconSize: PropTypes.oneOf(['small', 'large']),
+  sizes: PropTypes.arrayOf(PropTypes.object),
+  sx: PropTypes.object,
+  variant: PropTypes.oneOf(['no-borders', 'borders']),
+}
 
 const defaultProps = {
-  colors: defaultColors,
+  colors: [],
+  createLinkProps: null,
+  onChange: null,
   selected: {},
-  setVariant: null,
-  size: 'small',
+  iconSize: 'small',
+  sizes: [],
   sx: {},
   variant: 'no-borders',
 }
 
-// todo: implement isSelected
-// todo: implement colors.map
-
 const Selector = ({
   colors,
+  createLinkProps,
   selected,
-  setVariant,
-  size,
+  onChange,
+  iconSize,
+  sizes,
   sx,
   variant,
   ...props
 }) => {
-  const hasBorders = variant === 'borders'
+  const [selectedVariant, setVariant] = useState(selected)
 
-  const [selectedColor, setColor] = useState(selected)
-
-  const handleOnClick = (color) => {
-    setColor(color)
-    setVariant(color)
+  const handleOnClick = (option) => {
+    setVariant(option)
+    {onChange && onChange(option)}
   }
+
+  const hasBorders = variant === 'borders'
   
-  return (
+  return colors.length > 0 ? (
     <Flex
       sx={{
         minHeight: hasBorders ? '38px' : '18px',
         width: hasBorders && '100%',
         alignItems: 'center',
-        borderTop: hasBorders ? '1px solid' : 'none',
-        borderBottom: hasBorders ? '1px solid' : 'none',
-        borderColor: 'offBlack20',
         flexShrink: 1,
         gap: 2,
-        justifyContent: hasBorders && 'space-between', 
+        justifyContent: hasBorders && 'space-between',
+        variant: hasBorders && 'layout.selector.borders',
         ...sx
       }}
       {...props}
@@ -81,19 +82,41 @@ const Selector = ({
         sx={{
           flexDirection: 'row',
           gap: 2,
-        }}>
-        {colors.map((color, i) => (
+        }}
+      >
+        {colors.map(color => (
           <Swatch
             key={color.id}
             color={color.swatch}
+            createLinkProps={createLinkProps && createLinkProps(color)}
             onClick={() => handleOnClick(color)}
-            active={selectedColor ? color.id === selectedColor.id : i === 1}
-            size={size}
+            active={selectedVariant && color.id === selectedVariant.id}
+            iconSize={iconSize}
           />
-          )
-        )}
+        ))}
       </Flex>
       {hasBorders && <Arrow variant="right" />}
+    </Flex>
+  ) : (
+    // todo: fix selectedVariant.id === size.id bug
+    // for now, hack solution: test title === title
+    <Flex
+      sx={{
+        flexDirection: 'row',
+        gap: 2,
+      }}
+      {...props}
+    >
+      {sizes?.map(size => (
+        <Swatch
+          key={size.id}
+          size={size.title}
+          createLinkProps={createLinkProps && createLinkProps(size)}
+          onClick={() => handleOnClick(size)}
+          active={selectedVariant.title === size.title}
+          disabled={!size.availableForSale}
+        />
+      ))}
     </Flex>
   )
 }

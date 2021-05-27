@@ -5,7 +5,6 @@ import {
 } from '@components/product'
 import { Hero } from '@components/ui'
 import { getProductsByCollection } from '@framework/product'
-import { formatPrice } from '@framework/utils'
 import {
   Box,
   Flex,

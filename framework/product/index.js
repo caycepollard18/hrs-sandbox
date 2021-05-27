@@ -196,7 +196,11 @@ export async function getColorsByStyle(products) {
         id: p.id,
         color: p.color,
         handle: p.handle,
-        swatch: '/swatches/' + p.style + ' - ' + p.color.replace(/\s\/\s/g, ' ') + '.jpg',
+        swatch: '/swatches/'
+          + p.style
+          + ' - '
+          + p.color.replace(/\//g, ' ').replace(/\s\s+/g, ' ')
+          + '.jpg',
       }))
    
     return ({

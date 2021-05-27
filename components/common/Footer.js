@@ -92,6 +92,7 @@ const NavLink = ({ href, page, ...props }) => (
       alignItems: 'center',
       display: ['flex', 'block'],
       variant: 'links.footer',
+      zIndex: 1,
     }}
     {...props}
   >

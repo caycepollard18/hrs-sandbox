@@ -22,6 +22,7 @@ const theme = {
   },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
   fontWeights: {
+    light: 300,
     body: 400,
     heading: 700,
     bold: 700,
@@ -62,6 +63,9 @@ const theme = {
       fontWeight: 'body',
       lineHeight: 'heading',
     },
+    emphasis: {
+      fontWeight: 'bold',
+    },
     small: {
       fontFamily: 'body',
       fontWeight: 'body',
@@ -70,7 +74,7 @@ const theme = {
     },
     micro: {
       fontFamily: 'body',
-      fontWeight: '300',
+      fontWeight: 'light',
       fontSize: 0,
       lineHeight: 'heading',
       textTransform: 'uppercase'
@@ -117,30 +121,30 @@ const theme = {
     },
     h1: {
       variant: 'text.heading',
-      fontSize: [4, 4, 5],
+      fontSize: [5, 5, 6],
       textTransform: 'uppercase',
     },
     h2: {
       variant: 'text.heading',
-      fontSize: [3, 3, 4],
+      fontSize: [4, 4, 5],
       textTransform: 'uppercase',
     },
     h3: {
       variant: 'text.heading',
-      fontSize: [2, 2, 3],
+      fontSize: [3, 3, 4],
       textTransform: 'uppercase',
     },
     h4: {
       variant: 'text.heading',
-      fontSize: 2,
+      fontSize: 3,
     },
     h5: {
       variant: 'text.heading',
-      fontSize: 1,
+      fontSize: 2,
     },
     h6: {
       variant: 'text.heading',
-      fontSize: 0,
+      fontSize: 1,
     },
   },
   layout: {
@@ -180,6 +184,33 @@ const theme = {
     },
     product: {
       backgroundColor: 'white',
+      borderLeft: '1px solid',
+      borderColor: 'offBlack20',
+      description: {
+        notice: {
+          borderTop: '1px solid',
+          borderBottom: '1px solid',
+          borderColor: 'offBlack20',
+          color: 'offBlack50'
+        },
+        details: {
+          fontSize: 1,
+          textTransform: 'uppercase',
+        }
+      },
+      card: {
+        details: {
+          fontSize: 0,
+          fontWeight: 'light',
+          textTransform: 'uppercase',
+          lineHeight: 1,
+        },
+        price: {
+          fontSize: [0, 1],
+          fontWeight: ['light', 'body'],
+          textTransform: 'uppercase',
+        }
+      }
     },
     footer: {
       color: 'accent',
@@ -206,6 +237,23 @@ const theme = {
       },
     },
     selector: {
+      borders: {
+        borderTop: '1px solid',
+        borderBottom: '1px solid',
+        borderColor: 'offBlack20'
+      },
+      size: {
+        fontSize: 2,
+        active: {
+          fontSize: 2,
+          borderBottom: '1px solid',
+          borderColor: 'offBlack',
+        },
+        disabled: {
+          fontSize: 2,
+          color: 'offBlack20',
+        }
+      },
       swatch: {
         border: '1px solid #ffffff00',
         boxShadow: '1px 1px 1px #00000040',

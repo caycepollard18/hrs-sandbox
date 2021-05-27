@@ -2,7 +2,7 @@ import { Selector } from '@components/product'
 import { Button } from '@components/ui'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   Box,
   Flex,
@@ -112,14 +112,16 @@ const CollectionCard = ({
   product,
   ...props
 }) => {
-  const [selectedColor, setColor] = useState(product.colors.find(
-    color => color.handle === product.handle
-  ))
+  const initialColor = product.colors.find(color =>
+    color.handle === product.handle
+  )
+
+  const [selectedColor, setColor] = useState(initialColor)
 
   console.log(selectedColor)
 
   return (
-    <CollectionCardWrapper as="a" {...props}>
+    <CollectionCardWrapper {...props}>
       {selectedColor?.images && (
         <ImageWrapper
           href={`/product/${selectedColor.handle}`}
@@ -129,14 +131,13 @@ const CollectionCard = ({
       )}
       <Selector
         colors={product.colors}
+        onChange={setColor}
         selected={selectedColor}
-        setVariant={setColor}
         sx={{
           maxWidth: ['252px', null, null, '300px'],
           mb: [2, 3],
           mt: 2,
           order: [4, 3],
-          zIndex: 10,
         }}
         variant="borders"
       />
@@ -158,7 +159,7 @@ const CollectionCard = ({
       />
       <ProductButton
         content={"Shop " + product.style}
-        href={`/product/${product.handle}`}
+        href={`/product/${selectedColor.handle}`}
         sx={{ order: [7], }}
       />
     </CollectionCardWrapper>

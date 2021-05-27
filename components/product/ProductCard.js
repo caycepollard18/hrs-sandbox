@@ -1,25 +1,26 @@
 /** @jsxImportSource theme-ui */
-import { ProductCardDescription } from '@components/product'
+import { Selector } from '@components/product'
+import { Button } from '@components/ui'
+import Link from 'next/link'
 import PropTypes from 'prop-types'
+import { useState } from 'react'
 import {
   Box,
   Flex,
+  Heading,
+  Text,
 } from 'theme-ui'
 
 const propTypes = {
-  color: PropTypes.string,
   product: PropTypes.object.isRequired,
-  variant: PropTypes.oneOf(['product-image', 'feature-image']),
   featuredImage: PropTypes.number,
 }
 
 const defaultProps = {
-  color: '',
-  variant: 'product-image',
   featuredImage: 0,
 }
 
-const ProductCardWrapper = ({ children }) => (
+const ProductCardWrapper = ({ children, ...props }) => (
   <Flex
     sx={{
       alignItems: 'center',
@@ -29,54 +30,158 @@ const ProductCardWrapper = ({ children }) => (
       height: ['auto', '596px'],
       overflow: 'hidden',
       position: 'relative',
+      'h2, button': {
+      alignSelf: ['center', 'flex-start'],
+    },
     }}
+    {...props}
   >
     {children}
   </Flex>
 )
 
-const ImageWrapper = ({ children, ...props }) => (
-  <Box
+const ImageWrapper = ({ href, src, sx, ...props }) => (
+  <Link href={href}>
+    <Box
+      as="a"
+      sx={{
+        alignSelf: 'center',
+        backgroundImage: `url(${src})`,
+        backgroundPosition: 'center center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: ['75%', 'contain'],
+        height: ['0', '100%'],
+        minWidth: ['100%', 'auto'],
+        cursor: 'pointer',
+        display: 'block',
+        flexBasis: [null, '60%'],
+        flexShrink: [null, 1],
+        overflow: 'hidden',
+        pb: ['75%', 0],
+        position: 'relative',
+      }}
+      {...props}
+    />
+  </Link>
+)
+
+const ProductDetailsWrapper = ({ children, variant }) => (
+  <Flex
     sx={{
-      height: ['286px', '100%'],
-      minWidth: ['100%', 'auto'],
-      display: 'block',
-      flexBasis: [null, '60%'],
-      flexShrink: [null, 1],
-      alignSelf: 'center',
-      overflow: 'hidden',
-      position: 'relative',
+      width: '256px',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      mt: 2,
+      mb: 5,
+    }}
+    variant={variant}
+  >
+    {children}
+  </Flex>
+)
+
+const ProductTitle = ({ content, ...props }) => (
+  <Heading
+    as="h2"
+    mt={0}
+    mb={[2,0]}
+    variant="styles.h2"
+    {...props}
+  >
+    {content}
+  </Heading>
+)
+
+const ProductDesc = ({ content, sx }) => (
+  <Text
+    as="div"
+    sx={{
+      mt: 1,
+      mb: 2,
+      textAlign: ['center', 'left'],
+      ...sx
+    }}
+  >
+    {content}
+  </Text>
+)
+
+const ProductDetails = ({ color = '', price = '', ...props }) => (
+  <Flex
+    sx={{
+      alignItems: 'center',
+      flexDirection: ['column', 'row'],
+      gap: [1, 0],
+      justifyContent: 'space-between',
+      my: [2, 0],
+      '& > div': {
+        minHeight: ['14px', 0],
+      }
     }}
     {...props}
   >
-    {children}
-  </Box>
+    <Text as="div" variant="layout.product.card.details">
+      {color}
+    </Text>
+    <Text as="div" variant="layout.product.card.price">
+      {price}
+    </Text>
+  </Flex>
+)
+
+const ProductButton = ({ content, href, ...props }) => (
+  <Button
+    href={href}
+    mt={[1,4]}
+    {...props}
+  >
+    {content}
+  </Button>
 )
 
 const ProductCard = ({
-  color,
   product,
   variant,
   featuredImage,
   ...props
 }) => {
+  const initialColor = product.colors.find(color =>
+    color.handle === product.handle
+  )
+
+  const [selectedColor, setColor] = useState(initialColor)
+
   return (
     <ProductCardWrapper {...props}>
-      {product?.images && (
+      {selectedColor?.images && (
         <ImageWrapper
-          sx={{
-            backgroundImage: `url(${featuredImage ? product.images[featuredImage].src : product.images[0].src})`,
-            backgroundPosition: 'center center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'contain',
-          }}
+          href={`/product/${selectedColor.handle}`}
+          src={featuredImage ? selectedColor.images[featuredImage].src : selectedColor.images[0].src}
         />
       )}
-      <ProductCardDescription
-        color={color}
-        product={product}
-        variant="product-image"
-      />
+      <ProductDetailsWrapper>
+        <ProductTitle
+          content={product.style || ''}
+        />
+        <ProductDesc
+          content={product.shortDescription || ''}
+        />
+        <Selector
+          colors={product.colors}
+          my={1}
+          onChange={setColor}
+          selected={selectedColor}
+          variant="borders"
+        />
+        <ProductDetails
+          color={selectedColor.color || ''}
+          price={product.variants[0].price}
+        />
+        <ProductButton
+          content={"Shop " + (product.style || '')}
+          href={`/product/${selectedColor.handle}`}
+        />
+      </ProductDetailsWrapper>
     </ProductCardWrapper>
   )
 }

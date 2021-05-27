@@ -68,10 +68,11 @@ export const normalizeProduct = ({
 
   // assuming product variants cover sizes only
   const _variants = variants?.edges?.map(({ node: v }) => v)
-    .map(({ id, title, price }) => ({
+    .map(({ id, title, price, ...rest }) => ({
       id,
       title,
       price: formatPrice({ amount: price }),
+      ...rest
     }))
 
   return {

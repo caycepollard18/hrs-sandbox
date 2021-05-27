@@ -41,7 +41,6 @@ const CollectionCardWrapper = ({ children, sx, ...props }) => (
       overflow: 'hidden',
       pt: [null, 5],
       pb: [7, 5],
-      zIndex: 1,
       ...sx
     }}
     {...props}

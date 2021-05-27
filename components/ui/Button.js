@@ -55,7 +55,7 @@ const Button = React.forwardRef((props, ref) => {
         // ref={mergeRefs([fallbackRef, ref])}
         sx={{
           height: '40px',
-          minWidth: ['175px', '250px'],
+          minWidth: ['176px', '256px'],
           border: 0,
           borderRadius: 0,
           cursor: 'pointer',

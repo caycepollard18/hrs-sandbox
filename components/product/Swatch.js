@@ -1,64 +1,80 @@
+import Link from 'next/link'
 import PropTypes from 'prop-types'
-import { Box } from 'theme-ui'
+import { Box, Text } from 'theme-ui'
 
 const propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'large']),
-  variant: PropTypes.oneOf(['color', 'size']),
   active: PropTypes.bool,
+  color: PropTypes.string,
+  createLinkProps: PropTypes.object,
+  disabled: PropTypes.bool,
+  iconSize: PropTypes.oneOf(['small', 'large']),
+  size: PropTypes.string,
 }
 
 const defaultProps = {
+  active: false,
   color: '#ffffff',
-  size: 'small',
-  variant: 'color',
-  active: true,
+  createLinkProps: null,
+  disabled: false,
+  iconSize: 'small',
+  size: '',
 }
 
-// todo: implement size variant
+const LinkWrapper = ({ condition, children, ...props }) => (
+  condition ? (<Link {...props}><a>{children}</a></Link>) : children
+)
 
 const Swatch = ({
-  color,
-  size,
   active,
+  color,
+  createLinkProps,
+  disabled,
+  iconSize,
+  size,
   ...props
-}) => (
-  <Box
-    sx={{
-      height: size === 'large' ? '24px' : '19px',
-      width: size === 'large' ? '24px' : '19px',
-      backgroundColor: '#ffffff',
-      backgroundImage: color.includes('/swatches/') && `url("${color}")`,
-      backgroundOrigin: 'border-box',
-      backgroundPosition: 'left center',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-      borderRadius: size === 'large' ? '24px' : '19px',
-      cursor: 'pointer',
-      display: 'block',
-      variant: active ? 'layout.selector.swatch.active' : 'layout.selector.swatch',
-    }}
-    {...props}
-  />
-)
+}) => {
+  return (
+    <LinkWrapper
+      condition={createLinkProps}
+      {...createLinkProps}
+    >
+      { size === '' ? (
+        <Box
+          sx={{
+            height: iconSize === 'large' ? '24px' : '19px',
+            width: iconSize === 'large' ? '24px' : '19px',
+            backgroundColor: color.includes('/swatches/') ? '#ffffff' : 'none',
+            backgroundImage: color.includes('/swatches/') && `url("${color}")`,
+            backgroundOrigin: 'border-box',
+            backgroundPosition: 'left center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            borderRadius: iconSize === 'large' ? '24px' : '19px',
+            cursor: 'pointer',
+            display: 'block',
+            variant: active ? 'layout.selector.swatch.active' : 'layout.selector.swatch',
+          }}
+          {...props}
+        />
+      ) : (
+        <Text
+          as="div"
+          sx={{
+            cursor: 'pointer',
+            display: 'block',
+            variant: disabled ? 'layout.selector.size.disabled' :
+              active ? 'layout.selector.size.active' : 'layout.selector.size',
+          }}
+          {...props}
+        >
+          {size}
+        </Text>
+      )}
+    </LinkWrapper>
+  )
+}
 
 Swatch.propTypes = propTypes
 Swatch.defaultProps = defaultProps
 
 export default Swatch
-
-/*
-<Box
-        sx={{
-          height: size === 'large' ? '24px' : '18px',
-          width: size === 'large' ? '24px' : '18px',
-          backgroundColor: color,
-          borderRadius: size === 'large' ? '24px' : '18px',
-          border: active ? '1px solid white' : 'none',
-          boxShadow: active ? '0px 3px 6px #00000029' : '1px 1px 1px #00000040',
-          cursor: 'pointer',
-          display: 'block',
-        }}
-      />
-
-      */
