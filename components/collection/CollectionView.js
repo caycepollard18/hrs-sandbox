@@ -1,4 +1,4 @@
-import { CollectionCard } from '@components/product'
+import { CollectionCard } from '@components/collection'
 import { Hero } from '@components/ui'
 import PropTypes from 'prop-types'
 import { Flex } from 'theme-ui'
@@ -71,7 +71,7 @@ const CollectionView = ({ products }) => {
       <Hero
         title="A Dream Escape"
         subtitle="Discover Chapter Two"
-        image="/campaign/fw21/106.jpg"
+        image="/campaign/fw21/201.jpg"
         justifyContent="flexStart"
         size="small"
         variant="layout.hero.collection"
@@ -83,7 +83,7 @@ const CollectionView = ({ products }) => {
           as={CollectionCardWrapper}
         />
       )}
-      <NewsletterCardWrapper image="/campaign/fw21/107.jpg">
+      <NewsletterCardWrapper image="/campaign/fw21/202.jpg">
         Newsletter test
       </NewsletterCardWrapper>
     </CollectionContainer>

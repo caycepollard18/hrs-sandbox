@@ -1,4 +1,4 @@
-import { CollectionView } from '@components/product'
+import { CollectionView } from '@components/collection'
 import { getAllProducts } from '@framework/product'
 
 export async function getStaticProps() {

@@ -54,7 +54,7 @@ export default function Policy({ policyData }) {
     <PolicyContainer>
       <Heading
         as="h1"
-        variant="styles.h1"
+        variant="styles.h2"
       >
         {policyData.title}
       </Heading>

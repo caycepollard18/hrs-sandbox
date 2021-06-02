@@ -5,10 +5,7 @@ import {
   Flex,
   Text
 } from 'theme-ui'
-import {
-  Logo,
-  LogoAlt,
-} from '@components/ui'
+import { Logo } from '@components/ui'
 
 const sitePages = [
   {
@@ -159,12 +156,7 @@ const Footer = ({ ...props }) => {
           minWidth: ['100%', '400px', 0],
         }}
       >
-        <LogoAlt
-          sx={{
-            width: '145px',
-            height: '50px',
-          }}
-        />
+        <Logo href="/" variant="text" />
         <FooterNav>
           {sitePages.map(
             ({ url, page }) => (
@@ -183,7 +175,7 @@ const Footer = ({ ...props }) => {
           justifyContent: 'space-between',
         }}
       >
-        <Logo />
+        <Logo href="/" variant="badge" />
         <Flex
           sx={{
             flexDirection: 'column',

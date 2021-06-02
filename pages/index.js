@@ -80,6 +80,34 @@ export default function Home({ products }) {
         </Flex>
       </Grid>
       <ProductCard product={products[25]} featuredImage={1} />
+      <Grid
+        columns={[1, 1, 2]}
+        gap={0}
+        sx={{
+          minHeight: '988px',
+          width: '100%',
+        }}
+      >
+        <ImageCard
+          backgroundStyles={{
+            backgroundColor: '#D2CECB',
+            backgroundPosition: ['top 200px right -10px', null, 'bottom 10px right -10px'],
+            backgroundRepeat: 'no-repeat',
+            backgroundSize:  '105%',
+          }}
+          image={products[30].images[1].src}
+          layout="top center"
+          product={products[30]}
+        />
+        <Box
+          sx={{
+            backgroundImage: 'url("/campaign/fw21/105.jpg")',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            display: ['none', 'none', 'block'],
+          }}
+        />
+      </Grid>
       <Hero
         title="A Dream Escape"
         subtitle="Discover Chapter Two"

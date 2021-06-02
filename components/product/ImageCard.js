@@ -10,23 +10,32 @@ import {
 } from 'theme-ui'
 
 const propTypes = {
+  backgroundStyles: PropTypes.object,
   color: PropTypes.string,
   image: PropTypes.string.isRequired,
   layout: PropTypes.oneOf([
     'top left',
+    'top center',
     'top right',
     'bottom left',
+    'bottom center',
     'bottom right',
   ]),
   product: PropTypes.object.isRequired,
 }
 
 const defaultProps = {
+  backgroundStyles: {
+    backgroundPosition: 'top -10px left 50%',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+  },
   color: '',
   layout: 'top left',
 }
 
 const ImageCardWrapper = ({
+  backgroundStyles,
   children,
   image,
   layout,
@@ -34,16 +43,18 @@ const ImageCardWrapper = ({
 }) => (
   <Flex
     sx={{
-      alignItems: layout.includes('left') ? 'flex-start' : 'flex-end',
+      alignItems: layout.includes('center') ?
+        'center' : layout.includes('left') ?
+          'flex-start' : 'flex-end',
       backgroundImage: `url(${image})`,
-      backgroundPosition: 'top -10px left 50%',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
+      ...backgroundStyles,
       flexDirection: 'column',
       justifyContent: layout.includes('top') ? 'flex-start' : 'flex-end',
       p: [4, 4, 5],
       'h2, button': {
-        alignSelf: layout.includes('left') ? 'flex-start' : 'flex-end',
+        alignSelf: layout.includes('center') ?
+          'center' : layout.includes('left') ?
+            'flex-start' : 'flex-end',
       },      
     }}
     {...props}
@@ -93,19 +104,22 @@ const ProductButton = ({ content, href, ...props }) => (
   </Button>
 )
 
-const ProductDetails = ({ color = '', price = '', ...props }) => (
+const ProductDetails = ({ color = '', layout, price = '' }) => (
   <Flex
     sx={{
-      alignItems: 'center',
+      alignItems: [layout.includes('center') ?
+          'center' : layout.includes('left') ?
+          'flex-start' : 'flex-end',
+        'center'],
       flexDirection: ['column', 'row'],
       gap: [1, 0],
       justifyContent: 'space-between',
       my: [2, 0],
       '& > div': {
         minHeight: ['14px', 0],
-      }
+        flexShrink: 1,
+      },
     }}
-    {...props}
   >
     <Text as="div" variant="layout.product.card.details">
       {color}
@@ -143,7 +157,9 @@ const ImageCard = ({
         <ProductDesc
           content={product.shortDescription || ''}
           sx={{
-            textAlign: layout.includes('left') ? 'left' : 'right',
+            textAlign: layout.includes('center') ?
+              'center' : layout.includes('left') ?
+                'left' : 'right',
           }}
         />
         <ProductButton
@@ -156,12 +172,15 @@ const ImageCard = ({
           onChange={setColor}
           selected={selectedColor}
           sx={{
-            alignSelf: layout.includes('left') ? 'flex-start' : 'flex-end',
+            alignSelf: layout.includes('center') ?
+              'center' : layout.includes('left') ?
+                'flex-start' : 'flex-end',
           }}
         />
         <ProductDetails
           color={selectedColor.color || ''}
           price={product.variants[0].price}
+          layout={layout}
         />
       </ProductDetailsWrapper>
     </ImageCardWrapper>

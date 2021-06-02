@@ -150,11 +150,13 @@ const theme = {
   layout: {
     header: {
       color: ['darkBone', 'darkBone', 'white'],
-      opacity: ['0.5', '0.5', '1.0'],
       fontSize: 2,
       fontWeight: '700',
       lineHeight: 'heading',
       textTransform: 'uppercase',
+      '& > *': {
+        opacity: ['0.5', '0.5', '1.0'],
+      }
     },
     hero: {
       color: 'accent',

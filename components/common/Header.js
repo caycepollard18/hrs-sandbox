@@ -30,7 +30,7 @@ const Hamburger = () => (
       display: ['block', 'block', 'none'],
     }}
   >
-    <Link href="/">
+    <Link href="">
       <a>
         <HamburgerLogo />
       </a>
@@ -71,7 +71,7 @@ const NavMenu = () => (
 
 const Bag = () => (
   <Flex>
-    <Link href="/">
+    <Link href="">
       <a>
         <BagLogo />
       </a>
@@ -85,7 +85,7 @@ const Search = () => (
       display: ['none', 'none', 'block'],
     }}
   >
-    <Link href="/">
+    <Link href="">
       <a>
         <SearchLogo />
       </a>
@@ -128,6 +128,8 @@ const Header = () => {
     >
       <NavMenu />
       <Logo
+        href="/"
+        variant="badge"
         sx={{
           height: ['20px', '20px', '30px'],
           width: ['20px', '20px', '30px'],
