@@ -49,7 +49,7 @@ export async function getAllProducts() {
 
   const { data } = await fetcher(query)
 
-  const products = data.products?.edges?.map(
+  const products = data?.products?.edges?.map(
       ({ node: p }) => normalizeProduct(p)
     ) ?? []
 
@@ -71,7 +71,7 @@ export async function getAllProductHandles() {
 
   const { data } = await fetcher(query)
 
-  const handles = data.products.edges || []
+  const handles = data?.products?.edges || []
 
   return handles
 }
@@ -126,7 +126,7 @@ export async function getProductsByCollection(collection) {
 
   const { data } = await fetcher(query)
 
-  const products = data.collectionByHandle?.products?.edges?.map(
+  const products = data?.collectionByHandle?.products?.edges?.map(
       ({ node: p }) => normalizeProduct(p)
     ) ?? []
 
@@ -178,7 +178,7 @@ export async function getProduct(handle) {
   `
   const { data } = await fetcher(query)
 
-  const product = data.productByHandle
+  const product = data?.productByHandle
     ? normalizeProduct(data.productByHandle)
     : []
 
