@@ -14,5 +14,3 @@ export async function getStaticProps() {
 export default function Collection({ products }) {
   return (<CollectionView products={products} />)
 }
-
-/* styles.map(s => products.filter(p => p.style === s).map(p => p.color)) */

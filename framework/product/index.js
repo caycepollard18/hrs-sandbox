@@ -79,7 +79,7 @@ export async function getAllProductHandles() {
 export async function getProductsByCollection(collection) {
   const query = `
     {
-      collectionByHandle(handle: "${collection || defaultCollection}") {
+      collectionByHandle(handle: "current") {
         id
         title
         products(first: 75) {
