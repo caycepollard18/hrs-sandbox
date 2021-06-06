@@ -146,7 +146,7 @@ const ProductCard = ({
   featuredImage,
   ...props
 }) => {
-  const initialColor = product.colors.find(color =>
+  const initialColor = product?.colors.find(color =>
     color.handle === product.handle
   )
 
@@ -156,31 +156,31 @@ const ProductCard = ({
     <ProductCardWrapper {...props}>
       {selectedColor?.images && (
         <ImageWrapper
-          href={`/product/${selectedColor.handle}`}
-          src={featuredImage ? selectedColor.images[featuredImage].src : selectedColor.images[0].src}
+          href={`/product/${selectedColor?.handle}`}
+          src={featuredImage ? selectedColor?.images[featuredImage].src : selectedColor?.images[0].src}
         />
       )}
       <ProductDetailsWrapper>
         <ProductTitle
-          content={product.style || ''}
+          content={product?.style || ''}
         />
         <ProductDesc
-          content={product.shortDescription || ''}
+          content={product?.shortDescription || ''}
         />
         <Selector
-          colors={product.colors}
+          colors={product?.colors}
           my={1}
           onChange={setColor}
           selected={selectedColor}
           variant="borders"
         />
         <ProductDetails
-          color={selectedColor.color || ''}
-          price={product.variants[0].price}
+          color={selectedColor?.color || ''}
+          price={product?.variants[0].price}
         />
         <ProductButton
-          content={"Shop " + (product.style || '')}
-          href={`/product/${selectedColor.handle}`}
+          content={"Shop " + (product?.style || '')}
+          href={`/product/${selectedColor?.handle}`}
         />
       </ProductDetailsWrapper>
     </ProductCardWrapper>

@@ -98,7 +98,7 @@ const ProductButton = ({
   <Button
     href={href}
     sx={{
-      display: ['block', 'none'],
+      display: ['flex', 'none'],
       mt: 2,
       ...sx
     }}

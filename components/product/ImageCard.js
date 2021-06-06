@@ -137,7 +137,7 @@ const ImageCard = ({
   product,
   ...props
 }) => {
-  const initialColor = product.colors.find(color =>
+  const initialColor = product?.colors?.find(color =>
     color.handle === product.handle
   )
 
@@ -152,10 +152,10 @@ const ImageCard = ({
     >
       <ProductDetailsWrapper>
         <ProductTitle
-          content={product.style || ''}
+          content={product?.style || ''}
         />
         <ProductDesc
-          content={product.shortDescription || ''}
+          content={product?.shortDescription || ''}
           sx={{
             textAlign: layout.includes('center') ?
               'center' : layout.includes('left') ?
@@ -163,11 +163,11 @@ const ImageCard = ({
           }}
         />
         <ProductButton
-          content={"Shop " + (product.style || '')}
-          href={`/product/${selectedColor.handle}`}
+          content={"Shop " + (product?.style || '')}
+          href={`/product/${selectedColor?.handle}`}
         />
         <Selector
-          colors={product.colors}
+          colors={product?.colors}
           my={1}
           onChange={setColor}
           selected={selectedColor}
@@ -178,8 +178,8 @@ const ImageCard = ({
           }}
         />
         <ProductDetails
-          color={selectedColor.color || ''}
-          price={product.variants[0].price}
+          color={selectedColor?.color || ''}
+          price={product?.variants[0].price}
           layout={layout}
         />
       </ProductDetailsWrapper>

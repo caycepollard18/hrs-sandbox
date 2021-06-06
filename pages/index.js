@@ -101,7 +101,7 @@ export default function Home({ products }) {
             backgroundRepeat: 'no-repeat',
             backgroundSize:  '105%',
           }}
-          image={products[8].images[1].src}
+          image={products[8]?.images[1]?.src}
           layout="top center"
           product={products[8]}
         />

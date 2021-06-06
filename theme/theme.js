@@ -261,7 +261,7 @@ const theme = {
         '&::after': {
           boxShadow: [0, 'cardHover'],
           content: '""',
-          display: 'block',
+          display: ['none', 'block'],
           height: '100%',
           left: 0,
           opacity: 0,
@@ -271,9 +271,9 @@ const theme = {
           width: '100%',
         },
         '&:hover': {
-          borderColor: '#16161600',
-          transform: 'scale(1.05, 1.05)',
-          zIndex: '5',
+          borderColor: ['#16161620', '#16161600'],
+          transform: ['none', 'scale(1.05, 1.05)'],
+          zIndex: [null, '5'],
         },
         '&:hover::after': {
           opacity: 1,
