@@ -28,8 +28,10 @@ const theme = {
     bold: 700,
   },
   lineHeights: {
+    tight: 1.0,
     body: 1.3125,
     heading: 1.125,
+    expanded: 1.5,
   },
   initialColorModeName: 'light',
   colors: {
@@ -82,7 +84,6 @@ const theme = {
   },
   shadows: {
     0: 'none',
-    card: 'inset 1px 1px 0px 0 #16161620',
     cardHover: 'inset 8px 8px 0px 0 #FFFFFF, inset -8px -8px 0px 0 #FFFFFF, 0px 3px 22px #00000059',
     inactiveButton: '1px 1px 1px #00000040',
     activeButton: '0px 3px 6px #00000029',
@@ -97,7 +98,6 @@ const theme = {
       lineHeight: 'body',
       margin: 0,
       minHeight: '100%',
-      overflowX: 'hidden',
       padding: 0,
       position: 'relative',
       WebkitFontSmoothing: 'antialiased',
@@ -107,17 +107,24 @@ const theme = {
         color: 'inherit',
         fontSize: 'inherit',
         textDecoration: 'none',
-        '&:hover': {
-          textDecoration: 'none',
-          opacity: '0.75',
-        },
       },
       'svg': {
         display: 'block',
+      },
+      'body': {
+        overflow: 'auto',
+        overflowX: 'hidden',
       }
     },
     p: {
-      my: 2,
+      marginBlockStart: 0,
+      marginBlockEnd: 2,
+      mt: 0,
+      mb: 2,
+    },
+    ul: {
+      marginBlockStart: 0,
+      marginBlockEnd: 0,
     },
     h1: {
       variant: 'text.heading',
@@ -152,11 +159,22 @@ const theme = {
       color: ['darkBone', 'darkBone', 'white'],
       fontSize: 2,
       fontWeight: '700',
-      lineHeight: 'heading',
+      lineHeight: 'body',
       textTransform: 'uppercase',
-      '& > *': {
-        opacity: ['0.5', '0.5', '1.0'],
-      }
+      active: {
+        borderBottom: '2px solid',
+      },
+      dark: {
+        backgroundColor: 'black',
+      },
+      menu: {
+        backgroundColor: 'black',
+        fontSize: 3,
+        fontWeight: 'body',
+        lineHeight: 'expanded',
+        opacity: '1',
+        transition: '0.25s transform ease-in-out',
+      },
     },
     hero: {
       color: 'accent',
@@ -185,19 +203,30 @@ const theme = {
       fontWeight: 400,
     },
     product: {
-      backgroundColor: 'white',
+      backgroundColor: ['offBlack', 'white'],
       borderLeft: '1px solid',
       borderColor: 'offBlack20',
+      color: ['white', 'inherit'],
       description: {
+        title: {
+          variant: 'styles.h1',
+          fontSize: [4, 5, 5, 6],
+        },
         notice: {
-          borderTop: '1px solid',
-          borderBottom: '1px solid',
+          borderTop: ['none', '1px solid'],
+          borderBottom: ['none', '1px solid'],
           borderColor: 'offBlack20',
           color: 'offBlack50'
         },
         details: {
           fontSize: 1,
           textTransform: 'uppercase',
+        },
+        '& p, ul': {
+          mb: 2,
+          marginBlockStart: 0,
+          marginBlockEnd: 2,
+          mt: 0,
         }
       },
       card: {
@@ -223,10 +252,31 @@ const theme = {
     },
     collection: {
       card: {
-        boxShadow: [0, 'card'],
-        '&:hover': {
-          border: ['none'],
+        backgroundColor: 'background',
+        borderLeft: '1px solid',
+        borderTop: '1px solid',
+        borderColor: '#16161620',
+        position: 'relative',
+        transition: 'transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)',
+        '&::after': {
           boxShadow: [0, 'cardHover'],
+          content: '""',
+          display: 'block',
+          height: '100%',
+          left: 0,
+          opacity: 0,
+          position: 'absolute',
+          top: 0,
+          transition: 'all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)',
+          width: '100%',
+        },
+        '&:hover': {
+          borderColor: '#16161600',
+          transform: 'scale(1.05, 1.05)',
+          zIndex: '5',
+        },
+        '&:hover::after': {
+          opacity: 1,
         },
         a: {
           '&:hover': {
@@ -245,27 +295,38 @@ const theme = {
         borderColor: 'offBlack20'
       },
       size: {
+        cursor: 'pointer',
         fontSize: 2,
-        active: {
-          fontSize: 2,
+        '&:hover': {
           borderBottom: '1px solid',
           borderColor: 'offBlack',
+          fontSize: 2,
+        },
+        active: {
+          cursor: 'default',
+          borderBottom: '1px solid',
+          borderColor: 'offBlack',
+          fontSize: 2,
         },
         disabled: {
-          fontSize: 2,
+          cursor: 'default',
           color: 'offBlack20',
+          fontSize: 2,
         }
       },
       swatch: {
         border: '1px solid #ffffff00',
         boxShadow: '1px 1px 1px #00000040',
+        transition: '0.1s transform ease-out',
         '&:hover': {
           border: '1px solid #ffffff40',
           boxShadow: '1px 1px 1px #00000040, 0px 2px 4px #00000029',
+          transform: 'translateY(-1px)',
         },
         active: {
           border: '1px solid white',
           boxShadow: '0px 3px 6px #00000029',
+          cursor: 'default',
         }
       }
     }
@@ -273,19 +334,107 @@ const theme = {
   buttons: {
     primary: {
       bg: 'primary',
+      border: 0,
+      borderRadius: 0,
       color: 'accent',
       fontFamily: 'body',
       fontSize: 1,
       fontWeight: 'bold',
-      lineHeight: 'heading',
+      lineHeight: 'tight',
       outline: 'none',
       textTransform: 'uppercase',
+      small: {
+        fontSize: 0,
+      }
+    },
+    accent: {
+      backdropFilter: 'blur(31px)',
+      bg: '#FFFFFF20',
+      border: '1px solid',
+      borderRadius: 0,
+      color: 'accent',
+      fontFamily: 'body',
+      fontSize: 1,
+      fontWeight: 'bold',
+      lineHeight: 'tight',
+      outline: 'none',
+      textTransform: 'uppercase',
+      small: {
+        fontSize: 0,
+      }
+    }
+  },
+  forms: {
+    input: {
+      border: 'none',
+      background: 'none',
+      lineHeight: 1,
+      '&:focus': {
+        outlineColor: 'lightGray',
+      },
+      search: {
+        background: '#1A1A1A',
+        border: '2px solid #1A1A1A',
+        borderRadius: '50px',
+        fontWeight: 'light',
+        lineHeight: 1,
+        variant: 'text.small',
+        '&:focus': {
+          borderColor: 'gray',
+          outline: 'none',
+        },
+      }
+    },
+    label: {
+      display: 'none',
+    },
+    newsletter: {
+      dark: {
+        color: 'accent',
+      },
+      subtitle: {
+        fontFamily: 'accent',
+        fontSize: 2,
+        fontStyle: 'italic',
+        fontWeight: 'body',
+      },
+      input: {
+        borderBottom: '1px solid',
+        borderLeft: 0,
+        borderRight: 0,
+        borderTop: 0,
+        borderRadius: 0,
+        fontWeight: 'light',
+        mt: '1px',
+        textAlign: 'center',
+        variant: 'text.small',
+        '&::placeholder': {
+          color: 'inherit',
+          opacity: '0.5',
+        },
+        '&:focus': {
+          border: '1px solid',
+          mt: 0,
+          outline: 'none',
+        },
+      }
     }
   },
   links: {
     footer: {
       borderBottom: ['1px solid #434343', 'none'],
     },
+    tabs: {
+      variant: 'text.micro',
+      fontWeight: 'body',
+      opacity: '0.5',
+      active: {
+        borderBottom: '1px solid',
+        variant: 'text.micro',
+        fontWeight: 'body',
+        opacity: '1.0',
+      }
+    }
   }
 }
 

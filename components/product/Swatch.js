@@ -8,6 +8,7 @@ const propTypes = {
   createLinkProps: PropTypes.object,
   disabled: PropTypes.bool,
   iconSize: PropTypes.oneOf(['small', 'large']),
+  onClick: PropTypes.func,
   size: PropTypes.string,
 }
 
@@ -17,6 +18,7 @@ const defaultProps = {
   createLinkProps: null,
   disabled: false,
   iconSize: 'small',
+  onClick: null,
   size: '',
 }
 
@@ -30,12 +32,15 @@ const Swatch = ({
   createLinkProps,
   disabled,
   iconSize,
+  onClick,
   size,
   ...props
 }) => {
+  const productColor = color != undefined ? color : ''
+  
   return (
     <LinkWrapper
-      condition={createLinkProps}
+      condition={!disabled && createLinkProps}
       {...createLinkProps}
     >
       { size === '' ? (
@@ -43,17 +48,17 @@ const Swatch = ({
           sx={{
             height: iconSize === 'large' ? '24px' : '19px',
             width: iconSize === 'large' ? '24px' : '19px',
-            backgroundColor: color.includes('/swatches/') ? '#ffffff' : 'none',
-            backgroundImage: color.includes('/swatches/') && `url("${color}")`,
+            backgroundColor: productColor.includes('/swatches/') ? '#ffffff' : 'none',
+            backgroundImage: productColor.includes('/swatches/') && `url("${productColor}")`,
             backgroundOrigin: 'border-box',
             backgroundPosition: 'left center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             borderRadius: iconSize === 'large' ? '24px' : '19px',
-            cursor: 'pointer',
             display: 'block',
             variant: active ? 'layout.selector.swatch.active' : 'layout.selector.swatch',
           }}
+          onClick={disabled ? null : onClick}
           {...props}
         />
       ) : (
@@ -65,6 +70,7 @@ const Swatch = ({
             variant: disabled ? 'layout.selector.size.disabled' :
               active ? 'layout.selector.size.active' : 'layout.selector.size',
           }}
+          onClick={disabled ? null : onClick}
           {...props}
         >
           {size}

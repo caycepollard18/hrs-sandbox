@@ -7,9 +7,6 @@ import {
   Text
 } from 'theme-ui'
 
-// todo: create height option for different sizes of hero image
-// e.g. homepage top hero vs. bottom "hero"
-
 const propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
@@ -45,7 +42,7 @@ const HeroContainer = ({
   size,
   ...props
 }) => {
-  const smallSizes = ['330px', '550px', '550px', '720px']
+  const smallSizes = ['330px', '330px', '330px', '550px']
   const defaultSizes = ['550px', '550px', '550px', '800px']
   const largeSizes = ['550px', '550px', '720px', '1200px']
   
@@ -53,7 +50,7 @@ const HeroContainer = ({
     <Flex
       sx={{
         width: ['100%'],
-        height: size === "large" ? largeSizes : "small" ? smallSizes : defaultSizes,
+        height: size === "large" ? largeSizes : size === "small" ? smallSizes : defaultSizes,
         alignItems: 'center',
         backgroundImage: `url(${image})`,
         backgroundPosition: backgroundPosition ? backgroundPosition : 'center 75%',

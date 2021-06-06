@@ -1,4 +1,8 @@
-import { CollectionCard } from '@components/collection'
+import {
+  CollectionCard,
+  CollectionMenu
+} from '@components/collection'
+import { Newsletter } from '@components/common'
 import { Hero } from '@components/ui'
 import PropTypes from 'prop-types'
 import { Flex } from 'theme-ui'
@@ -50,28 +54,35 @@ const CollectionCardWrapper = ({ children, sx, ...props }) => (
 )
 
 const NewsletterCardWrapper = ({ children, image }) => (
-  <CollectionCardWrapper
+  <Flex
     sx={{
-      width: ['auto', '100%', '33.33%'],
-      maxWidth: [null, '100%', '33.33%', '640px'],
+      minHeight: ['330px', '540px'],
+      maxHeight: [null, '640px'],
+      alignItems: 'center',
       backgroundImage: `url(${image})`,
       backgroundPosition: 'left center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
-      justifyContent: ['center', 'flex-end'],
+      flexDirection: 'column',
+      flexGrow: '1',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      p: 5,
     }}
   >
     {children}
-  </CollectionCardWrapper>
+  </Flex>
 )
 
 const CollectionView = ({ products }) => {
   return (
     <CollectionContainer>
+      {/* <CollectionMenu products={products} /> */}
       <Hero
         title="A Dream Escape"
         subtitle="Discover Chapter Two"
         image="/campaign/fw21/201.jpg"
+        backgroundPosition="center 65%"
         justifyContent="flexStart"
         size="small"
         variant="layout.hero.collection"
@@ -84,7 +95,7 @@ const CollectionView = ({ products }) => {
         />
       )}
       <NewsletterCardWrapper image="/campaign/fw21/202.jpg">
-        Newsletter test
+        <Newsletter />
       </NewsletterCardWrapper>
     </CollectionContainer>
   )

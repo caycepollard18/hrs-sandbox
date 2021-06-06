@@ -1,8 +1,8 @@
 import { CollectionView } from '@components/collection'
-import { getAllProducts } from '@framework/product'
+import { getProductsByCollection } from '@framework/product'
 
 export async function getStaticProps() {
-  const products = await getAllProducts()
+  const products = await getProductsByCollection()
   const styles = Array.from(new Set(products.map(p => p.style)))
   return {
     props: {
@@ -12,7 +12,6 @@ export async function getStaticProps() {
 }
 
 export default function Collection({ products }) {
-  console.log(products[0])
   return (<CollectionView products={products} />)
 }
 

@@ -21,7 +21,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ products }) {
-  console.log(products[31])
   return (
     <>
       <Hero
@@ -30,9 +29,10 @@ export default function Home({ products }) {
         image="/campaign/fw21/101.jpg"
         link="Shop The Collection"
         href="/collection"
+        size="default"
         variant="layout.hero.homepage"
       />
-      <ProductCard product={products[5]} />
+      <ProductCard product={products[4]} />
       <Grid
         columns={[1, 1, 2]}
         gap={0}
@@ -42,9 +42,15 @@ export default function Home({ products }) {
         }}
       >
         <ImageCard
+          backgroundStyles={{
+            backgroundPosition: ['bottom 40% left 0%', null, 'top 25% left 0%'],
+            backgroundRepeat: 'no-repeat',
+            backgroundSize:  'cover',
+          }}
           color="offBlack"
-          image='/campaign/fw20/102.jpg'
-          product={products[2]}
+          layout="bottom right"
+          image='/campaign/fw21/102.jpg'
+          product={products[1]}
         />
         <Flex
           sx={{
@@ -74,12 +80,12 @@ export default function Home({ products }) {
           <ImageCard
             color='white'
             image='/campaign/fw21/103.jpg'
-            layout='top right'
-            product={products[31]}
+            layout='bottom right'
+            product={products[3]}
           />
         </Flex>
       </Grid>
-      <ProductCard product={products[25]} featuredImage={1} />
+      <ProductCard product={products[9]} featuredImage={1} />
       <Grid
         columns={[1, 1, 2]}
         gap={0}
@@ -95,9 +101,9 @@ export default function Home({ products }) {
             backgroundRepeat: 'no-repeat',
             backgroundSize:  '105%',
           }}
-          image={products[30].images[1].src}
+          image={products[8].images[1].src}
           layout="top center"
-          product={products[30]}
+          product={products[8]}
         />
         <Box
           sx={{

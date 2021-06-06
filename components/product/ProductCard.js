@@ -73,6 +73,7 @@ const ProductDetailsWrapper = ({ children, variant }) => (
       justifyContent: 'center',
       mt: 2,
       mb: 5,
+      mx: 4,
     }}
     variant={variant}
   >

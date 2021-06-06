@@ -11,8 +11,8 @@ const defaultProps = {
   variant: 'badge',
 }
 
-const LinkWrapper = ({ condition, children, href }) => (
-  condition ? (<Link href={href}><a>{children}</a></Link>) : children
+const LinkWrapper = ({ condition, children, href, ...props }) => (
+  condition ? (<Link href={href}><a {...props}>{children}</a></Link>) : children
 )
 
 const Logo = ({
@@ -20,7 +20,7 @@ const Logo = ({
   variant,
   ...props
 }) => (
-  <LinkWrapper condition={href.length > 0} href={href}>
+  <LinkWrapper condition={href.length > 0} href={href} {...props}>
     { variant === 'badge' ? (
       <svg
         width="40"

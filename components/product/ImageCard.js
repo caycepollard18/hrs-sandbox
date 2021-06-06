@@ -26,7 +26,7 @@ const propTypes = {
 
 const defaultProps = {
   backgroundStyles: {
-    backgroundPosition: 'top -10px left 50%',
+    backgroundPosition: 'top 0% left 50%',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
   },

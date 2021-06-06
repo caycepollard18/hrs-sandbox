@@ -9,8 +9,8 @@ import { Logo } from '@components/ui'
 
 const sitePages = [
   {
-    url: '/shop',
-    page: 'Shop',
+    url: '/collection',
+    page: 'Collection',
   },
   {
     url: '/stockists',

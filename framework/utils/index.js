@@ -45,12 +45,15 @@ export const formatPrice = ({
 export const normalizeProduct = ({
   color,
   description,
+  details,
   images,
   style,
   variants,
   ...rest
 }) => {
-  const _color = color.value
+  const _color = color?.value != undefined ? color.value : null
+
+  const _details = details?.value != undefined ? details.value : null
 
   const _images = images?.edges?.map(({ node: i }) => i)
     .map(({ altText, id, originalSrc, height, width, small }) => ({
@@ -62,9 +65,9 @@ export const normalizeProduct = ({
       small,
     }))
 
-  const shortDescription = description.split('.').slice(0,2).join('.') + '.'
+  const shortDescription = description?.split('.').slice(0,2).join('.') + '.'
   
-  const _style = style.value
+  const _style = style?.value != undefined ? style.value : null
 
   // assuming product variants cover sizes only
   const _variants = variants?.edges?.map(({ node: v }) => v)
@@ -79,6 +82,7 @@ export const normalizeProduct = ({
     ...rest,
     color: _color,
     description,
+    details: _details,
     images: _images,
     shortDescription,
     style: _style,

@@ -1,12 +1,14 @@
 /** @jsxImportSource theme-ui */
 import { Selector } from '@components/product'
-import { Button } from '@components/ui'
+import { Button, TabList } from '@components/ui'
 import addDate from 'date-fns/add'
 import format from 'date-fns/format'
+import parse from 'html-react-parser'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import {
+  Box,
   Flex,
   Heading,
   Text
@@ -29,31 +31,32 @@ const ProductContainer = ({ children, ...props }) => (
   </Flex>
 )
 
-const ProductDetailsWrapper = ({ children }) => (
-  <Flex
+const ProductDetailsWrapper = ({ children, modal }) => (
+  <Box
     sx={{
       width: ['100%', '256px'],
-      backgroundColor: ['white', 'none'],
+      backgroundColor: modal ? ['white', 'none'] : 'none',
+      display: modal ? ['flex', 'none'] : ['none', 'flex'],
       flexDirection: 'column',
       justifyContent: 'center',
       mb: [0, 5],
       p: [5, 0],
-      position: ['fixed', 'static'],
-      bottom: [0, null],
-      left: [0, null],
-      zIndex: 10,
+      position: ['sticky', 'static'],
+      bottom: '-1px',
+      left: '0',
+      zIndex: 7,
     }}
   >
     {children}
-  </Flex>
+  </Box>
 )
 
 const ProductTitle = ({ content, ...props }) => (
   <Heading
     as="h1"
     mt={0}
-    mb={2}
-    variant="styles.h1"
+    mb={[0, 2]}
+    variant="layout.product.description.title"
     {...props}
   >
     {content}
@@ -64,7 +67,7 @@ const ProductDeliveryNotice = ({ dates, ...props }) => (
   <Text
     as="div"
     mb={4}
-    py="12px"
+    py={[0, '12px']}
     variant="layout.product.description.notice"
     {...props}
   >
@@ -75,7 +78,7 @@ const ProductDeliveryNotice = ({ dates, ...props }) => (
 const ProductPrice = ({ content, ...props }) => (
   <Text
     as="div"
-    mb={1}
+    mb={[0, 1]}
     variant="styles.h3"
     {...props}
   >
@@ -88,7 +91,7 @@ const ProductDetails = ({ color = '', size = '', ...props }) => (
     sx={{
       flexDirection: 'row',
       gap: 3,
-      mb: 4,
+      mb: [1, 4],
       variant: 'layout.product.description.details'
     }}
     {...props}
@@ -102,19 +105,10 @@ const ProductDetails = ({ color = '', size = '', ...props }) => (
   </Flex>
 )
 
-const ProductDesc = ({ content, ...props }) => (
-  <Text
-    as="div"
-    {...props}
-  >
-    {content}
-  </Text>
-)
-
 const ProductView = ({ product }) => {
 
-  const [selectedColor, setColor] = useState(product.colors.find(color => color.id === product.id))
-  const [selectedSize, setSize] = useState(product.variants[0])
+  const [selectedColor, setColor] = useState(product?.colors?.find(color => color.id === product.id))
+  const [selectedSize, setSize] = useState(product?.variants[0])
 
   const deliveryDates = [
     format(
@@ -127,8 +121,6 @@ const ProductView = ({ product }) => {
     )
   ]
   
-  console.log(product)
-  
   return (
     <Flex
       sx={{
@@ -136,10 +128,11 @@ const ProductView = ({ product }) => {
         flex: 1,
         flexDirection: ['column', 'row'],
         justifyContent: 'center',
+        position: 'relative',
       }}
     >
       <ProductContainer>
-        {product.images?.map((image) => (
+        {product?.images?.map((image) => (
           <Image
             key={image.id}
             src={image.src}
@@ -148,17 +141,9 @@ const ProductView = ({ product }) => {
             width={image.width}
           />
         ))}
-      </ProductContainer>
-      <ProductContainer
-        px={[5, 5, 5, 8]}
-        pt={[4, 10, 10, 11]}
-        pb={4}
-        variant="layout.product"
-      >
-        <ProductDetailsWrapper>
-          <ProductTitle content={product.style} />
+        <ProductDetailsWrapper modal={true}>
           <Selector
-            colors={product.colors}
+            colors={product?.colors}
             createLinkProps={({ handle }) => ({
               href: '/product/[handle]',
               as: `/product/${handle}`,
@@ -170,20 +155,119 @@ const ProductView = ({ product }) => {
             iconSize="large"
           />
           <Selector
-            sizes={product.variants}
+            sizes={product?.variants}
+            selected={selectedSize}
+            onChange={setSize}
+            my={2}
+          />
+          <Flex
+            sx={{
+              alignItems: 'center',
+              alignSelf: 'stretch',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              mt: 1,
+            }}
+          >
+            <ProductTitle content={product?.style} />
+            <ProductPrice content={selectedSize?.price} />
+          </Flex>
+          <ProductDetails color={selectedColor?.color} size={selectedSize?.title} />
+          <ProductDeliveryNotice dates={deliveryDates} />
+          <Button href='/'>{selectedSize?.availableForSale ? "Place Order" : "Sold Out"}</Button>
+        </ProductDetailsWrapper>
+      </ProductContainer>
+      <ProductContainer
+        px={[5, 5, 5, 8]}
+        pt={[4, 10, 10, 11]}
+        pb={4}
+        variant="layout.product"
+      >
+        <ProductDetailsWrapper modal={false}>
+          <ProductTitle content={product?.style} />
+          <Selector
+            colors={product?.colors}
+            createLinkProps={({ handle }) => ({
+              href: '/product/[handle]',
+              as: `/product/${handle}`,
+              scroll: false,
+              next: true,
+            })}
+            onChange={setColor}
+            selected={selectedColor}
+            iconSize="large"
+          />
+          <Selector
+            sizes={product?.variants}
             selected={selectedSize}
             onChange={setSize}
             mt={4}
             mb={2}
           />
           <ProductDeliveryNotice dates={deliveryDates} />
-          <ProductPrice content={selectedSize.price} />
-          <ProductDetails color={selectedColor.color} size={selectedSize.title} />
-          <Button href='/'>{selectedSize.availableForSale ? "Place Order" : "Sold Out"}</Button>
+          <ProductPrice content={selectedSize?.price} />
+          <ProductDetails color={selectedColor?.color} size={selectedSize?.title} />
+          <Button href='/'>{selectedSize?.availableForSale ? "Place Order" : "Sold Out"}</Button>
         </ProductDetailsWrapper>
-        <ProductDesc
-          content={product.description}
-        />
+        <TabList variant="layout.product.description">
+          {product?.description && (
+            <div id="product-details" label="Details">
+              {parse(product?.description)}
+            </div>
+          )}
+          {product?.details && (
+            <div id="product-materials" label="Materials">
+              {parse(product?.details)}
+            </div>
+          )}
+          <div id="product-care" label="Care">
+            <Text as="p">
+              Our shoes are made using only the highest quality materials and expert
+              labor. Please handle with a similar level of care to ensure a longer
+              life for your shoes.
+            </Text>
+            <Text as="ul">
+              <li>
+                If your HRS shoes should get wet, dry them off as quickly as you can.
+              </li>
+              <li>
+                Protect your shoes from extreme weather and prolonged direct sun.
+              </li>
+              <li>Clean them when you see fit with a soft, dry cloth or brush.</li>
+              <li>
+                When not in use, store your shoes in the provided dust bag and box.
+              </li>
+            </Text>
+          </div>
+          <div id="product-shipping" label="Shipping">
+            <Text as="p">
+              Standard shipping: Free in the US
+            </Text>
+            <Text as="p">
+              Estimated delivery within 90 days unless otherwise specified. Processing
+              and delivery times may be delayed. Contact us to learn more.
+            </Text>
+          </div>
+          <div id="product-payment" label="Payment">
+            <Text as="p">
+              HRS accepts the following forms of payment for online purchases:
+            </Text>
+            <Text as="ul">
+              <li>Visa</li>
+              <li>MasterCard</li>
+              <li>American Express</li>
+              <li>PayPal</li>
+              <li>JCB</li>
+              <li>Discover</li>
+              <li>Affirm (on selected products)</li>
+            </Text>
+            <Text as="p">
+              When placing an order, your billing address must match the information
+              on your credit card statement. If your payment is declined, please
+              contact your bank or financial institution for assistance.
+            </Text>
+          </div>
+        </TabList>
       </ProductContainer>
     </Flex>
   )

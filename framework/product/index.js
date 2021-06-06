@@ -191,16 +191,16 @@ export async function getColorsByStyle(products) {
     const product = products
     const allProducts = await getAllProducts()
     
-    const _colors = allProducts.filter(p => p.style === product.style)
+    const _colors = allProducts?.filter(p => p.style === product.style)
       .map(p => ({
-        id: p.id,
-        color: p.color,
-        handle: p.handle,
-        swatch: '/swatches/'
-          + p.style
+        id: p?.id,
+        color: p?.color,
+        handle: p?.handle,
+        swatch: p?.color && ('/swatches/'
+          + p?.style
           + ' - '
-          + p.color.replace(/\//g, ' ').replace(/\s\s+/g, ' ')
-          + '.jpg',
+          + p?.color.replace(/\//g, ' ').replace(/\s\s+/g, ' ')
+          + '.jpg'),
       }))
    
     return ({
@@ -213,11 +213,15 @@ export async function getColorsByStyle(products) {
   const productsWithColors = products.map((product) => {
     const _colors = products.filter(p => p.style === product.style)
       .map(p => ({
-        id: p.id,
-        color: p.color,
-        handle: p.handle,
-        images: p.images,
-        swatch: '/swatches/' + p.style + ' - ' + p.color.replace(/\s\/\s/g, ' ').replace(/\//g,' ') + '.jpg',
+        id: p?.id,
+        color: p?.color,
+        handle: p?.handle,
+        images: p?.images,
+        swatch: p?.color && ('/swatches/'
+          + p.style
+          + ' - '
+          + p.color.replace(/\s\/\s/g, ' ').replace(/\//g, ' ')
+          + '.jpg'),
       }))
     
     return ({

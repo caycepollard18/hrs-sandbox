@@ -33,7 +33,7 @@ const ImageWrapper = ({ href, src, sx, ...props }) => (
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'contain',
           minHeight: ['320px', null],
-          minWidth: ['100%'],
+          minWidth: 'calc(100% - 16px)',
           cursor: 'pointer',
           display: 'block',
           flexBasis: [null, '60%'],
@@ -118,14 +118,14 @@ const CollectionCard = ({
 
   const [selectedColor, setColor] = useState(initialColor)
 
-  console.log(selectedColor)
+  // console.log(selectedColor)
 
   return (
     <CollectionCardWrapper {...props}>
       {selectedColor?.images && (
         <ImageWrapper
           href={`/product/${selectedColor.handle}`}
-          src={selectedColor.images[1].small}
+          src={selectedColor.images[1]?.small ?? selectedColor.images[1]?.src}
           sx={{ order: [1, 2], }}
         />
       )}

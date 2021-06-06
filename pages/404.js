@@ -1,11 +1,13 @@
 import {
   Flex,
-  Heading
+  Heading,
+  Text
 } from 'theme-ui'
 
 const Custom404Container = ({ children, ...props }) => (
   <Flex
     sx={{
+      minHeight: 'calc(100vh - 150px)',
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'center',
@@ -20,12 +22,12 @@ const Custom404Container = ({ children, ...props }) => (
 export default function Custom404() {
   return (
     <Custom404Container>
-      <Heading
-        as="h1"
-        variant="styles.h1"
-      >
-        404 - Page Not Found
+      <Heading as="h1" mb={2} variant="text.subtitle">
+        404
       </Heading>
+      <Text as="div">
+        This page could not be found.
+      </Text>
     </Custom404Container>
   )
 }

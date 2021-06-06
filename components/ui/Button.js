@@ -11,55 +11,65 @@ import { Button as ThemeButton } from 'theme-ui'
 
 const propTypes = {
   as: PropTypes.string,
+  disabled: PropTypes.bool,
   href: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
   ]),
   loading: PropTypes.bool,
   onClick: PropTypes.func,
-  disabled: PropTypes.bool,
+  size: PropTypes.oneOf([
+    'small',
+    'medium',
+  ]),
   sx: PropTypes.object,
 }
 
 const defaultProps = {
   as: 'button',
+  disabled: false,
   href: '',
   loading: false,
-  disabled: false,
   onClick: null,
+  size: 'medium',
   sx: {},
 }
 
+const LinkWrapper = ({ children, href }) => (
+  href ? (<Link href={href} passHref>{children}</Link>) : children
+)
+
 const Button = React.forwardRef((props, ref) => {
   const {
+    as,
     children,
-    onClick,
+    disabled,
     href,
     loading,
-    disabled,
+    onClick,
+    size,
     sx,
-    as = 'button',
     ...rest
   } = props
 
   const fallbackRef = React.useRef<typeof Component>(null)
 
   return (
-    <Link href={href} passHref>
+    <LinkWrapper href={href}>
       <ThemeButton
         as={as}
-        href={href}
         disabled={disabled}
         onClick={onClick}
         ref={ref}
         // ref={mergeRefs([fallbackRef, ref])}
         sx={{
-          height: '40px',
-          minWidth: ['176px', '256px'],
-          border: 0,
-          borderRadius: 0,
+          height: size === 'small' ? '30px' : '40px',
+          minWidth: size === 'small' ? '160px' : ['176px', '256px'],
+          alignItems: 'center',
           cursor: 'pointer',
-          display: 'inline-block',
+          display: 'inline-flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
           px: '30px',
           ...sx
         }}
@@ -67,7 +77,7 @@ const Button = React.forwardRef((props, ref) => {
       >
         {children}
       </ThemeButton>
-    </Link>
+    </LinkWrapper>
   )
 })
 

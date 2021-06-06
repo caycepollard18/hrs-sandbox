@@ -60,7 +60,7 @@ const Selector = ({
     setVariant(option)
     {onChange && onChange(option)}
   }
-
+  
   const hasBorders = variant === 'borders'
   
   return colors.length > 0 ? (
