@@ -6,6 +6,9 @@ import {
   Text
 } from 'theme-ui'
 
+// todo: update to better reflect WAI-ARIA standards
+// see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
+
 const propTypes = {
   children: PropTypes.node.isRequired,
 }

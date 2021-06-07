@@ -1,6 +1,7 @@
 import { SearchBar } from '@components/common'
 import { Hamburger as HamburgerLogo } from '@components/icons'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import {
   Box,
@@ -116,6 +117,21 @@ const NavMenu = ({ active }) => {
   const handleOnClick = () => {
     setIsOpen(!isOpen)
   }
+
+  const router = useRouter()
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      console.log(`App is changing to ${url}`)
+      setIsOpen(false)
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange)
+    
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [])
   
   useEffect(() => {
     const body = document.querySelector('body')
