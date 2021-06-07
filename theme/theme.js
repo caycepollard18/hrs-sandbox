@@ -161,11 +161,21 @@ const theme = {
       fontWeight: '700',
       lineHeight: 'body',
       textTransform: 'uppercase',
-      active: {
-        borderBottom: '2px solid',
-      },
       dark: {
         backgroundColor: 'black',
+      },
+      links: {
+        cursor: 'pointer',
+        borderBottom: '2px solid',
+        borderColor: 'transparent',
+        '&:hover': {
+          borderBottom: '2px solid',
+          borderColor: 'white',
+        },
+        active: {
+          borderBottom: '2px solid',
+          borderColor: 'white',
+        },
       },
       menu: {
         backgroundColor: 'black',

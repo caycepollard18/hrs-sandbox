@@ -104,6 +104,7 @@ const MainMenu = ({ active, onClick }) => (
       sx={{
         cursor: 'pointer',
         display: ['block', 'block', 'none'],
+        zIndex: ['inherit', 'inherit', '-1'],
       }}
       onClick={onClick}
     >
@@ -124,8 +125,7 @@ const MainMenu = ({ active, onClick }) => (
             href={url}
           >
             <Box as="a"
-              onClick={onClick}
-              variant={url === active ? "layout.header.active" : null}
+              variant={url === active ? "layout.header.links.active" : "layout.header.links" }
             >
               {page}
             </Box>

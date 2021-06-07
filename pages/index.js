@@ -21,6 +21,16 @@ export async function getStaticProps() {
 }
 
 export default function Home({ products }) {
+  const featuredProducts = [
+    products?.find(product => product.handle === 'el-dorado-black-combo'),
+    products?.find(product => product.handle === 'palazzo-black-multi-combo-1'),
+    products?.find(product => product.handle === 'del-rey-bone-black'),
+    products?.find(product => product.handle === 'memphis-bone-leopard'),
+    products?.find(product => product.handle === 'palazzo-pink-bone'),
+  ]
+
+  console.log(products)
+
   return (
     <>
       <Hero
@@ -32,7 +42,7 @@ export default function Home({ products }) {
         size="default"
         variant="layout.hero.homepage"
       />
-      <ProductCard product={products[4]} />
+      <ProductCard product={featuredProducts[0]} />
       <Grid
         columns={[1, 1, 2]}
         gap={0}
@@ -50,7 +60,7 @@ export default function Home({ products }) {
           color="offBlack"
           layout="bottom right"
           image='/campaign/fw21/102.jpg'
-          product={products[1]}
+          product={featuredProducts[1]}
         />
         <Flex
           sx={{
@@ -81,11 +91,11 @@ export default function Home({ products }) {
             color='white'
             image='/campaign/fw21/103.jpg'
             layout='bottom right'
-            product={products[3]}
+            product={featuredProducts[2]}
           />
         </Flex>
       </Grid>
-      <ProductCard product={products[9]} featuredImage={1} />
+      <ProductCard product={featuredProducts[3]} featuredImage={1} />
       <Grid
         columns={[1, 1, 2]}
         gap={0}
@@ -101,9 +111,9 @@ export default function Home({ products }) {
             backgroundRepeat: 'no-repeat',
             backgroundSize:  '105%',
           }}
-          image={products[8]?.images[1]?.src}
+          image={featuredProducts[4]?.images[1]?.src}
           layout="top center"
-          product={products[8]}
+          product={featuredProducts[4]}
         />
         <Box
           sx={{
