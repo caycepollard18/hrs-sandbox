@@ -213,6 +213,10 @@ const theme = {
       fontSize: 1,
       fontWeight: 400,
     },
+    dark: {
+      backgroundColor: 'offBlack',
+      color: 'accent',
+    },
     product: {
       backgroundColor: ['offBlack', 'white'],
       borderLeft: '1px solid',

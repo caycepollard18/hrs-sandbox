@@ -83,14 +83,14 @@ const CollectionView = ({ products }) => {
         description="Discover the FW21 collection on the Human Recreational Services official store."
         openGraph={{
           type: 'website',
-          title: "A DREAM ESCAPE - Human Recreational Services",
+          title: "A DREAM ESCAPE - Fall/Winter 2021",
           description: "Discover the FW21 collection on the Human Recreational Services official store.",
           images: [
             {
-              url: "/campaign/fw21/201.jpg",
-              width: 800,
-              height: 600,
-              alt: "A DREAM ESCAPE",
+              url: "https://hrs-sandbox.vercel.app/campaign/fw21/201.jpg",
+              width: 1080,
+              height: 852,
+              alt: "Human Recreational Services - A DREAM ESCAPE",
             },
           ],
         }}

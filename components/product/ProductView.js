@@ -137,14 +137,14 @@ const ProductView = ({ product }) => {
         description={product?.description}
         openGraph={{
           type: 'website',
-          title: product?.name,
+          title: `The ${product?.style} in ${product?.color}`,
           description: product?.description,
           images: [
             {
               url: product?.images[0]?.src,
               width: 800,
               height: 600,
-              alt: product?.name,
+              alt: product?.title,
             },
           ],
         }}

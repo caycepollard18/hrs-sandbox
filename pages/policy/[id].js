@@ -62,7 +62,7 @@ export default function Policy({ policyData }) {
           description: "Discover the FW21 collection on the Human Recreational Services official store.",
           images: [
             {
-              url: "/campaign/fw21/201.jpg",
+              url: "/campaign/fw21/101.jpg",
               width: 800,
               height: 600,
               alt: "A DREAM ESCAPE",

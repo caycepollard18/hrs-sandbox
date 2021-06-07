@@ -40,7 +40,7 @@ const About = () => (
     <NextSeo
       title="ABOUT"
       openGraph={{
-        title: "ABOUT - Human Recreational Services",
+        title: "About the Brand - HRS",
       }}
     />
     <InnerContainer>
