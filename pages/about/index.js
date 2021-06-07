@@ -1,6 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { Logo } from '@components/ui'
 import Image from 'next/image'
+import { NextSeo } from 'next-seo'
 import {
   Flex,
   Heading,
@@ -36,6 +37,12 @@ const InnerContainer = ({ children }) => (
 
 const About = () => (
   <AboutContainer>
+    <NextSeo
+      title="ABOUT"
+      openGraph={{
+        title: "ABOUT - Human Recreational Services",
+      }}
+    />
     <InnerContainer>
       <Image
         src="/eriknvaz.png"

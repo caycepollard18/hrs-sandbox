@@ -30,6 +30,7 @@
     "@babel/core": "^7.14.0",
     "@mailchimp/mailchimp_marketing": "^3.0.44",
     "html-loader": "^2.1.2",
-    "html-react-parser": "^1.2.6"
+    "html-react-parser": "^1.2.6",
+    "next-seo": "^4.24.0"
   }
 }

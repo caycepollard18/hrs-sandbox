@@ -4,6 +4,7 @@ import {
 } from '@components/collection'
 import { Newsletter } from '@components/common'
 import { Hero } from '@components/ui'
+import { NextSeo } from 'next-seo'
 import PropTypes from 'prop-types'
 import { Flex } from 'theme-ui'
 
@@ -77,6 +78,23 @@ const NewsletterCardWrapper = ({ children, image }) => (
 const CollectionView = ({ products }) => {
   return (
     <CollectionContainer>
+      <NextSeo
+        title="A DREAM ESCAPE"
+        description="Discover the FW21 collection on the Human Recreational Services official store."
+        openGraph={{
+          type: 'website',
+          title: "A DREAM ESCAPE - Human Recreational Services",
+          description: "Discover the FW21 collection on the Human Recreational Services official store.",
+          images: [
+            {
+              url: "/campaign/fw21/201.jpg",
+              width: 800,
+              height: 600,
+              alt: "A DREAM ESCAPE",
+            },
+          ],
+        }}
+      />
       {/* <CollectionMenu products={products} /> */}
       <Hero
         title="A Dream Escape"

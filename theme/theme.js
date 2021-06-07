@@ -1,10 +1,11 @@
 const palette = {
   white: '#ffffff',
   gray: '#36393D',
-  lightGray: '#35353A50',
+  lightGray: '#35353A80',
   offBlack: '#161616',
-  offBlack20: '#16161620',
-  offBlack50: '#16161650',
+  offBlack20: '#16161633',
+  offBlack50: '#16161680',
+  offBlack80: '#161616CC',
   black: '#000000',
   bone: '#f3efec',
   darkBone: '#F6F1EE',
@@ -12,7 +13,7 @@ const palette = {
 }
 
 const theme = {
-  breakpoints: ['650px', '960px', '1280px', '1920px'],
+  breakpoints: ['648px', '960px', '1280px', '1920px'],
   space: [0, 4, 8, 16, 24, 32, 48, 64, 72, 80, 128, 256, 512],
   fonts: {
     body: 'GranbyEF, system-ui, sans-serif',
@@ -279,6 +280,7 @@ const theme = {
           top: 0,
           transition: 'all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)',
           width: '100%',
+          zIndex: '-1',
         },
         '&:hover': {
           borderColor: ['#16161620', '#16161600'],
@@ -328,6 +330,7 @@ const theme = {
         border: '1px solid #ffffff00',
         boxShadow: '1px 1px 1px #00000040',
         transition: '0.1s transform ease-out',
+        cursor: 'pointer',
         '&:hover': {
           border: '1px solid #ffffff40',
           boxShadow: '1px 1px 1px #00000040, 0px 2px 4px #00000029',
@@ -339,7 +342,7 @@ const theme = {
           cursor: 'default',
         }
       }
-    }
+    },
   },
   buttons: {
     primary: {
@@ -359,7 +362,7 @@ const theme = {
     },
     accent: {
       backdropFilter: 'blur(31px)',
-      bg: '#FFFFFF20',
+      backgroundColor: '#FFFFFF33',
       border: '1px solid',
       borderRadius: 0,
       color: 'accent',
@@ -371,8 +374,13 @@ const theme = {
       textTransform: 'uppercase',
       small: {
         fontSize: 0,
-      }
-    }
+      },
+    },
+    transparent: {
+      variant: 'buttons.accent',
+      backgroundColor: 'transparent',
+      backdropFilter: 'none',
+    },
   },
   forms: {
     input: {
@@ -399,9 +407,8 @@ const theme = {
       display: 'none',
     },
     newsletter: {
-      dark: {
-        color: 'accent',
-      },
+      color: 'accent',
+      textAlign: 'center',
       subtitle: {
         fontFamily: 'accent',
         fontSize: 2,
@@ -427,7 +434,13 @@ const theme = {
           mt: 0,
           outline: 'none',
         },
-      }
+      },
+      modal: {
+        backdropFilter: 'blur(31px)',        
+        backgroundColor: 'offBlack80',
+        boxShadow: ['none', 'none', 'cardHover'],
+        color: 'accent',
+      },
     }
   },
   links: {

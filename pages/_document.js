@@ -16,22 +16,22 @@ class MyDocument extends Document {
           <link
             rel="preload"
             as="style"
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
           />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
             media="print"
             onLoad="this.media='all'"
           />
           <noscript>
             <link
               rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap"
+              href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
             />
           </noscript>
         </Head>
-        <body>
+        <body className="loading">
           <Main />
           <NextScript />
         </body>

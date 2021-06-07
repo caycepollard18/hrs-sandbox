@@ -1,5 +1,7 @@
 /** @jsxImportSource theme-ui */
 
+// todo: change this into spans for optimization
+
 const Arrow = ({
   color,
   variant = 'left',

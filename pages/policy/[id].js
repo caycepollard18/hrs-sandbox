@@ -7,6 +7,7 @@ import {
   getAllPolicyIds,
   getPolicyData
 } from '@lib/policy'
+import { NextSeo } from 'next-seo'
 import {
   Flex,
   Heading
@@ -52,6 +53,23 @@ const PolicyContainer = ({ children }) => (
 export default function Policy({ policyData }) {
   return (
     <PolicyContainer>
+      <NextSeo
+        title={policyData?.title}
+        description="Discover the FW21 collection on the Human Recreational Services official store."
+        openGraph={{
+          type: 'website',
+          title: policyData?.title,
+          description: "Discover the FW21 collection on the Human Recreational Services official store.",
+          images: [
+            {
+              url: "/campaign/fw21/201.jpg",
+              width: 800,
+              height: 600,
+              alt: "A DREAM ESCAPE",
+            },
+          ],
+        }}
+      />
       <Heading
         as="h1"
         variant="styles.h2"

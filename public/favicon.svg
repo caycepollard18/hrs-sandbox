@@ -1,0 +1,15 @@
+
+<svg
+  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.001 31.001">
+  <style>
+   path {
+      fill: #333;
+    }
+    @media (prefers-color-scheme: dark) {
+      path {
+        fill: #f6f1ee;
+      }
+    }
+  </style>
+  <path id="logo" data-name="Subtraction 3" d="M15,30A15,15,0,1,1,30,15,15.017,15.017,0,0,1,15,30Zm0-14.028h0l4.029,2.74V23.1h3.506V6.9H19.029v4.388L15,14.028l-4.028-2.741V6.9H7.464V23.1h3.507V18.712L15,15.972Zm4.029.8h0L16.429,15l2.6-1.769v3.537Zm-8.058,0V13.232L13.571,15l-2.6,1.767Z" transform="translate(0.501 0.501)"  stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"/>
+</svg>

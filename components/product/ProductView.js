@@ -5,6 +5,7 @@ import addDate from 'date-fns/add'
 import format from 'date-fns/format'
 import parse from 'html-react-parser'
 import Image from 'next/image'
+import { NextSeo } from 'next-seo'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import {
@@ -131,6 +132,23 @@ const ProductView = ({ product }) => {
         position: 'relative',
       }}
     >
+      <NextSeo
+        title={product?.title}
+        description={product?.description}
+        openGraph={{
+          type: 'website',
+          title: product?.name,
+          description: product?.description,
+          images: [
+            {
+              url: product?.images[0]?.src,
+              width: 800,
+              height: 600,
+              alt: product?.name,
+            },
+          ],
+        }}
+      />
       <ProductContainer>
         {product?.images?.map((image) => (
           <Image

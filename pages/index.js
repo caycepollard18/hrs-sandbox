@@ -1,4 +1,5 @@
 /** @jsxImportSource theme-ui */
+import { Newsletter } from '@components/common'
 import {
   ProductCard,
   ImageCard
@@ -42,6 +43,7 @@ export default function Home({ products }) {
         size="default"
         variant="layout.hero.homepage"
       />
+      <Newsletter modal />
       <ProductCard product={featuredProducts[0]} />
       <Grid
         columns={[1, 1, 2]}

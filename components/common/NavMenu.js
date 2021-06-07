@@ -1,14 +1,10 @@
-import {
-  Arrow,
-  Hamburger as HamburgerLogo,
-  Search as SearchLogo,
-} from '@components/icons'
+import { SearchBar } from '@components/common'
+import { Hamburger as HamburgerLogo } from '@components/icons'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import {
   Box,
   Flex,
-  Input
 } from 'theme-ui'
 
 const sitePages = [
@@ -38,59 +34,6 @@ const sitePages = [
     isFull: false,
   },
 ]
-
-const SearchBar = () => (
-  <Flex
-    sx={{
-      alignSelf: 'stretch',
-      alignItems: 'center',
-      height: '32px',
-      flexDirection: 'row',
-      mb: 3,
-      position: 'relative',
-    }}
-  >
-    <Box
-      sx={{
-        left: 3,
-        opacity: '0.5',
-        position: 'absolute',
-        top: '10px',
-      }}
-    >
-      <SearchLogo
-        height="12px"
-        width="12px"
-      />
-    </Box>
-    <Input
-      placeholder="Search HRS"
-      sx={{
-        width: '100%',
-        height: '100%',
-        px: '40px',
-      }}
-      variant="forms.input.search"
-    />
-    <Flex
-      sx={{
-        height: '100%',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        position: 'absolute',
-        right: 3,
-        top: 0,
-      }}
-    >
-      <Arrow
-        color="white"
-        height="11px"
-        width="11px"
-        variant="right"
-      />
-    </Flex>
-  </Flex>
-)
 
 const MainMenu = ({ active, onClick }) => (
   <Flex

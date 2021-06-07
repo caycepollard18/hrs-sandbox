@@ -1,3 +1,4 @@
+// todo: change this into spans for optimization
 // todo: add "color" prop like in Arrow.js if needed (?)
 
 const Hamburger = ({ ...props }) => {
