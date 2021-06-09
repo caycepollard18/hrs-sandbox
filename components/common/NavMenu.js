@@ -135,7 +135,7 @@ const NavMenu = ({ active }) => {
   
   useEffect(() => {
     const body = document.querySelector('body')
-    body.style.overflow = isOpen ? 'hidden' : 'auto'
+    body.style.overflowY = isOpen ? 'hidden' : 'auto'
   }, [isOpen])
 
   return (

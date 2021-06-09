@@ -113,7 +113,7 @@ const theme = {
         display: 'block',
       },
       'body': {
-        overflow: 'auto',
+        overflowY: 'auto',
         overflowX: 'hidden',
       }
     },
@@ -154,6 +154,12 @@ const theme = {
       variant: 'text.heading',
       fontSize: 1,
     },
+    hr: {
+      width: '100%',
+      height: '1px',
+      my: 2,
+      opacity: 0.5,
+    }
   },
   layout: {
     header: {
@@ -303,6 +309,14 @@ const theme = {
           color: 'superMuted',
         }
       },
+    },
+    contact: {
+      list: {
+        lineHeight: 'expanded',
+        'a': {
+          opacity: 0.5,
+        },
+      }
     },
     selector: {
       borders: {

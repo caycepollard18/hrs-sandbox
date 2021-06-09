@@ -32,7 +32,7 @@ const ProductContainer = ({ children, ...props }) => (
   </Flex>
 )
 
-const ProductDetailsWrapper = ({ children, modal }) => (
+const ProductDetailsWrapper = ({ children, modal = false }) => (
   <Box
     sx={{
       width: ['100%', '256px'],
@@ -42,7 +42,7 @@ const ProductDetailsWrapper = ({ children, modal }) => (
       justifyContent: 'center',
       mb: [0, 5],
       p: [5, 0],
-      position: ['sticky', 'static'],
+      position: 'sticky',
       bottom: '-1px',
       left: '0',
       zIndex: 7,
@@ -159,7 +159,7 @@ const ProductView = ({ product }) => {
             width={image.width}
           />
         ))}
-        <ProductDetailsWrapper modal={true}>
+        <ProductDetailsWrapper modal>
           <Selector
             colors={product?.colors}
             createLinkProps={({ handle }) => ({
@@ -201,7 +201,7 @@ const ProductView = ({ product }) => {
         pb={4}
         variant="layout.product"
       >
-        <ProductDetailsWrapper modal={false}>
+        <ProductDetailsWrapper>
           <ProductTitle content={product?.style} />
           <Selector
             colors={product?.colors}

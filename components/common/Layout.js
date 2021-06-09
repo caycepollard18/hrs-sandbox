@@ -15,7 +15,7 @@ export default function Layout({ children, home }) {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        overflowX: 'hidden',
+        // overflowX: 'hidden', this breaks position: 'sticky'
       }}
     >
       <Header />
