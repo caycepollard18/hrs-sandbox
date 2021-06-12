@@ -1,12 +1,18 @@
 import { Close } from '@components/icons'
 import { Button } from '@components/ui'
+import PropTypes from 'prop-types'
 import {
   Flex,
   Heading,
   Text,
 } from 'theme-ui'
 
-const SidebarHeader = ({ onClick }) => (
+const propTypes = {
+  onClose: PropTypes.func.isRequired,
+}
+
+
+const SidebarHeader = ({ onClose }) => (
   <Flex
     as="header"
     sx={{
@@ -36,7 +42,7 @@ const SidebarHeader = ({ onClick }) => (
         0 USD
       </Text>
       <Close
-        onClick={onClick}
+        onClick={onClose}
         sx={{
           height: '10px',
           mt: '6px',
@@ -136,7 +142,7 @@ const CartSidebarView = ({ onClose }) => (
       variant: 'layout.sidebar.cart',
     }}
   >
-    <SidebarHeader onClick={onClose} />
+    <SidebarHeader onClose={onClose} />
     <InnerContainer>
       <Text as="div">
         Your shopping bag is currently empty
@@ -145,5 +151,7 @@ const CartSidebarView = ({ onClose }) => (
     <SidebarFooter />
   </Flex>
 )
+
+CartSidebarView.propTypes = propTypes
 
 export default CartSidebarView

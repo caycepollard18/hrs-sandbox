@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 const initialState = {
   displaySidebar: false,
   displayDropdown: false,
-  displayModal: false,
+  displayModal: true,
 }
 
 export const UIContext = React.createContext(initialState)

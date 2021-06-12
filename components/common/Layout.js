@@ -1,8 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { CartSidebarView } from '@components/cart'
 import { Footer, Header } from '@components/common'
-import { Sidebar, useUI } from '@components/ui'
-import { useState } from 'react'
+import { Modal, Sidebar, useUI } from '@components/ui'
 import { Container } from 'theme-ui'
 
 const sitePages = [
@@ -83,6 +82,7 @@ export default function Layout({ children }) {
         alignItems: 'center',
         // overflowX: 'hidden', this breaks position: 'sticky'
       }}
+      variant="layout.root"
     >
       <Header
         links={sitePages.filter(link => link.displayNavMenu || link.displayHeader)}
@@ -103,8 +103,9 @@ export default function Layout({ children }) {
       <Footer links={sitePages} />
 
       <Sidebar open={displaySidebar} onClose={closeSidebar}>
-        <CartSidebarView open={displaySidebar} onClose={closeSidebar} />
+        <CartSidebarView onClose={closeSidebar} />
       </Sidebar>
+      
     </Container>
   )
 }

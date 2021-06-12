@@ -6,6 +6,7 @@ import {
 import PropTypes from 'prop-types'
 import Portal from '@reach/portal'
 import { useEffect, useRef } from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Box, Container, Flex } from 'theme-ui'
 
 const propTypes = {
@@ -23,7 +24,7 @@ const defaultProps = {
   onClose: () => void(0),
 }
 
-// todo: add ReactTransitionGroup
+// todo: add left & right variants (?)
 
 const Sidebar = ({ children, open, onClose }) => {
   const ref = useRef()
@@ -47,49 +48,55 @@ const Sidebar = ({ children, open, onClose }) => {
   }, [open])
 
   return (
-    <Portal>
-      {open ? (
-        <Container
-          as="div"
-          ref={ref}
-          sx={{
-            width: '100%', height: '100vh',
-            overflowX: 'hidden',
-            overflowY: 'hidden',
-            position: 'absolute',
-            top: 0, right: 0,
-            zIndex: 50,
-          }}
-        >
-          <Box
+    <Portal className="portal">
+      <ReactCSSTransitionGroup
+        transitionName="slide"
+        transitionEnterTimeout={250}
+        transitionLeaveTimeout={250}
+      >
+        {open ? (
+          <Container
             as="div"
-            onClick={onClose}
+            className="test-name"
+            ref={ref}
             sx={{
-              width: '100%', height: '100%',
-              backgroundColor: 'black',
-              cursor: 'pointer',
-              opacity: 0.3,
+              width: '100%', height: '100vh',
               overflowX: 'hidden',
               overflowY: 'hidden',
               position: 'absolute',
               top: 0, right: 0,
+              zIndex: 50,
             }}
-          />
-          <Flex
-            as="section"
-            sx={{
-              width: ['100%', 'unset'],
-              height: '100%',
-              position: 'absolute',
-              top: 0, right: 0,
-              transitionDelay: '250ms',
-              transform: open ? 'translateX(0%)' : 'translateX(100%)',
-            }}
+            variant="layout.sidebar"
           >
-            {children}
-          </Flex>
-        </Container>
-      ) : null}
+            <Box
+              as="div"
+              onClick={onClose}
+              sx={{
+                width: '100%', height: '100%',
+                cursor: 'pointer',
+                overflowX: 'hidden',
+                overflowY: 'hidden',
+                position: 'absolute',
+                top: 0, right: 0,
+              }}
+              variant="layout.sidebar.background"
+            />
+            <Flex
+              as="section"
+              sx={{
+                width: ['100%', 'unset'],
+                height: '100%',
+                position: 'absolute',
+                top: 0, right: 0,
+                transitionDelay: '250ms',
+              }}
+            >
+              {children}
+            </Flex>
+          </Container>
+        ) : null}
+      </ReactCSSTransitionGroup>
     </Portal>
   )
 }

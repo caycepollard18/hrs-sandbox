@@ -60,7 +60,7 @@ const ModalWrapper = ({
 
 const Newsletter = ({ modal }) => {
   
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleOnClick = () => {
     setIsOpen(!isOpen)

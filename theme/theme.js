@@ -134,6 +134,20 @@ const theme = {
       'body': {
         overflowY: 'auto',
         overflowX: 'hidden',
+      },
+      ['.slide-enter section']: {
+        transform: 'translateX(100%)',
+      },
+      ['.slide-enter.slide-enter-active section']: {
+        transform: 'translateX(0%)',
+        transition: 'slide',
+      },
+      ['.slide-leave section']: {
+        transform: 'translateX(0%)',
+      },
+      ['.slide-leave.slide-leave-active section']: {
+        transform: 'translateX(100%)',
+        transition: 'slide',
       }
     },
     p: {
@@ -252,6 +266,10 @@ const theme = {
     },
     sidebar: {
       transition: 'slide',
+      background: {
+        backgroundColor: 'black',
+        opacity: 0.3,
+      },
       cart: {
         backgroundColor: 'white',
         header: {
@@ -265,7 +283,7 @@ const theme = {
         content: {
           color: 'white',
         }
-      }
+      },
     },
     /** PAGES */
     product: {
