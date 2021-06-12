@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { CartSidebarView } from '@components/cart'
 import { Footer, Header } from '@components/common'
-import { Sidebar } from '@components/ui'
+import { Sidebar, useUI } from '@components/ui'
 import { useState } from 'react'
 import { Container } from 'theme-ui'
 
@@ -69,7 +69,8 @@ const sitePages = [
 ]
 
 export default function Layout({ children }) {
-  const [ isOpen, setIsOpen ] = useState(true)
+  const { displaySidebar, displayModal, closeSidebar, closeModal, modalView } =
+    useUI()
 
   return (
     <Container
@@ -85,7 +86,6 @@ export default function Layout({ children }) {
     >
       <Header
         links={sitePages.filter(link => link.displayNavMenu || link.displayHeader)}
-        openSidebar={() => setIsOpen(!isOpen)}
       />
       <main
         sx={{
@@ -102,8 +102,8 @@ export default function Layout({ children }) {
       </main>
       <Footer links={sitePages} />
 
-      <Sidebar open={isOpen} onClose={() => setIsOpen(!isOpen)}>
-        <CartSidebarView onClose={() => setIsOpen(!isOpen)} />
+      <Sidebar open={displaySidebar} onClose={closeSidebar}>
+        <CartSidebarView open={displaySidebar} onClose={closeSidebar} />
       </Sidebar>
     </Container>
   )

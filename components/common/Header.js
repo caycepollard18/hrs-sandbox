@@ -4,7 +4,7 @@ import {
   Bag as BagLogo,
   Search as SearchLogo
 } from '@components/icons'
-import { Logo } from '@components/ui'
+import { Logo, useUI } from '@components/ui'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
@@ -12,21 +12,11 @@ import { Flex } from 'theme-ui'
 
 const propTypes = {
   links: PropTypes.array,
-  openSidebar: PropTypes.func,
 }
 
 const defaultProps = {
   links: [],
-  openSidebar: () => void(0),
 }
-
-const Bag = ({ onClick }) => (
-  <Flex onClick={onClick}>
-      <a>
-        <BagLogo />
-      </a>
-  </Flex>
-)
 
 const Search = () => (
   <Flex
@@ -54,12 +44,15 @@ const UserMenu = ({ onClick }) => (
     }}
   >
     <Search />
-    <Bag onClick={onClick} />
+    <Flex sx={{ cursor: 'pointer' }} onClick={onClick}>
+      <BagLogo />
+    </Flex>
   </Flex>
 )
 
-const Header = ({ links, openSidebar }) => {
+const Header = ({ links }) => {
   const router = useRouter()
+  const { toggleSidebar } = useUI()
   
   const isHome = router.pathname === '/'
   
@@ -90,7 +83,7 @@ const Header = ({ links, openSidebar }) => {
           zIndex: '10',
         }}
       />
-      <UserMenu onClick={openSidebar} />
+      <UserMenu onClick={toggleSidebar} />
     </Flex>
   )
 }

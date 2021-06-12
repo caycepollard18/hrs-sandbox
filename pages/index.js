@@ -127,13 +127,12 @@ export default function Home({ products }) {
         />
       </Grid>
       <Hero
-        title="A Dream Escape"
-        subtitle="Discover Chapter Two"
+        subtitle="“Sometimes you have to play a long time to be able to play like yourself.”"
         image="/campaign/fw21/104.jpg"
         backgroundPosition="center 0%"
-        link="Shop The Collection"
+        link="View the Campaign"
         href="/collection"
-        size="large"
+        size="default"
         variant="layout.hero.homepage"
       />
     </>
