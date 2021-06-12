@@ -19,7 +19,7 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  open: true,
+  open: false,
   onClose: () => void(0),
 }
 
