@@ -2,7 +2,7 @@ import { Close } from '@components/icons'
 import PropTypes from 'prop-types'
 import Portal from '@reach/portal'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { Box, Container } from 'theme-ui'
+import { Box } from 'theme-ui'
 
 const propTypes = {
   children: PropTypes.oneOfType([
@@ -30,43 +30,31 @@ const Modal = ({ children, open, onClose }) => {
         transitionLeaveTimeout={250}
       >
         {open ? (
-          <Container
-            as="div"
+          <Box
             sx={{
-              width: '100%', height: '100vh',
-              overflowX: 'hidden',
-              overflowY: 'hidden',
-              position: 'absolute',
-              top: 0, right: 0,
-              zIndex: 50,
+              minHeight: '240px',
+              minWidth: ['100%', '100%', '720px', '960px'],
+              alignItems: 'center',
+              display: 'flex',
+              justifyContent: 'center',
+              position: 'fixed',
+              bottom: ['64px', '64px', 0],
+              right: 0,
+              zIndex: '7',
             }}
+            variant="forms.newsletter.modal"
           >
-            <Box
+            {children}
+            <Close
+              onClick={onClose}
               sx={{
-                minHeight: '240px',
-                minWidth: ['100%', '100%', '720px', '960px'],
-                alignItems: 'center',
-                display: 'flex',
-                justifyContent: 'center',
-                position: 'fixed',
-                bottom: ['64px', '64px', 0],
-                right: 0,
-                zIndex: '7',
+                m: 3,
+                p: 2,
+                position: 'absolute',
+                top: 0, right: 0,
               }}
-              variant="forms.newsletter.modal"
-            >
-              {children}
-              <Close
-                onClick={onClose}
-                sx={{
-                  m: 3,
-                  p: 2,
-                  position: 'absolute',
-                  top: 0, right: 0,
-                }}
-              />
-            </Box>
-          </Container>
+            />
+          </Box>
         ) : null}
       </ReactCSSTransitionGroup>
     </Portal>

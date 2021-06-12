@@ -6,16 +6,17 @@ import {
 } from '@components/icons'
 import { Logo, useUI } from '@components/ui'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import { Flex } from 'theme-ui'
 
 const propTypes = {
   links: PropTypes.array,
+  active: PropTypes.string,
 }
 
 const defaultProps = {
   links: [],
+  active: '',
 }
 
 const Search = () => (
@@ -50,11 +51,10 @@ const UserMenu = ({ onClick }) => (
   </Flex>
 )
 
-const Header = ({ links }) => {
-  const router = useRouter()
+const Header = ({ links, active }) => {
   const { toggleSidebar } = useUI()
   
-  const isHome = router.pathname === '/'
+  const isHome = active === '/'
   
   return (
     <Flex
@@ -73,7 +73,7 @@ const Header = ({ links }) => {
         variant: 'layout.header'
       }}
     >
-      <NavMenu active={router.pathname} links={links} />
+      <NavMenu active={active} links={links} />
       <Logo
         href="/"
         variant="badge"

@@ -1,7 +1,8 @@
 /** @jsxImportSource theme-ui */
 import { CartSidebarView } from '@components/cart'
-import { Footer, Header } from '@components/common'
+import { Footer, Header, Newsletter } from '@components/common'
 import { Modal, Sidebar, useUI } from '@components/ui'
+import { useRouter } from 'next/router'
 import { Container } from 'theme-ui'
 
 const sitePages = [
@@ -68,8 +69,14 @@ const sitePages = [
 ]
 
 export default function Layout({ children }) {
+  const router = useRouter()
+  const home = router.pathname === '/'
+
   const { displaySidebar, displayModal, closeSidebar, closeModal, modalView } =
     useUI()
+  
+  const headerLinks = sitePages.filter(link => link.displayNavMenu || link.displayHeader)
+  const footerLinks = sitePages
 
   return (
     <Container
@@ -84,9 +91,7 @@ export default function Layout({ children }) {
       }}
       variant="layout.root"
     >
-      <Header
-        links={sitePages.filter(link => link.displayNavMenu || link.displayHeader)}
-      />
+      <Header links={headerLinks} active={router.pathname} home />
       <main
         sx={{
           width: ['100%'],
@@ -100,11 +105,15 @@ export default function Layout({ children }) {
       >
         {children}
       </main>
-      <Footer links={sitePages} />
+      <Footer links={footerLinks} />
 
       <Sidebar open={displaySidebar} onClose={closeSidebar}>
         <CartSidebarView onClose={closeSidebar} />
       </Sidebar>
+
+      <Modal open={displayModal} onClose={closeModal}>
+        <Newsletter modal />
+      </Modal>
       
     </Container>
   )
