@@ -108,7 +108,7 @@ const Copyright = ({ ...props }) => (
     sx={{
       textAlign: ['left', 'right'],
     }}
-    variant="text.small"
+    variant="text.tiny"
     {...props}
   >
     &copy; {`
@@ -124,7 +124,7 @@ const Accessibility = ({ ...props }) => (
     sx={{
       textAlign: ['left', 'right'],
     }}
-    variant="text.small"
+    variant="text.tiny"
     {...props}
   >
     <Link href='/policy/accessibility'>

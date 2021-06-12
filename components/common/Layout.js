@@ -1,11 +1,76 @@
 /** @jsxImportSource theme-ui */
-import {
-  Footer,
-  Header
- } from '@components/common'
+import { CartSidebarView } from '@components/cart'
+import { Footer, Header } from '@components/common'
+import { Sidebar } from '@components/ui'
+import { useState } from 'react'
 import { Container } from 'theme-ui'
 
-export default function Layout({ children, home }) {
+const sitePages = [
+  {
+    url: '/collection',
+    page: 'Collection',
+    displayHeader: true,
+    displayNavMenu: true,
+  },
+  {
+    url: '/stockists',
+    page: 'Stockists',
+    displayHeader: false,
+    displayNavMenu: true,
+  },
+  {
+    url: '/press',
+    page: 'Press',
+    displayHeader: true,
+    displayNavMenu: true,
+  },
+  {
+    url: '/about',
+    page: 'About',
+    displayHeader: true,
+    displayNavMenu: true,
+  },
+  {
+    url: '/contact',
+    page: 'Contact',
+    displayHeader: false,
+    displayNavMenu: true,
+  },
+  {
+    url: '/policy/privacy-policy',
+    page: 'Privacy Policy',
+    displayHeader: false,
+    displayNavMenu: false,
+  },
+  {
+    url: '/policy/terms',
+    page: 'Terms of Use',
+    displayHeader: false,
+    displayNavMenu: false,
+  },
+  {
+    url: '/policy/shipping-and-returns',
+    page: 'Shipping & Returns',
+    displayHeader: false,
+    displayNavMenu: false,
+  },
+  {
+    url: '/policy/legal',
+    page: 'Legal',
+    displayHeader: false,
+    displayNavMenu: false,
+  },
+  {
+    url: '/sitemap',
+    page: 'Sitemap',
+    displayHeader: false,
+    displayNavMenu: false,
+  }
+]
+
+export default function Layout({ children }) {
+  const [ isOpen, setIsOpen ] = useState(true)
+
   return (
     <Container
       sx={{
@@ -18,7 +83,10 @@ export default function Layout({ children, home }) {
         // overflowX: 'hidden', this breaks position: 'sticky'
       }}
     >
-      <Header />
+      <Header
+        links={sitePages.filter(link => link.displayNavMenu || link.displayHeader)}
+        openSidebar={() => setIsOpen(!isOpen)}
+      />
       <main
         sx={{
           width: ['100%'],
@@ -32,7 +100,11 @@ export default function Layout({ children, home }) {
       >
         {children}
       </main>
-      <Footer />
+      <Footer links={sitePages} />
+
+      <Sidebar open={isOpen} onClose={() => setIsOpen(!isOpen)}>
+        <CartSidebarView onClose={() => setIsOpen(!isOpen)} />
+      </Sidebar>
     </Container>
   )
 }

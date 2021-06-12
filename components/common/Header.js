@@ -7,15 +7,24 @@ import {
 import { Logo } from '@components/ui'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import PropTypes from 'prop-types'
 import { Flex } from 'theme-ui'
 
-const Bag = () => (
-  <Flex>
-    <Link href="">
+const propTypes = {
+  links: PropTypes.array,
+  openSidebar: PropTypes.func,
+}
+
+const defaultProps = {
+  links: [],
+  openSidebar: () => void(0),
+}
+
+const Bag = ({ onClick }) => (
+  <Flex onClick={onClick}>
       <a>
         <BagLogo />
       </a>
-    </Link>
   </Flex>
 )
 
@@ -25,7 +34,7 @@ const Search = () => (
       display: ['none', 'none', 'block'],
     }}
   >
-    <Link href="">
+    <Link href="#">
       <a>
         <SearchLogo />
       </a>
@@ -33,7 +42,7 @@ const Search = () => (
   </Flex>
 )
 
-const UserMenu = () => (
+const UserMenu = ({ onClick }) => (
   <Flex
     sx={{
       alignItems: 'center',
@@ -45,11 +54,11 @@ const UserMenu = () => (
     }}
   >
     <Search />
-    <Bag />
+    <Bag onClick={onClick} />
   </Flex>
 )
 
-const Header = () => {
+const Header = ({ links, openSidebar }) => {
   const router = useRouter()
   
   const isHome = router.pathname === '/'
@@ -65,12 +74,13 @@ const Header = () => {
         flexDirection: 'row',
         justifyContent: 'center',
         position: isHome ? 'absolute' : null,
+        top: 0, left: 0,
         px: [4, 4, 6],
         py: isHome ? 4 : 3,
         variant: 'layout.header'
       }}
     >
-      <NavMenu active={router.pathname} />
+      <NavMenu active={router.pathname} links={links} />
       <Logo
         href="/"
         variant="badge"
@@ -80,9 +90,12 @@ const Header = () => {
           zIndex: '10',
         }}
       />
-      <UserMenu />
+      <UserMenu onClick={openSidebar} />
     </Flex>
   )
 }
+
+Header.propTypes = propTypes
+Header.defaultProps = defaultProps
 
 export default Header

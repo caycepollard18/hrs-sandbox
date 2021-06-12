@@ -23,6 +23,10 @@ const propTypes = {
     'medium',
   ]),
   sx: PropTypes.object,
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]),
 }
 
 const defaultProps = {
@@ -33,6 +37,7 @@ const defaultProps = {
   onClick: null,
   size: 'medium',
   sx: {},
+  width: ['176px', '256px'],
 }
 
 const LinkWrapper = ({ children, href }) => (
@@ -49,6 +54,7 @@ const Button = React.forwardRef((props, ref) => {
     onClick,
     size,
     sx,
+    width,
     ...rest
   } = props
 
@@ -64,7 +70,7 @@ const Button = React.forwardRef((props, ref) => {
         // ref={mergeRefs([fallbackRef, ref])}
         sx={{
           height: size === 'small' ? '30px' : '40px',
-          minWidth: size === 'small' ? '160px' : ['176px', '256px'],
+          minWidth: size === 'small' ? '160px' : width,
           alignItems: 'center',
           cursor: 'pointer',
           display: 'inline-flex',

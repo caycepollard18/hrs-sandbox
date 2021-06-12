@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import {
   Divider,
@@ -93,7 +92,7 @@ const ContactItem = ({ title, address, username, href='' }) => (
       flexDirection: 'row',
       gap: 4,
       justifyContent: 'space-between',
-      variant: 'layout.contact.list',
+      variant: 'pages.contact.list',
     }}
   >
     <Text as="div">
@@ -127,7 +126,7 @@ const Contact = () => (
           key={email.uuid}
           title={email.title}
           address={email.address}
-          variant="theme.layout.contact.list"
+          variant="pages.contact.list"
         />
       ))}
       <Divider />
@@ -137,7 +136,7 @@ const Contact = () => (
           title={social.title}
           href={social.href}
           username={social.username}
-          variant="theme.layout.contact.list"
+          variant="pages.contact.list"
         />
       ))}
       <Divider />

@@ -69,11 +69,28 @@ const theme = {
     emphasis: {
       fontWeight: 'bold',
     },
+    caption: {
+      fontFamily: 'body',
+      fontWeight: 'light',
+      fontSize: 2,
+      lineHeight: 'body',
+      textTransform: 'uppercase',
+    },
     small: {
+      fontFamily: 'body',
+      fontWeight: 'body',
+      fontSize: 1,
+      lineHeight: 'expanded',
+    },
+    tiny: {
       fontFamily: 'body',
       fontWeight: 'body',
       fontSize: 0,
       lineHeight: 'body',
+    },
+    tinyLight: {
+      variant: 'text.tiny',
+      fontWeight: 'light',
     },
     micro: {
       fontFamily: 'body',
@@ -86,8 +103,10 @@ const theme = {
   shadows: {
     0: 'none',
     cardHover: 'inset 8px 8px 0px 0 #FFFFFF, inset -8px -8px 0px 0 #FFFFFF, 0px 3px 22px #00000059',
-    inactiveButton: '1px 1px 1px #00000040',
-    activeButton: '0px 3px 6px #00000029',
+  },
+  transitions: {
+    perk: '0.1s transform ease-out',
+    slide: '0.25s transform ease-in-out',
   },
   styles: {
     root: {
@@ -145,6 +164,7 @@ const theme = {
     h4: {
       variant: 'text.heading',
       fontSize: 3,
+      textTransform: 'uppercase',
     },
     h5: {
       variant: 'text.heading',
@@ -162,6 +182,13 @@ const theme = {
     }
   },
   layout: {
+    footer: {
+      color: 'accent',
+      backgroundColor: 'primary',
+      fontSize: 1,
+      fontWeight: 400,
+      lineHeight: 'heading',
+    },
     header: {
       color: ['darkBone', 'darkBone', 'white'],
       fontSize: 2,
@@ -190,7 +217,7 @@ const theme = {
         fontWeight: 'body',
         lineHeight: 'expanded',
         opacity: '1',
-        transition: '0.25s transform ease-in-out',
+        transition: 'slide',
       },
     },
     hero: {
@@ -223,6 +250,24 @@ const theme = {
       backgroundColor: 'offBlack',
       color: 'accent',
     },
+    sidebar: {
+      transition: 'slide',
+      cart: {
+        backgroundColor: 'white',
+        header: {
+          color: 'white',
+          backgroundColor: 'black',
+          '& > div > span': {
+            variant: 'text.small',
+            opacity: 0.5,
+          }
+        },
+        content: {
+          color: 'white',
+        }
+      }
+    },
+    /** PAGES */
     product: {
       backgroundColor: ['offBlack', 'white'],
       borderLeft: '1px solid',
@@ -264,13 +309,6 @@ const theme = {
         }
       }
     },
-    footer: {
-      color: 'accent',
-      backgroundColor: 'primary',
-      fontSize: 1,
-      fontWeight: 400,
-      lineHeight: 'heading',
-    },
     collection: {
       card: {
         backgroundColor: 'background',
@@ -310,14 +348,6 @@ const theme = {
         }
       },
     },
-    contact: {
-      list: {
-        lineHeight: 'expanded',
-        'a': {
-          opacity: 0.5,
-        },
-      }
-    },
     selector: {
       borders: {
         borderTop: '1px solid',
@@ -347,7 +377,7 @@ const theme = {
       swatch: {
         border: '1px solid #ffffff00',
         boxShadow: '1px 1px 1px #00000040',
-        transition: '0.1s transform ease-out',
+        transition: 'perk',
         cursor: 'pointer',
         '&:hover': {
           border: '1px solid #ffffff40',
@@ -362,6 +392,19 @@ const theme = {
       }
     },
   },
+  pages: {
+    contact: {
+      list: {
+        lineHeight: 'expanded',
+        'a': {
+          opacity: 0.5,
+        },
+      }
+    },
+    // todo: move product & collection page-specific styles here
+  },
+  // todo: create cards: {} styles & move all product card, etc.
+  // todo: create ui styles & move selector, etc.
   buttons: {
     primary: {
       bg: 'primary',
@@ -414,7 +457,7 @@ const theme = {
         borderRadius: '50px',
         fontWeight: 'light',
         lineHeight: 1,
-        variant: 'text.small',
+        variant: 'text.tiny',
         '&:focus': {
           borderColor: 'gray',
           outline: 'none',
@@ -442,7 +485,7 @@ const theme = {
         fontWeight: 'light',
         mt: '1px',
         textAlign: 'center',
-        variant: 'text.small',
+        variant: 'text.tiny',
         '&::placeholder': {
           color: 'inherit',
           opacity: '0.5',

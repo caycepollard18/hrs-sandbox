@@ -1,4 +1,4 @@
-import { Close as CloseLogo } from '@components/icons'
+import { Close } from '@components/icons'
 import { Button } from '@components/ui'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
@@ -20,21 +20,6 @@ const propTypes = {
 const defaultProps = {
   modal: false,
 }
-
-const Close = ({ onClick }) => (
-  <Box
-    sx={{
-      cursor: 'pointer',
-      m: 3,
-      p: 2,
-      position: 'absolute',
-      top: 0, right: 0,
-    }}
-    onClick={onClick}
-  >
-    <CloseLogo />
-  </Box>
-)
 
 const ModalWrapper = ({
   condition,
@@ -60,7 +45,15 @@ const ModalWrapper = ({
       variant="forms.newsletter.modal"
     >
       {children}
-      <Close onClick={onClick} />
+      <Close
+        onClick={onClick}
+        sx={{
+          m: 3,
+          p: 2,
+          position: 'absolute',
+          top: 0, right: 0,
+        }}
+      />
     </Box>
   ) : children
 )

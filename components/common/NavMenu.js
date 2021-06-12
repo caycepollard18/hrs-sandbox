@@ -2,41 +2,25 @@ import { SearchBar } from '@components/common'
 import { Hamburger as HamburgerLogo } from '@components/icons'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import {
   Box,
   Flex,
 } from 'theme-ui'
 
-const sitePages = [
-  {
-    url: '/collection',
-    page: 'Collection',
-    isFull: false,
-  },
-  {
-    url: '/press',
-    page: 'Press',
-    isFull: false,
-  },
-  {
-    url: '/stockists',
-    page: 'Stockists',
-    isFull: true,
-  },
-  {
-    url: '/contact',
-    page: 'Contact',
-    isFull: true,
-  },
-  {
-    url: '/about',
-    page: 'About',
-    isFull: false,
-  },
-]
+// todo: update to use Sidebar.js
+// todo: update to SidebarNavMenu and HeaderNavMenu
 
-const MainMenu = ({ active, onClick }) => (
+const propTypes = {
+  links: PropTypes.array,
+}
+
+const defaultProps = {
+  links: [],
+}
+
+const MainMenu = ({ active, links, onClick }) => (
   <Flex
     sx={{
       flex: 1,
@@ -62,7 +46,7 @@ const MainMenu = ({ active, onClick }) => (
         gap: 4,
       }}
     >
-      {sitePages.filter(page => !page.isFull).map(
+      {links.filter(link => link.displayHeader).map(
         ({ url, page }) => (
           <Link
             key={url}
@@ -80,7 +64,7 @@ const MainMenu = ({ active, onClick }) => (
   </Flex>
 )
 
-const HamburgerMenu = ({ open }) => (
+const HamburgerMenu = ({ links, open }) => (
   <Flex
     sx={{
       width: '100%',
@@ -98,7 +82,7 @@ const HamburgerMenu = ({ open }) => (
     variant="layout.header.menu"
   >
     <SearchBar />
-    {sitePages.map(
+    {links.map(
         ({ url, page }) => (
           <Link
             key={url}
@@ -111,7 +95,7 @@ const HamburgerMenu = ({ open }) => (
   </Flex>
 )
 
-const NavMenu = ({ active }) => {
+const NavMenu = ({ active, links }) => {
   const [isOpen, setIsOpen] = useState(false)
   
   const handleOnClick = () => {
@@ -122,7 +106,6 @@ const NavMenu = ({ active }) => {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      console.log(`App is changing to ${url}`)
       setIsOpen(false)
     }
 
@@ -140,10 +123,13 @@ const NavMenu = ({ active }) => {
 
   return (
     <>
-      <MainMenu active={active} onClick={() => handleOnClick()} />
-      <HamburgerMenu open={isOpen} />
+      <MainMenu active={active} links={links} onClick={() => handleOnClick()} />
+      <HamburgerMenu links={links} open={isOpen} />
     </>    
   )
 }
+
+NavMenu.propTypes = propTypes
+NavMenu.defaultProps = defaultProps
 
 export default NavMenu

@@ -1,5 +1,6 @@
 import { Head, Layout } from '@components/common'
-import React from 'react'
+import { ManagedUIContext } from '@components/ui/context'
+import React, { useEffect } from 'react'
 import theme from '@theme'
 import { ThemeProvider } from 'theme-ui'
 
@@ -7,14 +8,18 @@ import { ThemeProvider } from 'theme-ui'
 import '@styles/fonts.css'
 
 export default function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    document.body.classList?.remove('loading')
+  }, [])
+
   return (
-    <>
+    <ManagedUIContext>
       <ThemeProvider theme={theme}>
         <Layout pageProps={pageProps}>
           <Head />
           <Component {...pageProps} />
         </Layout>
       </ThemeProvider>
-    </>
+    </ManagedUIContext>
   )
 }
