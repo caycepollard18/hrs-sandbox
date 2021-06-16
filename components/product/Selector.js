@@ -71,13 +71,12 @@ const Selector = ({
         alignItems: 'center',
         flexShrink: 1,
         gap: 2,
-        justifyContent: hasBorders && 'space-between',
+        justifyContent: hasBorders && 'center',
         variant: hasBorders && 'layout.selector.borders',
         ...sx
       }}
       {...props}
     >
-      {hasBorders && <Arrow variant="left" />}
       <Flex
         sx={{
           flexDirection: 'row',
@@ -95,7 +94,6 @@ const Selector = ({
           />
         ))}
       </Flex>
-      {hasBorders && <Arrow variant="right" />}
     </Flex>
   ) : (
     // todo: fix selectedVariant.id === size.id bug
