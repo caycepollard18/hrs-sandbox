@@ -1,5 +1,6 @@
 import { SearchBar } from '@components/common'
 import { Hamburger as HamburgerLogo } from '@components/icons'
+import { useUI } from '@components/ui'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
@@ -64,7 +65,7 @@ const MainMenu = ({ active, links, onClick }) => (
   </Flex>
 )
 
-const HamburgerMenu = ({ links, open }) => (
+const HamburgerMenu = ({ links, open, openModal }) => (
   <Flex
     sx={{
       width: '100%',
@@ -82,7 +83,7 @@ const HamburgerMenu = ({ links, open }) => (
     variant="layout.header.menu"
   >
     <SearchBar />
-    {links.map(
+      {links.map(
         ({ url, page }) => (
           <Link
             key={url}
@@ -92,14 +93,21 @@ const HamburgerMenu = ({ links, open }) => (
           </Link>
         ))
       }
+    <a onClick={openModal}>Newsletter</a>
   </Flex>
 )
 
 const NavMenu = ({ active, links }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const { openModal } = useUI()
   
   const handleOnClick = () => {
     setIsOpen(!isOpen)
+  }
+
+  const handleOnModalOpen = () => {
+    setIsOpen(false)
+    openModal()
   }
 
   const router = useRouter()
@@ -124,7 +132,7 @@ const NavMenu = ({ active, links }) => {
   return (
     <>
       <MainMenu active={active} links={links} onClick={() => handleOnClick()} />
-      <HamburgerMenu links={links} open={isOpen} />
+      <HamburgerMenu links={links} open={isOpen} openModal={handleOnModalOpen} />
     </>    
   )
 }

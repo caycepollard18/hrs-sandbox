@@ -232,6 +232,9 @@ const theme = {
         lineHeight: 'expanded',
         opacity: '1',
         transition: 'slide',
+        a: {
+          cursor: 'pointer',
+        }
       },
     },
     hero: {
