@@ -76,6 +76,7 @@ const Button = React.forwardRef((props, ref) => {
           display: 'inline-flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          opacity: disabled && 0.2,
           px: '30px',
           ...sx
         }}

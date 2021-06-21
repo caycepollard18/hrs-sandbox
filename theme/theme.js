@@ -61,7 +61,7 @@ const theme = {
     },
     subtitle: {
       fontFamily: 'accent',
-      fontSize: [1, 3, 3, 4],
+      fontSize: [3, 3, 3, 4],
       fontStyle: 'italic',
       fontWeight: 'body',
       lineHeight: 'heading',
@@ -202,6 +202,9 @@ const theme = {
       fontSize: 1,
       fontWeight: 400,
       lineHeight: 'heading',
+      a: {
+        cursor: 'pointer',
+      }
     },
     header: {
       color: ['darkBone', 'darkBone', 'white'],
@@ -241,20 +244,24 @@ const theme = {
       color: 'accent',
       homepage: {
         h1: {
-          variant: 'text.title'
+          variant: 'text.title',
+          textAlign: 'center',
         },
         span: {
-          variant: 'text.subtitle'
+          variant: 'text.subtitle',
+          textAlign: 'center',
         }
       },
       collection: {
         h1: {
           variant: 'text.heading',
           fontSize: [5, 5, 6],
+          textAlign: 'center',
           textTransform: 'uppercase',
         },
         span: {
-          variant: 'text.subtitle'
+          variant: 'text.subtitle',
+          textAlign: 'center',
         }
       }
     },

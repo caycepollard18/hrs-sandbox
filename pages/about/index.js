@@ -3,8 +3,8 @@ import { Logo } from '@components/ui'
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import {
+  Box,
   Flex,
-  Heading,
   Text
 } from 'theme-ui'
 
@@ -23,12 +23,13 @@ const AboutContainer = ({ children }) => (
   </Flex>
 )
 
-const InnerContainer = ({ children }) => (
+const InnerContainer = ({ children, sx }) => (
   <Flex
     sx={{
-      flex: 1,
-      flexBasis: '50%',
+      flexBasis: ['50%', '50%', '50%', 'initial'],
       flexDirection: 'column',
+      flexGrow: [1, 1, 1, 0],
+      ...sx
     }}
   >
     {children}
@@ -44,17 +45,19 @@ const About = () => (
       }}
     />
     <InnerContainer>
-      <Image
-        src="/eriknvaz.png"
-        width={1263}
-        height={1200}
-      />
+      <Box sx={{ maxWidth: [null, null, '688px'], }}>
+        <Image
+          src="/eriknvaz.png"
+          width={1263}
+          height={1200}
+        />
+      </Box>
     </InnerContainer>
     <InnerContainer>
       <Logo
         variant="text"
       />
-      <Text as="div">
+      <Text as="div" sx={{ width: [null, null, '440px'] }}>
         <p>
           is a luxury label founded in 2018 by Los Angeles pro skater Erik
           Ellington. After working with skate and streetwear companies for

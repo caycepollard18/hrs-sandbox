@@ -192,7 +192,12 @@ const ProductView = ({ product }) => {
           </Flex>
           <ProductDetails color={selectedColor?.color} size={selectedSize?.title} />
           <ProductDeliveryNotice dates={deliveryDates} />
-          <Button href='/'>{selectedSize?.availableForSale ? "Place Order" : "Sold Out"}</Button>
+          <Button
+            disabled={selectedSize?.availableForSale ? false : true}
+            href='#'
+          >
+            {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
+          </Button>
         </ProductDetailsWrapper>
       </ProductContainer>
       <ProductContainer
@@ -225,7 +230,12 @@ const ProductView = ({ product }) => {
           <ProductDeliveryNotice dates={deliveryDates} />
           <ProductPrice content={selectedSize?.price} />
           <ProductDetails color={selectedColor?.color} size={selectedSize?.title} />
-          <Button href='/'>{selectedSize?.availableForSale ? "Place Order" : "Sold Out"}</Button>
+          <Button
+            disabled={selectedSize?.availableForSale ? false : true}
+            href='#'
+          >
+            {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
+          </Button>
         </ProductDetailsWrapper>
         <TabList variant="layout.product.description">
           {product?.description && (

@@ -1,54 +1,20 @@
 /** @jsxImportSource theme-ui */
+import { Logo, useUI } from '@components/ui'
 import Link from 'next/link'
+import PropTypes from 'prop-types'
 import {
   Box,
   Flex,
   Text
 } from 'theme-ui'
-import { Logo } from '@components/ui'
 
-const sitePages = [
-  {
-    url: '/collection',
-    page: 'Collection',
-  },
-  {
-    url: '/stockists',
-    page: 'Stockists',
-  },
-  {
-    url: '/press',
-    page: 'Press'
-  },
-  {
-    url: '/about',
-    page: 'About'
-  },
-  {
-    url: '/contact',
-    page: 'Contact'
-  },
-  {
-    url: '/policy/privacy-policy',
-    page: 'Privacy Policy'
-  },
-  {
-    url: '/policy/terms',
-    page: 'Terms of Use'
-  },
-  {
-    url: '/policy/shipping-and-returns',
-    page: 'Shipping & Returns'
-  },
-  {
-    url: '/policy/legal',
-    page: 'Legal'
-  },
-  {
-    url: '/sitemap',
-    page: 'Sitemap'
-  }
-]
+const propTypes = {
+  links: PropTypes.array,
+}
+
+const defaultProps = {
+  links: [],
+}
 
 const InnerContainer = ({ children, ...props }) => (
   <Flex
@@ -81,7 +47,7 @@ const FooterNav = ({ children, ...props }) => (
   </Flex>
 )
 
-const NavLink = ({ href, page, ...props }) => (
+const NavLink = ({ href, onClick, title, ...props }) => (
   <Box
     sx={{
       height: '28px',
@@ -93,12 +59,18 @@ const NavLink = ({ href, page, ...props }) => (
     }}
     {...props}
   >
-    <Link
-      key={href}
-      href={href}
-    >
-      {page}
-    </Link>
+    { href ? (
+      <Link
+        key={href}
+        href={href}
+      >
+        {title}
+      </Link>
+    ) : (
+      <a onClick={onClick}>
+        {title}
+      </a>
+    )}
   </Box>
 )
 
@@ -133,7 +105,9 @@ const Accessibility = ({ ...props }) => (
   </Text>
 )
 
-const Footer = ({ ...props }) => {
+const Footer = ({ links, ...props }) => {
+  const { openModal } = useUI()
+
   return (
     <footer
       sx={{
@@ -158,15 +132,19 @@ const Footer = ({ ...props }) => {
       >
         <Logo href="/" variant="text" />
         <FooterNav>
-          {sitePages.map(
+          {links.map(
             ({ url, page }) => (
               <NavLink
                 key={url}
                 href={url}
-                page={page}
+                title={page}
               />
             ))
           }
+          <NavLink
+            onClick={openModal}
+            title="Newsletter"
+          />
         </FooterNav>
       </InnerContainer>
       <InnerContainer
@@ -191,5 +169,8 @@ const Footer = ({ ...props }) => {
     </footer>
   )
 }
+
+Footer.propTypes = propTypes
+Footer.defaultProps = defaultProps
 
 export default Footer

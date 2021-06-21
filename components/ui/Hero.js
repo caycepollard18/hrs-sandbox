@@ -57,7 +57,7 @@ const HeroContainer = ({
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         flexDirection: 'column',
-        px: 7,
+        px: [5, 7, 7],
         py: 9,
         variant: 'layout.hero',
       }}
