@@ -120,11 +120,12 @@ const ProductDetails = ({ color = '', layout, price = '' }) => (
         flexShrink: 1,
       },
     }}
+    variant="layout.product.card.details"
   >
-    <Text as="div" variant="layout.product.card.details">
+    <Text as="div">
       {color}
     </Text>
-    <Text as="div" variant="layout.product.card.price">
+    <Text as="div">
       {price}
     </Text>
   </Flex>

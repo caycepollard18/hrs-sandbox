@@ -7,7 +7,7 @@ const palette = {
   offBlack50: '#16161680',
   offBlack80: '#161616CC',
   black: '#000000',
-  bone: '#f3efec',
+  bone: '#F5F3F3',
   darkBone: '#F6F1EE',
   funnyName: '#ff0000',
 }
@@ -325,17 +325,11 @@ const theme = {
       },
       card: {
         details: {
-          fontSize: 0,
-          fontWeight: 'light',
+          fontSize: 1,
+          fontWeight: 'body',
           textTransform: 'uppercase',
-          lineHeight: 1,
         },
-        price: {
-          fontSize: [0, 1],
-          fontWeight: ['light', 'body'],
-          textTransform: 'uppercase',
-        }
-      }
+      },
     },
     collection: {
       card: {
@@ -354,7 +348,7 @@ const theme = {
           opacity: 0,
           position: 'absolute',
           top: 0,
-          transition: 'all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)',
+          transition: 'opacity 0.5s ease-in',
           width: '100%',
           zIndex: '-1',
         },
@@ -447,6 +441,21 @@ const theme = {
       textTransform: 'uppercase',
       small: {
         fontSize: 0,
+      },
+      disabled: {
+        opacity: 0.2,
+        '&:hover': {
+          bg: 'offBlack',
+        },
+        '&:active': {
+          bg: 'offBlack',
+        },
+      },
+      '&:hover': {
+        bg: 'offBlack80',
+      },
+      '&:active': {
+        bg: 'offBlack50',
       }
     },
     accent: {
@@ -464,11 +473,32 @@ const theme = {
       small: {
         fontSize: 0,
       },
+      disabled: {
+        opacity: 0.2,
+      },
+      '&:hover': {
+        bg: '#FFFFFF50',
+      },
+      '&:active': {
+        bg: '#FFFFFF50',
+      },
     },
     transparent: {
       variant: 'buttons.accent',
-      backgroundColor: 'transparent',
+      bg: 'transparent',
       backdropFilter: 'none',
+      small: {
+        fontSize: 0,
+      },
+      disabled: {
+        opacity: 0.2,
+      },
+      '&:hover': {
+        bg: '#FFFFFF33',
+      },
+      '&:active': {
+        bg: '#FFFFFF33',
+      },
     },
   },
   forms: {
@@ -516,7 +546,7 @@ const theme = {
         variant: 'text.tiny',
         '&::placeholder': {
           color: 'inherit',
-          opacity: '0.5',
+          opacity: 0.5,
         },
         '&:focus': {
           border: '1px solid',
@@ -539,12 +569,12 @@ const theme = {
     tabs: {
       variant: 'text.micro',
       fontWeight: 'body',
-      opacity: '0.5',
+      opacity: 0.5,
       active: {
         borderBottom: '1px solid',
         variant: 'text.micro',
         fontWeight: 'body',
-        opacity: '1.0',
+        opacity: 1.0,
       }
     }
   }

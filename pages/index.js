@@ -22,14 +22,14 @@ export async function getStaticProps() {
 
 export default function Home({ products }) {
   const featuredProducts = [
-    products?.find(product => product.handle === 'el-dorado-black-combo'),
-    products?.find(product => product.handle === 'palazzo-black-multi-combo-1'),
+    products?.find(product => product.handle === 'del-rey-rattlesnake-black'),
+    products?.find(product => product.handle === 'palazzo-black'),
     products?.find(product => product.handle === 'del-rey-bone-black'),
-    products?.find(product => product.handle === 'memphis-bone-leopard'),
-    products?.find(product => product.handle === 'palazzo-pink-bone'),
+    products?.find(product => product.handle === 'memphis-bone-rattlesnake'),
+    products?.find(product => product.handle === 'palazzo-pink-bone-black'),
   ]
 
-  console.log(products)
+  console.log(products.map(p => p.colors.map(c => c.swatch)))
 
   return (
     <>
@@ -106,7 +106,6 @@ export default function Home({ products }) {
       >
         <ImageCard
           backgroundStyles={{
-            backgroundColor: '#D2CECB',
             backgroundPosition: ['top 200px right -10px', null, 'bottom 10px right -10px'],
             backgroundRepeat: 'no-repeat',
             backgroundSize:  '105%',

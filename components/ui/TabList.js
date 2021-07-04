@@ -27,7 +27,7 @@ const TabTitle = ({ active = false, title, ...props }) => (
   </Box>
 )
 
-const TabList = ({ children, ...props }) => {
+const TabList = ({ children, sx, ...props }) => {
   const items = Children.map(children, (child) => child)
   
   const [selectedItem, setItem] = useState(items[0])
@@ -37,6 +37,7 @@ const TabList = ({ children, ...props }) => {
       sx={{
         flexDirection: 'column',
         justifyContent: 'stretch',
+        ...sx
       }}
       {...props}
     >

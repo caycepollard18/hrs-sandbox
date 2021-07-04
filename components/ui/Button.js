@@ -23,6 +23,11 @@ const propTypes = {
     'medium',
   ]),
   sx: PropTypes.object,
+  variant: PropTypes.oneOf([
+    'primary',
+    'accent',
+    'transparent',
+  ]),
   width: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -37,6 +42,7 @@ const defaultProps = {
   onClick: null,
   size: 'medium',
   sx: {},
+  variant: 'primary',
   width: ['176px', '256px'],
 }
 
@@ -54,6 +60,7 @@ const Button = React.forwardRef((props, ref) => {
     onClick,
     size,
     sx,
+    variant,
     width,
     ...rest
   } = props
@@ -76,8 +83,8 @@ const Button = React.forwardRef((props, ref) => {
           display: 'inline-flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          opacity: disabled && 0.2,
           px: '30px',
+          variant: disabled ? `buttons.${variant}.disabled` : `buttons.${variant}`,
           ...sx
         }}
         {...rest}

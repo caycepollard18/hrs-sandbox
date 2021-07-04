@@ -31,8 +31,8 @@ const ProductCardWrapper = ({ children, ...props }) => (
       overflow: 'hidden',
       position: 'relative',
       'h2, button': {
-      alignSelf: ['center', 'flex-start'],
-    },
+        alignSelf: ['center', 'flex-start'],
+      },
     }}
     {...props}
   >
@@ -49,14 +49,15 @@ const ImageWrapper = ({ href, src, sx, ...props }) => (
         backgroundImage: `url(${src})`,
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: ['75%', 'contain'],
+        backgroundSize: ['75%', 'cover'],
         height: ['0', '100%'],
         minWidth: ['100%', 'auto'],
         cursor: 'pointer',
         display: 'block',
-        flexBasis: [null, '60%'],
+        flexBasis: [null, '56%', '50%'],
         flexShrink: [null, 1],
         overflow: 'hidden',
+        ml: [0, 0, '10%'],
         pb: ['75%', 0],
         position: 'relative',
       }}
@@ -68,12 +69,13 @@ const ImageWrapper = ({ href, src, sx, ...props }) => (
 const ProductDetailsWrapper = ({ children, variant }) => (
   <Flex
     sx={{
-      width: '256px',
+      width: ['296px', '304px', '364px'],
       flexDirection: 'column',
       justifyContent: 'center',
-      mt: 2,
-      mb: 5,
-      mx: 4,
+      mr: [0, 0, 'calc(39% - 364px)'],
+      pt: 2,
+      pb: 5,
+      px: [2, 4, '54px'],
     }}
     variant={variant}
   >
@@ -120,11 +122,12 @@ const ProductDetails = ({ color = '', price = '', ...props }) => (
       }
     }}
     {...props}
+    variant="layout.product.card.details"
   >
-    <Text as="div" variant="layout.product.card.details">
+    <Text as="div">
       {color}
     </Text>
-    <Text as="div" variant="layout.product.card.price">
+    <Text as="div">
       {price}
     </Text>
   </Flex>

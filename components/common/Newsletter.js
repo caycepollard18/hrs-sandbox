@@ -97,7 +97,7 @@ const Newsletter = ({ modal }) => {
         <Button
           size="small"
           type="submit"
-          variant={modal ? "buttons.transparent" : "buttons.accent"}
+          variant={modal ? "transparent" : "accent"}
         >
           Sign up
         </Button>

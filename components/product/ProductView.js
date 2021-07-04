@@ -237,7 +237,12 @@ const ProductView = ({ product }) => {
             {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
           </Button>
         </ProductDetailsWrapper>
-        <TabList variant="layout.product.description">
+        <TabList
+          variant="layout.product.description"
+          sx={{
+            maxWidth: '440px',
+          }}
+        >
           {product?.description && (
             <div id="product-details" label="Details">
               {parse(product?.description)}
