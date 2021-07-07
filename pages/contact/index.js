@@ -8,29 +8,24 @@ import {
 
 const emailList = [
   {
-    title: 'Customer Inquiries',
+    title: 'Inquiries',
     address: 'info@humanrecreationalservices.com',
-    uuid: 'customer-inquiries',
+    uuid: 'inquiries',
   },
   {
-    title: 'General Info',
-    address: 'info@humanrecreationalservices.com',
-    uuid: 'general-info',
-  },
-  {
-    title: 'Return Requests',
+    title: 'Returns',
     address: 'returns@humanrecreationalservices.com',
-    uuid: 'return-requests',
+    uuid: 'returns',
   },
   {
-    title: 'Press Inquiries',
+    title: 'Press',
     address: 'press@humanrecreationalservices.com',
-    uuid: 'press-inquiries',
+    uuid: 'press',
   },
   {
-    title: 'VIP & Stylist Inquiries',
+    title: 'Private Clients',
     address: 'vip@humanrecreationalservices.com',
-    uuid: 'private-inquiries',
+    uuid: 'private-clients',
   },
 ]
 
@@ -41,12 +36,6 @@ const socialList = [
     username: 'humanrecreationalservices',
     uuid: 'instagram',
   },
-  {
-    title: 'Facebook',
-    href: 'https://www.facebook.com/humanrecreationalservices',
-    username: 'humanrecreationalservices',
-    uuid: 'facebook',
-  },
 ]
 
 const ContactContainer = ({ children }) => (
@@ -56,7 +45,7 @@ const ContactContainer = ({ children }) => (
       alignItems: 'center',
       flex: 1,
       flexDirection: 'column',
-      justifyContent: 'center',
+      justifyContent: 'flexStart',
       minHeight: 'calc(100vh - 300px)',
     }}
     variant="layout.dark"
@@ -69,12 +58,12 @@ const InnerContainer = ({ children }) => (
   <Flex
     sx={{
       width: '100%',
-      maxWidth: '456px',
+      maxWidth: ['calc(100% - 48px)', '456px'],
       alignItems: 'center',
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'center',
-      minHeight: 'calc(100vh - 300px)',
+      minHeight: ['66vh', 'calc(100vh - 300px)'],
       mx: 5,
       my: 3,
     }}
@@ -89,8 +78,9 @@ const ContactItem = ({ title, address, username, href='' }) => (
     sx={{
       alignItems: 'center',
       alignSelf: 'stretch',
-      flexDirection: 'row',
-      gap: 4,
+      flexDirection: ['column', 'row'],
+      gap: [0, 4],
+      mb: [2, 0],
       justifyContent: 'space-between',
       variant: 'pages.contact.list',
     }}
@@ -117,7 +107,7 @@ const Contact = () => (
       }}
     />
     <InnerContainer>
-      <Heading as="h1" mb={3} variant="text.subtitle">
+      <Heading as="h1" my={3} variant="text.subtitle">
         Contact
       </Heading>
       <Divider />

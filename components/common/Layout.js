@@ -12,7 +12,7 @@ const sitePages = [
     displayHeader: true,
     displayNavMenu: true,
   },
-  {
+  /*{
     url: '/stockists',
     page: 'Stockists',
     displayHeader: false,
@@ -23,7 +23,7 @@ const sitePages = [
     page: 'Press',
     displayHeader: true,
     displayNavMenu: true,
-  },
+  },*/
   {
     url: '/about',
     page: 'About',
@@ -42,19 +42,19 @@ const sitePages = [
     displayHeader: false,
     displayNavMenu: false,
   },
-  {
+  /*{
     url: '/policy/terms',
     page: 'Terms of Use',
     displayHeader: false,
     displayNavMenu: false,
-  },
+  },*/
   {
-    url: '/policy/shipping-and-returns',
+    url: '/shipping',
     page: 'Shipping & Returns',
     displayHeader: false,
     displayNavMenu: false,
   },
-  {
+  /*{
     url: '/policy/legal',
     page: 'Legal',
     displayHeader: false,
@@ -65,7 +65,7 @@ const sitePages = [
     page: 'Sitemap',
     displayHeader: false,
     displayNavMenu: false,
-  }
+  }*/
 ]
 
 export default function Layout({ children }) {

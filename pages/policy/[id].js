@@ -42,8 +42,10 @@ const PolicyContainer = ({ children }) => (
       alignItems: 'center',
       flex: 1,
       flexDirection: 'column',
-      justifyContent: 'center',
-      p: [4, 5, 6],
+      justifyContent: 'flexStart',
+      maxWidth: '512px',
+      m: [4, 5, 6],
+      textAlign: 'center',
     }}
   >
     {children}
