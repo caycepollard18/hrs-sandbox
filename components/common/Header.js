@@ -44,7 +44,6 @@ const UserMenu = ({ onClick }) => (
       zIndex: '10',
     }}
   >
-    <Search />
     <Flex sx={{ cursor: 'pointer' }} onClick={onClick}>
       <BagLogo />
     </Flex>

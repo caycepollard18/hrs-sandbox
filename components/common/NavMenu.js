@@ -1,4 +1,3 @@
-import { SearchBar } from '@components/common'
 import { Hamburger as HamburgerLogo } from '@components/icons'
 import { useUI } from '@components/ui'
 import Link from 'next/link'
@@ -82,17 +81,16 @@ const HamburgerMenu = ({ links, open, openModal }) => (
     }}
     variant="layout.header.menu"
   >
-    <SearchBar />
-      {links.map(
-        ({ url, page }) => (
-          <Link
-            key={url}
-            href={url}
-          >
-            {page}
-          </Link>
-        ))
-      }
+    {links.map(
+      ({ url, page }) => (
+        <Link
+          key={url}
+          href={url}
+        >
+          {page}
+        </Link>
+      ))
+    }
     <a onClick={openModal}>Newsletter</a>
   </Flex>
 )
