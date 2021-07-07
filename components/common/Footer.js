@@ -163,7 +163,7 @@ const Footer = ({ links, ...props }) => {
           }}
         >
           <Copyright />
-          <Accessibility />
+          { /* <Accessibility /> */ }
         </Flex>
       </InnerContainer>
     </footer>
