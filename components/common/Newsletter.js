@@ -67,7 +67,7 @@ const Newsletter = ({ modal }) => {
         Newsletter
       </Heading>
       <Heading as="div" variant="forms.newsletter.subtitle" mb={2}>
-        Sign up for new product availability and receive $100 off.
+        Sign up for exclusive discounts & news about product drops.
       </Heading>
       <Label htmlFor="email">Email</Label>
       <Input
