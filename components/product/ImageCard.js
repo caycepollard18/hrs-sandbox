@@ -50,7 +50,7 @@ const ImageCardWrapper = ({
       ...backgroundStyles,
       flexDirection: 'column',
       justifyContent: layout.includes('top') ? 'flex-start' : 'flex-end',
-      p: [4, 4, 5],
+      p: 5,
       'h2, button': {
         alignSelf: layout.includes('center') ?
           'center' : layout.includes('left') ?
@@ -114,7 +114,7 @@ const ProductDetails = ({ color = '', layout, price = '' }) => (
       flexDirection: ['column', 'row'],
       gap: [1, 0],
       justifyContent: 'space-between',
-      my: [2, 0],
+      mt: [2, 0],
       '& > div': {
         minHeight: ['14px', 0],
         flexShrink: 1,

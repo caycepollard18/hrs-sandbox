@@ -44,7 +44,7 @@ const HeroContainer = ({
 }) => {
   const smallSizes = ['330px', '330px', '330px', '330px', '550px']
   const defaultSizes = ['550px', '550px', '550px', '550px', '720px']
-  const largeSizes = ['550px', '550px', '720px', '1200px']
+  const largeSizes = ['550px', '550px', '640px', '720px']
   
   return (
     <Flex
