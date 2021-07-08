@@ -38,7 +38,7 @@ const defaultProps = {
   as: 'button',
   disabled: false,
   href: '',
-  loading: true,
+  loading: false,
   onClick: null,
   size: 'medium',
   sx: {},
