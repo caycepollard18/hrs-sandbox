@@ -29,8 +29,6 @@ export default function Home({ products }) {
     products?.find(product => product.handle === 'mongoose-low-bone-blue-black'),
   ]
 
-  console.log(products.map(p => p.colors.map(c => c.swatch)))
-
   return (
     <>
       <Hero

@@ -7,7 +7,7 @@ import parse from 'html-react-parser'
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Box,
   Flex,
@@ -108,19 +108,44 @@ const ProductDetails = ({ color = '', size = '', ...props }) => (
 
 const ProductView = ({ product }) => {
 
-  const [selectedColor, setColor] = useState(product?.colors?.find(color => color.id === product.id))
-  const [selectedSize, setSize] = useState(product?.variants[0])
-
   const deliveryDates = [
     format(
-      addDate(new Date(Date.now()), { days: 90 }),
+      addDate(new Date('1 Aug 2021'), { days: 106 }),
       'MMMM dd'
     ),
     format(
-      addDate(new Date(Date.now()), { days: 120 }),
+      addDate(new Date('1 Aug 2021'), { days: 136 }),
       'MMMM dd'
     )
   ]
+
+  const [loading, setLoading] = useState(false)
+  const [selectedColor, setColor] = useState(product?.colors?.find(color => color.id === product.id))
+  const [selectedSize, setSize] = useState(null)
+
+  const delay = ms => new Promise(res => setTimeout(res, ms))
+
+  const selectDefaultSizeFromProduct = async () => {
+    setLoading(true)
+    try {
+      await delay(400)
+      setSize(product.variants.find(({ availableForSale }) => availableForSale) || null)
+      setLoading(false)
+    } catch (err) {
+      setSize(null)
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    selectDefaultSizeFromProduct()
+  }, [product])
+
+  const addToCart = async () => {
+    setLoading(true)
+    await delay(2000)
+    setLoading(false)
+  }
   
   return (
     <Flex
@@ -188,13 +213,20 @@ const ProductView = ({ product }) => {
             }}
           >
             <ProductTitle content={product?.style} />
-            <ProductPrice content={selectedSize?.price} />
+            <ProductPrice content={selectedSize?.price || product?.variants[0]?.price } />
           </Flex>
           <ProductDetails color={selectedColor?.color} size={selectedSize?.title} />
-          <ProductDeliveryNotice dates={deliveryDates} />
+          {product?.productType === "Made-to-order" ? (
+              <ProductDeliveryNotice dates={deliveryDates} />
+            ) : (
+              <Box mb={4} />
+            )
+          }
           <Button
-            disabled={selectedSize?.availableForSale ? false : true}
-            href='#'
+            as="button"
+            disabled={selectedSize?.availableForSale === false}
+            loading={loading}
+            onClick={addToCart}
           >
             {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
           </Button>
@@ -227,12 +259,19 @@ const ProductView = ({ product }) => {
             mt={4}
             mb={2}
           />
-          <ProductDeliveryNotice dates={deliveryDates} />
-          <ProductPrice content={selectedSize?.price} />
+          {product?.productType === "Made-to-order" ? (
+              <ProductDeliveryNotice dates={deliveryDates} />
+            ) : (
+              <Box mb={4} />
+            )
+          }
+          <ProductPrice content={selectedSize?.price || product?.variants[0]?.price } />
           <ProductDetails color={selectedColor?.color} size={selectedSize?.title} />
           <Button
-            disabled={selectedSize?.availableForSale ? false : true}
-            href='#'
+            as="button"
+            disabled={selectedSize?.availableForSale === false || selectedSize === null}
+            loading={loading}
+            onClick={addToCart}
           >
             {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
           </Button>

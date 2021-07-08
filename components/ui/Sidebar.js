@@ -35,15 +35,15 @@ const Sidebar = ({ children, open, onClose }) => {
         disableBodyScroll(ref.current, {
           reserveScrollBarGap: true,
         })
-        console.log('disabled scroll')
+        // console.log('disabled scroll')
       } else {
         enableBodyScroll(ref.current)
-        console.log('enabled scroll')
+        // console.log('enabled scroll')
       }
     }
     return () => {
       clearAllBodyScrollLocks()
-      console.log('cleared scroll')
+      // console.log('cleared scroll')
     }
   }, [open])
 

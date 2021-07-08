@@ -13,6 +13,7 @@ export async function getAllProducts() {
             title
             handle
             description
+            productType
             color:metafield(namespace: "global", key: "color") {
               value
             }
@@ -89,6 +90,7 @@ export async function getProductsByCollection(collection) {
               title
               handle
               description
+              productType
               color:metafield(namespace: "global", key: "color") {
                 value
               }

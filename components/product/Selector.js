@@ -2,7 +2,7 @@
 import { Arrow } from '@components/icons'
 import { Swatch } from '@components/product'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Flex, Text } from 'theme-ui'
 
 /* use for troubleshooting
@@ -55,6 +55,10 @@ const Selector = ({
   ...props
 }) => {
   const [selectedVariant, setVariant] = useState(selected)
+
+  useEffect(() => {
+    setVariant(selected)
+  }, [selected])
 
   const handleOnClick = (option) => {
     setVariant(option)
@@ -111,7 +115,7 @@ const Selector = ({
           size={size.title}
           createLinkProps={createLinkProps && createLinkProps(size)}
           onClick={() => handleOnClick(size)}
-          active={selectedVariant.title === size.title}
+          active={selectedVariant?.title === size.title}
           disabled={!size.availableForSale}
         />
       ))}

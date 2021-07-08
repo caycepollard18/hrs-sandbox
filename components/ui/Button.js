@@ -3,7 +3,7 @@ import Link from 'next/link'
 import PropTypes from 'prop-types'
 import React from 'react'
 // import mergeRefs from 'react-merge-refs'
-import { Button as ThemeButton } from 'theme-ui'
+import { Button as ThemeButton, Spinner } from 'theme-ui'
 
 // todo: sort out mergeRefs issues
 
@@ -38,7 +38,7 @@ const defaultProps = {
   as: 'button',
   disabled: false,
   href: '',
-  loading: false,
+  loading: true,
   onClick: null,
   size: 'medium',
   sx: {},
@@ -79,7 +79,7 @@ const Button = React.forwardRef((props, ref) => {
           height: size === 'small' ? '30px' : '40px',
           minWidth: size === 'small' ? '160px' : width,
           alignItems: 'center',
-          cursor: 'pointer',
+          cursor: disabled ? 'unset' : 'pointer',
           display: 'inline-flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -89,7 +89,13 @@ const Button = React.forwardRef((props, ref) => {
         }}
         {...rest}
       >
-        {children}
+        {loading ? (
+          <Spinner
+            size={24}
+            strokeWidth={3}
+            sx={{ color: 'white' }}
+          />
+        ) : children}
       </ThemeButton>
     </LinkWrapper>
   )

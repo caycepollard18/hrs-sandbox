@@ -577,6 +577,9 @@ const theme = {
         opacity: 1.0,
       }
     }
+  },
+  spinner: {
+    color: 'white',
   }
 }
 
