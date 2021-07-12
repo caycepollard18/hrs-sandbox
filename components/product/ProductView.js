@@ -240,7 +240,7 @@ const ProductView = ({ product }) => {
           }
           <Button
             as="button"
-            disabled={selectedSize?.availableForSale === false}
+            disabled={selectedSize?.availableForSale === false || selectedSize === null}
             loading={loading}
             onClick={handleAddToCart}
           >
