@@ -22,6 +22,7 @@ const propTypes = {
   backgroundPosition: PropTypes.string,
   justifyContent: PropTypes.string,
   size: PropTypes.oneOf(['small', 'default', 'large']),
+  video: PropTypes.node,
 }
 
 const defaultProps = {
@@ -33,6 +34,7 @@ const defaultProps = {
   backgroundPosition: null,
   justifyContent: 'center',
   size: 'default',
+  video: null,
 }
 
 const HeroContainer = ({
@@ -40,6 +42,7 @@ const HeroContainer = ({
   children,
   image,
   size,
+  video,
   ...props
 }) => {
   const smallSizes = ['330px', '330px', '330px', '330px', '550px']
@@ -57,12 +60,15 @@ const HeroContainer = ({
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         flexDirection: 'column',
+        overflow: 'hidden',
+        position: 'relative',
         px: [5, 7, 7],
         py: 9,
         variant: 'layout.hero',
       }}
       {...props}
     >
+      {video || ''}
       {children}
     </Flex>
   )
@@ -74,6 +80,7 @@ const Headline = ({ title, subtitle }) => (
       flexDirection: 'column',
       alignItems: 'center',
       mb: [3, 3, 6],
+      zIndex: 1,
     }}
   >
     <Heading as="h1" m={0}>
@@ -94,15 +101,16 @@ const Hero = ({
   backgroundPosition,
   justifyContent,
   size,
+  video,
   ...props
 }) => {
-  
   return (
     <HeroContainer
       backgroundPosition={backgroundPosition}
       image={image}
       size={size}
       sx={{ justifyContent: justifyContent }}
+      video={video}
       {...props}
     >
       <Headline
@@ -110,7 +118,7 @@ const Hero = ({
         subtitle={subtitle}
       />
       {link && 
-        <Button href={href}>
+        <Button href={href} sx={{ zIndex: 1, }}>
           {link}
         </Button>
       }

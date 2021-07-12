@@ -4,6 +4,7 @@ import {
   ImageCard
 } from '@components/product'
 import { Hero } from '@components/ui'
+import Video from '@components/video'
 import { getProductsByCollection } from '@framework/product'
 import {
   Box,
@@ -39,6 +40,9 @@ export default function Home({ products }) {
         href="/collection"
         size="default"
         variant="layout.hero.homepage"
+        video={
+          <Video />
+        }
       />
       <ProductCard product={featuredProducts[0]} />
       <Grid
