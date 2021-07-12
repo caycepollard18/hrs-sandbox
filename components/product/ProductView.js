@@ -131,6 +131,7 @@ const ProductView = ({ product }) => {
   const selectDefaultSizeFromProduct = async () => {
     setLoading(true)
     try {
+      // delay so user knows something happened
       await delay(400)
       setSize(product.variants.find(({ availableForSale }) => availableForSale) || null)
       setLoading(false)
@@ -143,14 +144,24 @@ const ProductView = ({ product }) => {
   useEffect(() => {
     selectDefaultSizeFromProduct()
   }, [product])
-
-  /*
-  const addToCart = async () => {
+  
+  async function handleAddToCart() {
     setLoading(true)
-    await delay(2000)
+    console.log(selectedSize)
+    await addToCart({
+      title: product?.style,
+      color: product?.color,
+      handle: product?.handle,
+      image: product?.images[1].src,
+      size: selectedSize?.title,
+      price: selectedSize?.price,
+      productType: product?.productType,
+      variantId: selectedSize?.id,
+    })
+    // delay so user knows something happened
+    await delay(250)
     setLoading(false)
   }
-  */
   
   return (
     <Flex
@@ -231,7 +242,7 @@ const ProductView = ({ product }) => {
             as="button"
             disabled={selectedSize?.availableForSale === false}
             loading={loading}
-            onClick={addToCart}
+            onClick={handleAddToCart}
           >
             {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
           </Button>
@@ -276,7 +287,7 @@ const ProductView = ({ product }) => {
             as="button"
             disabled={selectedSize?.availableForSale === false || selectedSize === null}
             loading={loading}
-            onClick={addToCart}
+            onClick={handleAddToCart}
           >
             {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
           </Button>

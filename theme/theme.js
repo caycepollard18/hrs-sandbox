@@ -183,6 +183,7 @@ const theme = {
     h5: {
       variant: 'text.heading',
       fontSize: 2,
+      textTransform: 'uppercase',
     },
     h6: {
       variant: 'text.heading',
@@ -282,6 +283,13 @@ const theme = {
       },
       cart: {
         backgroundColor: 'white',
+        empty: {
+          backgroundImage: "url('/campaign/fw21/301.jpg')",
+          backgroundPosition: 'top center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          color: 'white',
+        },
         header: {
           color: 'white',
           backgroundColor: 'black',
@@ -291,7 +299,19 @@ const theme = {
           }
         },
         content: {
-          color: 'white',
+          color: 'offBlack',
+          light: {
+            fontSize: [1, 2],
+            fontWeight: 'light',
+          },
+          note: {
+            variant: 'text.tiny',
+            color: 'offBlack50',
+            a: {
+              textDecoration: 'underline',
+              cursor: 'pointer',
+            }
+          }
         }
       },
     },

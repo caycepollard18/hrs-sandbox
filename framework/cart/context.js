@@ -17,26 +17,76 @@ const initialState = {
 const CartContext = React.createContext(initialState)
 
 export function CartProvider({ children, checkout }) {
-  const [cart, setCart] = useState(initialState.cart)
+  const [cart, setCart] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
-  const addToCart = useCallback(() => {
+  const addToCart = useCallback((newItem) => {
     setIsLoading(true)
-    setCart(currentCart => [...currentCart, { id: "Z2lkOi8vc2hvcGlmeS9DaGVja291dExpbmVJdGVtLzQwMjE4NjE3NTQ0ODUzMD9jaGVja291dD1jMTg1ZjhhMzU3Yzk0NjdhMTg5YmJjNjA5ZDBiZDk3OQ==", quantity: 1 }])
-    console.log("Added to cart")
+    setCart(currentCart =>
+      // check if item already exists in cart
+      currentCart.find(item => item.variantId === newItem.variantId)
+        ? currentCart.map(item =>
+          // if so, add 1 to that item's quantity
+          item.variantId === newItem.variantId
+            ? {
+              ...newItem,
+              quantity: item.quantity + 1,
+            }
+            : item,
+        )
+        // if not, add to end of cart
+        : [...currentCart, { ...newItem, quantity: 1}]
+    )
+    // console.log("Added to cart")
     setIsLoading(false)
-  })
+  }, [])
+
+  const removeFromCart = useCallback((variantId, quantity) => {
+    setIsLoading(true)
+    setCart(currentCart => {
+      let item = currentCart.find(item => item.variantId === variantId)
+
+      if (!item) {
+        return currentCart
+      }
+
+      if (item.quantity <= quantity) {
+        return currentCart.filter(item => item.variantId !== variantId)
+      }
+
+      return currentCart.map(item =>
+        item.variantId === variantId
+          ? {
+            ...newItem,
+            quantity: item.quantity - quantity,
+          }
+          : item,
+      )
+    })
+    // console.log("Removed from cart")
+    setIsLoading(false)
+  }, [])
 
   const clearCart = useCallback(() => {
     setIsLoading(true)
     setCart([])
-    console.log("Cleared cart")
+    // console.log("Cleared cart")
     setIsLoading(false)
   }, [])
 
   let itemCount = useMemo(() => {
     return cart.reduce((total, item) => total + item.quantity, 0)
   }, [cart])
+
+  let totalPrice = useMemo(() => ({
+    currencyCode: cart[0]?.price?.split(' ')[1],
+    amount: cart.reduce((total, item) => {
+      return (
+        total + (parseInt(item.price.split(' ')[0], 10) * item.quantity)
+      )
+    }, 0),
+  }), [cart])
+
 
   useEffect(() => {
       setCart(JSON.parse(localStorage.getItem('cart') || '[]'))
@@ -50,7 +100,9 @@ export function CartProvider({ children, checkout }) {
     cart,
     isLoading,
     itemCount,
+    totalPrice,
     addToCart,
+    removeFromCart,
     clearCart
   }}>{children}</CartContext.Provider>
 }
