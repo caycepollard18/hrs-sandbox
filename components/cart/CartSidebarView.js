@@ -56,7 +56,7 @@ const SidebarHeader = ({ itemCount, onClose, totalPrice }) => (
   </Flex>
 )
 
-const SidebarFooter = ({ onClick, totalPrice }) => (
+const SidebarFooter = ({ checkoutUrl, itemCount, onClick, totalPrice }) => (
   <Flex
     as="footer"
     sx={{
@@ -102,7 +102,7 @@ const SidebarFooter = ({ onClick, totalPrice }) => (
         flexDirection: 'column',
       }}
     >
-      <Button onClick={onClick} width="184px">
+      <Button as="a" disabled={itemCount === 0 || !(onClick)} href={onClick} width="184px">
         Check Out
       </Button>
       <Text
@@ -205,7 +205,14 @@ const CartItem = ({ item, onRemove }) => {
 }
 
 const CartSidebarView = ({ onClose }) => {
-  const { cart, totalPrice, itemCount, removeFromCart, clearCart } = useCart()
+  const {
+    cart,
+    checkoutUrl,
+    totalPrice,
+    itemCount,
+    removeFromCart,
+    clearCart,
+  } = useCart()
   // console.log("cart")
   // console.log(cart)
   // console.log(totalPrice)
@@ -241,7 +248,11 @@ const CartSidebarView = ({ onClose }) => {
             cart.map((item, i) => <CartItem key={i} item={item} onRemove={() => removeFromCart(item.variantId, item.quantity)} />)
         )}
       </Flex>
-      <SidebarFooter totalPrice={totalPrice} onClick={clearCart} />
+      <SidebarFooter
+        itemCount={itemCount}
+        onClick={checkoutUrl}
+        totalPrice={totalPrice}
+      />
     </Flex>
   )
 }

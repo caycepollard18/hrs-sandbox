@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { createCheckout } from '@framework/cart/api'
 
 const initialState = {
   cart: [],
@@ -16,8 +17,9 @@ const initialState = {
 
 const CartContext = React.createContext(initialState)
 
-export function CartProvider({ children, checkout }) {
+export function CartProvider({ children }) {
   const [cart, setCart] = useState([])
+  const [checkoutUrl, setCheckoutUrl] = useState()
   const [isLoading, setIsLoading] = useState(false)
 
   const addToCart = useCallback((newItem) => {
@@ -87,7 +89,6 @@ export function CartProvider({ children, checkout }) {
     }, 0),
   }), [cart])
 
-
   useEffect(() => {
       setCart(JSON.parse(localStorage.getItem('cart') || '[]'))
   }, [])
@@ -96,14 +97,23 @@ export function CartProvider({ children, checkout }) {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
+  useEffect(async () => {
+    let checkout
+    await createCheckout(cart)
+      .then(result => checkout = result)
+      .then(result => setCheckoutUrl(result?.webUrl))
+      .catch(error => console.log(error))
+  }, [cart])
+
   return <CartContext.Provider value={{
     cart,
+    checkoutUrl,
     isLoading,
     itemCount,
     totalPrice,
     addToCart,
     removeFromCart,
-    clearCart
+    clearCart,
   }}>{children}</CartContext.Provider>
 }
 

@@ -147,7 +147,6 @@ const ProductView = ({ product }) => {
   
   async function handleAddToCart() {
     setLoading(true)
-    console.log(selectedSize)
     await addToCart({
       title: product?.style,
       color: product?.color,
