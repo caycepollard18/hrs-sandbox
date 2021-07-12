@@ -2,6 +2,7 @@
 import { CartSidebarView } from '@components/cart'
 import { Footer, Header, Newsletter } from '@components/common'
 import { Modal, Sidebar, useUI } from '@components/ui'
+import { CartProvider } from '@framework/cart'
 import { useRouter } from 'next/router'
 import { Container } from 'theme-ui'
 
@@ -79,42 +80,45 @@ export default function Layout({ children }) {
   const footerLinks = sitePages
 
   return (
-    <Container
-      sx={{
-        width: ['100%'],
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        // overflowX: 'hidden', this breaks position: 'sticky'
-      }}
-      variant="layout.root"
-    >
-      <Header links={headerLinks} active={router.pathname} home />
-      <main
+    <CartProvider>
+      <Container
         sx={{
           width: ['100%'],
-          alignItems: 'center',
+          minHeight: '100vh',
           display: 'flex',
-          flex: 1,
           flexDirection: 'column',
           justifyContent: 'flex-start',
-          variant: 'layout.main',
+          alignItems: 'center',
+          // overflowX: 'hidden', this breaks position: 'sticky'
         }}
+        variant="layout.root"
       >
-        {children}
-      </main>
-      <Footer links={footerLinks} />
+        
+        <Header links={headerLinks} active={router.pathname} home />
+        <main
+          sx={{
+            width: ['100%'],
+            alignItems: 'center',
+            display: 'flex',
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            variant: 'layout.main',
+          }}
+        >
+          {children}
+        </main>
+        <Footer links={footerLinks} />
 
-      <Sidebar open={displaySidebar} onClose={closeSidebar}>
-        <CartSidebarView onClose={closeSidebar} />
-      </Sidebar>
+        <Sidebar open={displaySidebar} onClose={closeSidebar}>
+          <CartSidebarView onClose={closeSidebar} />
+        </Sidebar>
 
-      <Modal open={displayModal} onClose={closeModal}>
-        <Newsletter modal />
-      </Modal>
-      
-    </Container>
+        <Modal open={displayModal} onClose={closeModal}>
+          <Newsletter modal />
+        </Modal>
+        
+      </Container>
+    </CartProvider>
   )
 }

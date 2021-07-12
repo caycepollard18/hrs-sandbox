@@ -1,5 +1,6 @@
 import { Close } from '@components/icons'
 import { Button } from '@components/ui'
+import { useCart } from '@framework/cart'
 import PropTypes from 'prop-types'
 import {
   Flex,
@@ -11,8 +12,7 @@ const propTypes = {
   onClose: PropTypes.func.isRequired,
 }
 
-
-const SidebarHeader = ({ onClose }) => (
+const SidebarHeader = ({ itemCount, onClose }) => (
   <Flex
     as="header"
     sx={{
@@ -32,7 +32,7 @@ const SidebarHeader = ({ onClose }) => (
       }}
     >
       <Text as="span" variant="text.small">
-        0 Items
+        {itemCount || '0'} {itemCount === 1 ? "Item" : "Items"}
       </Text>
       <Text
         as="span"
@@ -54,7 +54,7 @@ const SidebarHeader = ({ onClose }) => (
   </Flex>
 )
 
-const SidebarFooter = () => (
+const SidebarFooter = ({ onClick }) => (
   <Flex
     as="footer"
     sx={{
@@ -97,7 +97,7 @@ const SidebarFooter = () => (
         flexDirection: 'column',
       }}
     >
-      <Button width="184px">
+      <Button onClick={onClick} width="184px">
         Check Out
       </Button>
       <Text
@@ -131,26 +131,29 @@ const InnerContainer = ({ children }) => (
   </Flex>
 )
 
-const CartSidebarView = ({ onClose }) => (
-  <Flex
-    sx={{
-      width: ['100%', '512px'],
-      height: '100%',
-      maxHeight: '100vh',
-      alignItems: 'stretch',
-      flexDirection: 'column',
-      variant: 'layout.sidebar.cart',
-    }}
-  >
-    <SidebarHeader onClose={onClose} />
-    <InnerContainer>
-      <Text as="div">
-        Your shopping bag is currently empty
-      </Text>
-    </InnerContainer>
-    <SidebarFooter />
-  </Flex>
-)
+const CartSidebarView = ({ onClose }) => {
+  const { cart, itemCount, clearCart } = useCart()
+  return (
+    <Flex
+      sx={{
+        width: ['100%', '512px'],
+        height: '100%',
+        maxHeight: '100vh',
+        alignItems: 'stretch',
+        flexDirection: 'column',
+        variant: 'layout.sidebar.cart',
+      }}
+    >
+      <SidebarHeader itemCount={itemCount} onClose={onClose} />
+      <InnerContainer>
+        <Text as="div">
+          Your shopping bag is currently empty
+        </Text>
+      </InnerContainer>
+      <SidebarFooter onClick={clearCart} />
+    </Flex>
+  )
+}
 
 CartSidebarView.propTypes = propTypes
 

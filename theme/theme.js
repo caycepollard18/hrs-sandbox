@@ -310,7 +310,10 @@ const theme = {
           borderTop: ['none', '1px solid'],
           borderBottom: ['none', '1px solid'],
           borderColor: 'offBlack20',
-          color: 'offBlack50'
+          color: 'offBlack50',
+        },
+        reminder: {
+          variant: 'text.tiny',  
         },
         details: {
           fontSize: 1,

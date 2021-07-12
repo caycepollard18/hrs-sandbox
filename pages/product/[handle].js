@@ -2,11 +2,17 @@ import {
   ProductView
 } from '@components/product'
 import {
+  createCheckout
+} from '@framework/cart/api'
+import {
   getProduct,
   getAllProductHandles
 } from '@framework/product'
 
-export default function Product({ product }) {
+export default function Product({ checkout, product }) {
+  console.log("Checkout:")
+  console.log(checkout)
+  console.log(product)
   return (
     <ProductView product={product} />
   )
@@ -23,8 +29,20 @@ export async function getStaticProps({ params }) {
     }
   }
 
+  const checkout = await createCheckout(product.variants[0].id)
+
+  if (checkout === undefined) {
+    return {
+      props: {
+        checkout: null,
+        product: product
+      }
+    }
+  }
+
   return {
     props: {
+      checkout: checkout,
       product: product
     }
   }

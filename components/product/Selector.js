@@ -102,6 +102,7 @@ const Selector = ({
   ) : (
     // todo: fix selectedVariant.id === size.id bug
     // for now, hack solution: test title === title
+    // update: think this was resolved, double-check?
     <Flex
       sx={{
         flexDirection: 'row',

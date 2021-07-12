@@ -1,6 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { Selector } from '@components/product'
 import { Button, TabList } from '@components/ui'
+import { useCart } from '@framework/cart'
 import addDate from 'date-fns/add'
 import format from 'date-fns/format'
 import parse from 'html-react-parser'
@@ -108,6 +109,8 @@ const ProductDetails = ({ color = '', size = '', ...props }) => (
 
 const ProductView = ({ product }) => {
 
+  const { addToCart } = useCart()
+
   const deliveryDates = [
     format(
       addDate(new Date('1 Aug 2021'), { days: 106 }),
@@ -141,11 +144,13 @@ const ProductView = ({ product }) => {
     selectDefaultSizeFromProduct()
   }, [product])
 
+  /*
   const addToCart = async () => {
     setLoading(true)
     await delay(2000)
     setLoading(false)
   }
+  */
   
   return (
     <Flex
