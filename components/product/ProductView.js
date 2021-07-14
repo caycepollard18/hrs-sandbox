@@ -262,6 +262,7 @@ const ProductView = ({ product }) => {
                 )
             }
           </Button>
+          {product?.style === 'Del Rey Penny Loafer' && <AffirmNotice />}
         </ProductDetailsWrapper>
       </ProductContainer>
       <ProductContainer
