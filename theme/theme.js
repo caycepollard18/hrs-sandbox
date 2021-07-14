@@ -450,6 +450,11 @@ const theme = {
   },
   // todo: create cards: {} styles & move all product card, etc.
   // todo: create ui styles & move selector, etc.
+  affirm: {
+    primary: {
+      color: 'offBlack80',
+    }
+  },
   buttons: {
     primary: {
       bg: 'primary',

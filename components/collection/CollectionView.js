@@ -105,12 +105,13 @@ const CollectionView = ({ products }) => {
         size="small"
         variant="layout.hero.collection"
       />
-      {products?.map((product) => 
-        <CollectionCard
-          key={product.id}
-          product={product}
-          as={CollectionCardWrapper}
-        />
+      {products?.filter((product) => product?.style != 'Belmont')
+        .map((product) =>
+          <CollectionCard
+            key={product.id}
+            product={product}
+            as={CollectionCardWrapper}
+          />
       )}
       <NewsletterCardWrapper image="/campaign/fw21/202.jpg">
         <Newsletter />

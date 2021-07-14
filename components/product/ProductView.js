@@ -1,6 +1,10 @@
 /** @jsxImportSource theme-ui */
 import { Selector } from '@components/product'
-import { Button, TabList } from '@components/ui'
+import {
+  AffirmNotice,
+  Button,
+  TabList
+} from '@components/ui'
 import { useCart } from '@framework/cart'
 import addDate from 'date-fns/add'
 import format from 'date-fns/format'
@@ -71,8 +75,11 @@ const ProductTitle = ({ content, ...props }) => (
 const ProductDeliveryNotice = ({ dates, ...props }) => (
   <Text
     as="div"
-    mb={4}
-    py={[0, '12px']}
+    sx={{
+      maxWidth: '256px',
+      mb: 4,
+      py: [0, '12px'],
+    }}
     variant="layout.product.description.notice"
     {...props}
   >
@@ -298,13 +305,13 @@ const ProductView = ({ product }) => {
             loading={loading}
             maxWidth="256px"
             onClick={handleAddToCart}
-            sx={{ mb: 5, }}
           >
             {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
           </Button>
+          {product?.style === 'Del Rey Penny Loafer' && <AffirmNotice />}
           <TabList
             variant="layout.product.description"
-            sx={{ maxWidth: '440px' }}
+            sx={{ maxWidth: '440px', mt: 3, }}
           >
             {product?.description && (
               <div id="product-details" label="Details">

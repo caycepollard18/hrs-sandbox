@@ -52,7 +52,8 @@ const ProductDesc = ({ content, sx }) => (
   <Text
     as="div"
     sx={{
-      minHeight: '180px',
+      minHeight: ['unset', '180px'],
+      my: [2, 'unset'],
       width: ['252px', null, null, '320px'],
       textAlign: 'center',
       ...sx
@@ -158,7 +159,7 @@ const CollectionCard = ({
         sx={{ order: [6], }}
       />
       <ProductButton
-        content={"Shop " + product.style}
+        content={product?.style === "Del Rey Penny Loafer" ? "Shop Now" : "Preorder Now"}
         href={`/product/${selectedColor.handle}`}
         sx={{ order: [7], }}
       />
