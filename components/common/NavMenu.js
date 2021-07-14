@@ -91,7 +91,7 @@ const HamburgerMenu = ({ links, open, openModal }) => (
         </Link>
       ))
     }
-    <a onClick={openModal}>Newsletter</a>
+    {/* <a onClick={openModal}>Newsletter</a> */}
   </Flex>
 )
 

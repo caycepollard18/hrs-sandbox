@@ -26,6 +26,7 @@ const ProductContainer = ({ children, ...props }) => (
       flex: 1,
       flexBasis: '50%',
       flexDirection: 'column',
+      position: 'relative',
     }}
     {...props}
   >
@@ -36,7 +37,8 @@ const ProductContainer = ({ children, ...props }) => (
 const ProductDetailsWrapper = ({ children, modal = false }) => (
   <Box
     sx={{
-      width: ['100%', '256px'],
+      width: ['100%', '100%', '440px'],
+      maxWidth: '440px',
       backgroundColor: modal ? ['white', 'none'] : 'none',
       display: modal ? ['flex', 'none'] : ['none', 'flex'],
       flexDirection: 'column',
@@ -44,7 +46,8 @@ const ProductDetailsWrapper = ({ children, modal = false }) => (
       mb: [0, 5],
       p: [5, 0],
       position: 'sticky',
-      bottom: '-1px',
+      top: modal ? 'unset' : [4, 10, 10, 11],
+      bottom: modal ? '-1px' : 4,
       left: '0',
       zIndex: 7,
     }}
@@ -243,7 +246,14 @@ const ProductView = ({ product }) => {
             loading={loading}
             onClick={handleAddToCart}
           >
-            {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
+            {
+              selectedSize?.availableForSale ? (
+                product?.productType === "Made-to-order" ?
+                  "Preorder" : "Add to bag"
+              ) : (
+                "Sold Out"
+                )
+            }
           </Button>
         </ProductDetailsWrapper>
       </ProductContainer>
@@ -286,75 +296,56 @@ const ProductView = ({ product }) => {
             as="button"
             disabled={selectedSize?.availableForSale === false || selectedSize === null}
             loading={loading}
+            maxWidth="256px"
             onClick={handleAddToCart}
+            sx={{ mb: 5, }}
           >
             {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
           </Button>
+          <TabList
+            variant="layout.product.description"
+            sx={{ maxWidth: '440px' }}
+          >
+            {product?.description && (
+              <div id="product-details" label="Details">
+                {parse(product?.description)}
+              </div>
+            )}
+            {product?.details && (
+              <div id="product-materials" label="Materials">
+                {parse(product?.details)}
+              </div>
+            )}
+            <div id="product-care" label="Care">
+              <Text as="p">
+                Our shoes are made using only the highest quality materials and expert
+                labor. Please handle with a similar level of care to ensure a longer
+                life for your shoes.
+              </Text>
+              <Text as="ul">
+                <li>
+                  If your HRS shoes should get wet, dry them off as quickly as you can.
+                </li>
+                <li>
+                  Protect your shoes from extreme weather and prolonged direct sun.
+                </li>
+                <li>Clean them when you see fit with a soft, dry cloth or brush.</li>
+                <li>
+                  When not in use, store your shoes in the provided dust bag and box.
+                </li>
+              </Text>
+            </div>
+            <div id="product-shipping" label="Shipping">
+              <Text as="p">
+                Standard shipping: Free in the US
+              </Text>
+              <Text as="p">
+                Estimated delivery within 90 days unless otherwise specified. Processing
+                and delivery times may be delayed. Contact us to learn more.
+              </Text>
+            </div>
+          </TabList>
         </ProductDetailsWrapper>
-        <TabList
-          variant="layout.product.description"
-          sx={{
-            maxWidth: '440px',
-          }}
-        >
-          {product?.description && (
-            <div id="product-details" label="Details">
-              {parse(product?.description)}
-            </div>
-          )}
-          {product?.details && (
-            <div id="product-materials" label="Materials">
-              {parse(product?.details)}
-            </div>
-          )}
-          <div id="product-care" label="Care">
-            <Text as="p">
-              Our shoes are made using only the highest quality materials and expert
-              labor. Please handle with a similar level of care to ensure a longer
-              life for your shoes.
-            </Text>
-            <Text as="ul">
-              <li>
-                If your HRS shoes should get wet, dry them off as quickly as you can.
-              </li>
-              <li>
-                Protect your shoes from extreme weather and prolonged direct sun.
-              </li>
-              <li>Clean them when you see fit with a soft, dry cloth or brush.</li>
-              <li>
-                When not in use, store your shoes in the provided dust bag and box.
-              </li>
-            </Text>
-          </div>
-          <div id="product-shipping" label="Shipping">
-            <Text as="p">
-              Standard shipping: Free in the US
-            </Text>
-            <Text as="p">
-              Estimated delivery within 90 days unless otherwise specified. Processing
-              and delivery times may be delayed. Contact us to learn more.
-            </Text>
-          </div>
-          <div id="product-payment" label="Payment">
-            <Text as="p">
-              HRS accepts the following forms of payment for online purchases:
-            </Text>
-            <Text as="ul">
-              <li>Visa</li>
-              <li>MasterCard</li>
-              <li>American Express</li>
-              <li>PayPal</li>
-              <li>JCB</li>
-              <li>Discover</li>
-              <li>Affirm (on selected products)</li>
-            </Text>
-            <Text as="p">
-              When placing an order, your billing address must match the information
-              on your credit card statement. If your payment is declined, please
-              contact your bank or financial institution for assistance.
-            </Text>
-          </div>
-        </TabList>
       </ProductContainer>
     </Flex>
   )

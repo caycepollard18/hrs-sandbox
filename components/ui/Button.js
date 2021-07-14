@@ -17,6 +17,10 @@ const propTypes = {
     PropTypes.object,
   ]),
   loading: PropTypes.bool,
+  maxWidth: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]),
   onClick: PropTypes.func,
   size: PropTypes.oneOf([
     'small',
@@ -39,6 +43,7 @@ const defaultProps = {
   disabled: false,
   href: '',
   loading: false,
+  maxWidth: null,
   onClick: null,
   size: 'medium',
   sx: {},
@@ -57,6 +62,7 @@ const Button = React.forwardRef((props, ref) => {
     disabled,
     href,
     loading,
+    maxWidth,
     onClick,
     size,
     sx,
@@ -78,6 +84,7 @@ const Button = React.forwardRef((props, ref) => {
         sx={{
           height: size === 'small' ? '30px' : '40px',
           minWidth: size === 'small' ? '160px' : width,
+          maxWidth: maxWidth ? maxWidth : 'unset',
           alignItems: 'center',
           cursor: disabled ? 'unset' : 'pointer',
           display: 'inline-flex',

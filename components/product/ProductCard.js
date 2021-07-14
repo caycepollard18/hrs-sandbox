@@ -31,7 +31,8 @@ const ProductCardWrapper = ({ children, ...props }) => (
       overflow: 'hidden',
       position: 'relative',
       'h2, button': {
-        alignSelf: ['center', 'flex-start'],
+        // alignSelf: ['center', 'flex-start'],
+        alignSelf: 'flex-start',
       },
     }}
     {...props}
@@ -69,13 +70,15 @@ const ImageWrapper = ({ href, src, sx, ...props }) => (
 const ProductDetailsWrapper = ({ children, variant }) => (
   <Flex
     sx={{
-      width: ['296px', '304px', '364px'],
+      // width: ['296px', '304px', '364px'],
+      width: ['100%', '304px', '364px'],
       flexDirection: 'column',
       justifyContent: 'center',
       mr: [0, 0, 'calc(39% - 364px)'],
       pt: 2,
-      pb: 5,
-      px: [2, 4, '54px'],
+      pb: [6, 5],
+      // px: [2, 4, '54px']
+      px: [5, 4, '54px'],
     }}
     variant={variant}
   >
@@ -101,7 +104,8 @@ const ProductDesc = ({ content, sx }) => (
     sx={{
       mt: 1,
       mb: 2,
-      textAlign: ['center', 'left'],
+      // textAlign: ['center', 'left'],
+      textAlign: 'left',
       ...sx
     }}
   >
@@ -112,8 +116,10 @@ const ProductDesc = ({ content, sx }) => (
 const ProductDetails = ({ color = '', price = '', ...props }) => (
   <Flex
     sx={{
-      alignItems: 'center',
-      flexDirection: ['column', 'row'],
+      // alignItems: 'center',
+      alignItems: 'flex-start',
+      // flexDirection: ['column', 'row'],
+      flexDirection: 'row',
       gap: [1, 0],
       justifyContent: 'space-between',
       my: [2, 0],
@@ -182,7 +188,7 @@ const ProductCard = ({
           price={product?.variants[0].price}
         />
         <ProductButton
-          content={"Shop " + (product?.style || '')}
+          content={product?.style === "Del Rey Penny Loafer" ? "Shop Now" : "Preorder Now"}
           href={`/product/${selectedColor?.handle}`}
         />
       </ProductDetailsWrapper>

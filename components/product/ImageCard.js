@@ -157,14 +157,10 @@ const ImageCard = ({
         />
         <ProductDesc
           content={product?.shortDescription || ''}
-          sx={{
-            textAlign: layout.includes('center') ?
-              'center' : layout.includes('left') ?
-                'left' : 'right',
-          }}
+          sx={{ textAlign: 'left' }}
         />
         <ProductButton
-          content={"Shop " + (product?.style || '')}
+          content={product?.style === "Del Rey Penny Loafer" ? "Shop Now" : "Preorder Now"}
           href={`/product/${selectedColor?.handle}`}
         />
         <Selector
