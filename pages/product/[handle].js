@@ -1,10 +1,5 @@
-import {
-  ProductView
-} from '@components/product'
-import {
-  getProduct,
-  getAllProductHandles
-} from '@framework/product'
+import { ProductView } from '@components/product'
+import { getProduct, getAllProductHandles } from '@framework/product'
 
 export default function Product({ product }) {
   return (

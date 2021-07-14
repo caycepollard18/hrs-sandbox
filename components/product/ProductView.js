@@ -243,7 +243,14 @@ const ProductView = ({ product }) => {
             loading={loading}
             onClick={handleAddToCart}
           >
-            {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
+            {
+              selectedSize?.availableForSale ? (
+                product?.productType === "Made-to-order" ?
+                  "Preorder" : "Add to bag"
+              ) : (
+                "Sold Out"
+                )
+            }
           </Button>
         </ProductDetailsWrapper>
       </ProductContainer>
@@ -333,25 +340,6 @@ const ProductView = ({ product }) => {
             <Text as="p">
               Estimated delivery within 90 days unless otherwise specified. Processing
               and delivery times may be delayed. Contact us to learn more.
-            </Text>
-          </div>
-          <div id="product-payment" label="Payment">
-            <Text as="p">
-              HRS accepts the following forms of payment for online purchases:
-            </Text>
-            <Text as="ul">
-              <li>Visa</li>
-              <li>MasterCard</li>
-              <li>American Express</li>
-              <li>PayPal</li>
-              <li>JCB</li>
-              <li>Discover</li>
-              <li>Affirm (on selected products)</li>
-            </Text>
-            <Text as="p">
-              When placing an order, your billing address must match the information
-              on your credit card statement. If your payment is declined, please
-              contact your bank or financial institution for assistance.
             </Text>
           </div>
         </TabList>

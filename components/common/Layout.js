@@ -28,7 +28,7 @@ const sitePages = [
   {
     url: '/about',
     page: 'About',
-    displayHeader: true,
+    displayHeader: false,
     displayNavMenu: true,
   },
   {
@@ -53,7 +53,7 @@ const sitePages = [
     url: '/shipping',
     page: 'Shipping & Returns',
     displayHeader: false,
-    displayNavMenu: false,
+    displayNavMenu: true,
   },
   /*{
     url: '/policy/legal',

@@ -182,7 +182,7 @@ const ProductCard = ({
           price={product?.variants[0].price}
         />
         <ProductButton
-          content={"Shop " + (product?.style || '')}
+          content={product?.style === "Del Rey Penny Loafer" ? "Shop Now" : "Preorder Now"}
           href={`/product/${selectedColor?.handle}`}
         />
       </ProductDetailsWrapper>

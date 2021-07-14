@@ -62,9 +62,9 @@ export default function Home({ products }) {
               backgroundSize: ['cover'],
             }
           }}
-          color='white'
-          image='/campaign/fw21/107.jpg'
-          layout='top right'
+          color="white"
+          image="/campaign/fw21/107.jpg"
+          layout="top left"
           product={featuredProducts[2]}
           sx={{ minHeight: ['640px', '420px', 'unset'], }}
         />
@@ -89,7 +89,7 @@ export default function Home({ products }) {
                 maxWidth: '465px',
                 mx: [5, 5, 6],
                 my: 6,
-                textAlign: 'center'
+                textAlign: 'left'
               }
             }}>
             <p>
@@ -129,12 +129,12 @@ export default function Home({ products }) {
       >
         <ImageCard
           backgroundStyles={{
-            backgroundPosition: ['top 200px right 0px', null, 'top 200px right -15%'],
+            backgroundPosition: ['bottom center', null, null, 'top center'],
             backgroundRepeat: 'no-repeat',
-            backgroundSize:  '122%',
+            backgroundSize:  'cover',
           }}
           image={featuredProducts[4]?.images[1]?.src}
-          layout="top center"
+          layout="top left"
           product={featuredProducts[4]}
         />
         <Box
