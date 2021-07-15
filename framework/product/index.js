@@ -12,6 +12,14 @@ export async function getAllProducts() {
             id
             title
             handle
+            collections(first: 5) {
+              edges {
+                node {
+                  id
+                  title
+                }
+              }
+            }
             description
             productType
             color:metafield(namespace: "global", key: "color") {
