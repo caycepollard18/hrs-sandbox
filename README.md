@@ -1,4 +1,4 @@
-E-commerce website for Human Recreational Services built with Shopify & [Next.js](https://nextjs.org/).
+E-commerce website for Human Recreational Services built with Shopify & [Next.js](https://nextjs.org/). View at [humanrecreationalservices.com](https://humanrecreationalservices.com).
 
 ### To-do
 
