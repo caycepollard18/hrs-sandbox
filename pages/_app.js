@@ -1,6 +1,6 @@
 import { Head, Layout } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
-import * as analytics from '@lib/analytics'
+import * as gtag from '@lib/gtag'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import theme from '@theme'
@@ -10,18 +10,18 @@ import { ThemeProvider } from 'theme-ui'
 import '@styles/fonts.css'
 
 export default function MyApp({ Component, pageProps }) {
+  // gtag.js implementation
+  // see https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics/pages/_app.js
+
   const router = useRouter()
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      analytics.pageview(url)
+      gtag.pageview(url)
     }
 
-    // While the component is mounted, subscribe to router changes
-    // and log those as pageviews in Analytics
     router.events.on('routeChangeComplete', handleRouteChange)
 
-    // When the component unmounts, unsubscribe from router
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
