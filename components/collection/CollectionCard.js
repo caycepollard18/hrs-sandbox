@@ -126,7 +126,7 @@ const CollectionCard = ({
       {selectedColor?.images && (
         <ImageWrapper
           href={`/product/${selectedColor.handle}`}
-          src={selectedColor.images[1]?.small ?? selectedColor.images[1]?.src}
+          src={selectedColor.images[1]?.small ? selectedColor.images[1]?.src : selectedColor.images[0]?.src }
           sx={{ order: [1, 2], }}
         />
       )}

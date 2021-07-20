@@ -86,9 +86,10 @@ export async function getAllProductHandles() {
 }
 
 export async function getProductsByCollection(collection) {
+  const handle = collection || process.env.SHOPIFY_COLLECTION
   const query = `
     {
-      collectionByHandle(handle: "current") {
+      collectionByHandle(handle: "${handle}") {
         id
         title
         products(first: 75) {

@@ -455,6 +455,22 @@ const theme = {
       color: 'offBlack80',
     }
   },
+  badges: {
+    primary: {
+      bg: 'primary',
+      px: 2,
+      py: 1,
+      textTransform: 'uppercase',
+    },
+    outline: {
+      bg: 'transparent',
+      color: 'offBlack80',
+      border: '1px solid',
+      px: 2,
+      py: 1,
+      textTransform: 'uppercase',
+    }
+  },
   buttons: {
     primary: {
       bg: 'primary',
