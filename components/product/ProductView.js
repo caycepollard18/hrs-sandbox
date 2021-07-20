@@ -307,7 +307,14 @@ const ProductView = ({ product }) => {
             maxWidth="256px"
             onClick={handleAddToCart}
           >
-            {selectedSize?.availableForSale ? "Place Order" : "Sold Out"}
+            {
+              selectedSize?.availableForSale ? (
+                product?.productType === "Made-to-order" ?
+                  "Preorder" : "Add to bag"
+              ) : (
+                "Sold Out"
+                )
+            }
           </Button>
           {product?.style === 'Del Rey Penny Loafer' && <AffirmNotice />}
           <TabList
