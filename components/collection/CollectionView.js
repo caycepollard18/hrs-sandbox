@@ -9,10 +9,12 @@ import PropTypes from 'prop-types'
 import { Flex } from 'theme-ui'
 
 const propTypes = {
+  hero: PropTypes.node,
   products: PropTypes.arrayOf(PropTypes.object),
 }
 
 const defaultProps = {
+  hero: [],
   products: [],
 }
 
@@ -75,16 +77,16 @@ const NewsletterCardWrapper = ({ children, image }) => (
   </Flex>
 )
 
-const CollectionView = ({ products }) => {
+const CollectionView = ({ hero, products }) => {
   return (
     <CollectionContainer>
       <NextSeo
-        title="A DREAM ESCAPE"
-        description="Discover the FW21 collection on the Human Recreational Services official store."
+        title="A DREAM ESCAPE | HRS CHAPTER 2"
+        description="Get away into HRS' escapist fantasy and a hope wish for the times to come."
         openGraph={{
           type: 'website',
-          title: "A DREAM ESCAPE - Fall/Winter 2021",
-          description: "Discover the FW21 collection on the Human Recreational Services official store.",
+          title: "A DREAM ESCAPE | HRS CHAPTER 2",
+          description: "Get away into HRS' escapist fantasy and a hope wish for the times to come.",
           images: [
             {
               url: "https://hrs-sandbox.vercel.app/campaign/fw21/201.jpg",
@@ -96,15 +98,7 @@ const CollectionView = ({ products }) => {
         }}
       />
       {/* <CollectionMenu products={products} /> */}
-      <Hero
-        title="A Dream Escape"
-        subtitle="Discover Chapter Two"
-        image="/campaign/fw21/201.jpg"
-        backgroundPosition="center 65%"
-        justifyContent="flexStart"
-        size="small"
-        variant="layout.hero.collection"
-      />
+      {hero}
       {products?.filter((product) => product?.style != 'Belmont')
         .map((product) =>
           <CollectionCard

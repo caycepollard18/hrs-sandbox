@@ -2,6 +2,7 @@
 import { Selector } from '@components/product'
 import {
   AffirmNotice,
+  Badge,
   Button,
   TabList
 } from '@components/ui'
@@ -44,16 +45,21 @@ const ProductDetailsWrapper = ({ children, modal = false }) => (
       width: ['100%', '100%', '440px'],
       maxWidth: '440px',
       backgroundColor: modal ? ['white', 'none'] : 'none',
-      display: modal ? ['flex', 'none'] : ['none', 'flex'],
+      display: modal ? ['flex', 'none'] : [/* 'none', */ 'flex'],
       flexDirection: 'column',
       justifyContent: 'center',
       mb: [0, 5],
       p: [5, 0],
-      position: 'sticky',
+      position: modal ? 'sticky' : ['static', 'sticky'],
       top: modal ? 'unset' : [4, 10, 10, 11],
       bottom: modal ? '-1px' : 4,
       left: '0',
       zIndex: 7,
+      // hacky solution to avoid duplicate content between
+      // mobile & desktop layouts
+      '> *:not(:last-child)': {
+        display: modal ? 'flex' : ['none', 'flex'],
+      },
     }}
   >
     {children}
@@ -78,6 +84,7 @@ const ProductDeliveryNotice = ({ dates, ...props }) => (
     sx={{
       maxWidth: '256px',
       mb: 4,
+      mt: 2,
       py: [0, '12px'],
     }}
     variant="layout.product.description.notice"
@@ -91,6 +98,7 @@ const ProductPrice = ({ content, ...props }) => (
   <Text
     as="div"
     mb={[0, 1]}
+    sx={{ minWidth: ['75px', 'unset'] }}
     variant="styles.h3"
     {...props}
   >
@@ -115,6 +123,18 @@ const ProductDetails = ({ color = '', size = '', ...props }) => (
       {size}
     </Text>
   </Flex>
+)
+
+const PreorderBadge = ({ variant }) => (
+  <Badge
+    sx={{
+      alignSelf: 'flex-start',
+      mb: [0, 2],
+    }}
+    variant={variant ?? "primary"}
+  >
+    SS22 Preorder
+  </Badge>
 )
 
 const ProductView = ({ product }) => {
@@ -161,7 +181,7 @@ const ProductView = ({ product }) => {
       title: product?.style,
       color: product?.color,
       handle: product?.handle,
-      image: product?.images[1].src,
+      image: product?.images[1]?.src || product?.images[0]?.src,
       size: selectedSize?.title,
       price: selectedSize?.price,
       productType: product?.productType,
@@ -210,23 +230,35 @@ const ProductView = ({ product }) => {
           />
         ))}
         <ProductDetailsWrapper modal>
-          <Selector
-            colors={product?.colors}
-            createLinkProps={({ handle }) => ({
-              href: '/product/[handle]',
-              as: `/product/${handle}`,
-              scroll: false,
-              next: true,
-            })}
-            onChange={setColor}
-            selected={selectedColor}
-            iconSize="large"
-          />
+          <Flex
+            sx={{
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Selector
+              colors={product?.colors}
+              createLinkProps={({ handle }) => ({
+                href: '/product/[handle]',
+                as: `/product/${handle}`,
+                scroll: false,
+                next: true,
+              })}
+              onChange={setColor}
+              selected={selectedColor}
+              iconSize="large"
+            />
+            {product?.productType === "Preorder" ? (
+              <PreorderBadge variant="outline" />
+            ) : null}
+          </Flex>
           <Selector
             sizes={product?.variants}
             selected={selectedSize}
             onChange={setSize}
-            my={2}
+            mb={3}
+            mt={3}
           />
           <Flex
             sx={{
@@ -241,7 +273,8 @@ const ProductView = ({ product }) => {
             <ProductPrice content={selectedSize?.price || product?.variants[0]?.price } />
           </Flex>
           <ProductDetails color={selectedColor?.color} size={selectedSize?.title} />
-          {product?.productType === "Made-to-order" ? (
+          {(product?.productType === "Made-to-order" ||
+            product?.productType === "Preorder") ? (
               <ProductDeliveryNotice dates={deliveryDates} />
             ) : (
               <Box mb={4} />
@@ -252,10 +285,11 @@ const ProductView = ({ product }) => {
             disabled={selectedSize?.availableForSale === false || selectedSize === null}
             loading={loading}
             onClick={handleAddToCart}
-          >
+          > 
             {
               selectedSize?.availableForSale ? (
-                product?.productType === "Made-to-order" ?
+                (product?.productType === "Made-to-order" ||
+                product?.productType === "Preorder") ?
                   "Preorder" : "Add to bag"
               ) : (
                 "Sold Out"
@@ -266,13 +300,19 @@ const ProductView = ({ product }) => {
         </ProductDetailsWrapper>
       </ProductContainer>
       <ProductContainer
-        px={[5, 5, 5, 8]}
-        pt={[4, 10, 10, 11]}
-        pb={4}
+        px={[0, 5, 5, 8]}
+        pt={[0, 10, 10, 11]}
+        pb={[0, 4]}
         variant="layout.product"
       >
         <ProductDetailsWrapper>
-          <ProductTitle content={product?.style} />
+          {product?.productType === "Preorder" ? (
+            <PreorderBadge />
+          ) : null}
+          <ProductTitle
+            content={product?.style}
+            
+          />
           <Selector
             colors={product?.colors}
             createLinkProps={({ handle }) => ({
@@ -284,6 +324,7 @@ const ProductView = ({ product }) => {
             onChange={setColor}
             selected={selectedColor}
             iconSize="large"
+            
           />
           <Selector
             sizes={product?.variants}
@@ -291,35 +332,49 @@ const ProductView = ({ product }) => {
             onChange={setSize}
             mt={4}
             mb={2}
+            
           />
-          {product?.productType === "Made-to-order" ? (
-              <ProductDeliveryNotice dates={deliveryDates} />
+          {(product?.productType === "Made-to-order" ||
+            product?.productType === "Preorder") ? (
+              <ProductDeliveryNotice dates={deliveryDates}  />
             ) : (
-              <Box mb={4} />
+              <Box mb={4}  />
             )
           }
-          <ProductPrice content={selectedSize?.price || product?.variants[0]?.price } />
-          <ProductDetails color={selectedColor?.color} size={selectedSize?.title} />
+          <ProductPrice
+            content={selectedSize?.price || product?.variants[0]?.price}
+            
+          />
+          <ProductDetails
+            color={selectedColor?.color}
+            size={selectedSize?.title}
+            
+          />
           <Button
             as="button"
             disabled={selectedSize?.availableForSale === false || selectedSize === null}
             loading={loading}
             maxWidth="256px"
             onClick={handleAddToCart}
+            
           >
             {
               selectedSize?.availableForSale ? (
-                product?.productType === "Made-to-order" ?
+                (product?.productType === "Made-to-order" ||
+                product?.productType === "Preorder") ?
                   "Preorder" : "Add to bag"
               ) : (
                 "Sold Out"
                 )
             }
           </Button>
-          {product?.style === 'Del Rey Penny Loafer' && <AffirmNotice />}
+          {product?.style === 'Del Rey Penny Loafer' ?
+            <AffirmNotice  /> :
+            <Box mb={4}  />
+          }
           <TabList
             variant="layout.product.description"
-            sx={{ maxWidth: '440px', mt: 3, }}
+            sx={{ maxWidth: '440px', mt: [0, 3], }}
           >
             {product?.description && (
               <div id="product-details" label="Details">

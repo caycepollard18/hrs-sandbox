@@ -39,7 +39,8 @@ const InnerContainer = ({ children, sx }) => (
 const About = () => (
   <AboutContainer>
     <NextSeo
-      title="ABOUT"
+      title="ABOUT | Après-skate luxury | HUMAN RECREATIONAL SERVICES"
+      description="Between LA and Paris, Erik Ellington & Vaz Rajan provide modern footwear collections inspired by the free-spirited lifestyle of the skateboarding community."
       openGraph={{
         title: "About the Brand - HRS",
       }}
