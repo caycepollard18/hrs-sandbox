@@ -54,6 +54,7 @@ const MainMenu = ({ active, links, onClick }) => (
           >
             <Box
               as="a"
+              href={url}
               sx={{
                 alignItems: 'center',
                 display: 'flex',
