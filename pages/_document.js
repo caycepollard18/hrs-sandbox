@@ -8,7 +8,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        {process.env.NODE_ENV === "production" && process.browser ?
+        {process.env.NODE_ENV === "production" ?
           <Head>
             {/* Global Site Tag (gtag.js) - Google Analytics */}
             <script

@@ -100,9 +100,9 @@ const CollectionView = ({ hero, products }) => {
       {/* <CollectionMenu products={products} /> */}
       {hero}
       {products?.filter((product) => product?.style != 'Belmont')
-        .map((product) =>
+        .map((product, i) =>
           <CollectionCard
-            key={product.id}
+            key={product.id.concat(i)}
             product={product}
             as={CollectionCardWrapper}
           />

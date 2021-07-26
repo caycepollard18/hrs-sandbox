@@ -30,7 +30,7 @@ export default function Preorder({ products }) {
       hero={
         <PreorderHero />
       }
-      products={[products[0], products[0], products[0]]}
+      products={products}
     />
   )
 }

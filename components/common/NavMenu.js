@@ -47,13 +47,21 @@ const MainMenu = ({ active, links, onClick }) => (
       }}
     >
       {links.filter(link => link.displayHeader).map(
-        ({ url, page }) => (
+        ({ url, page, variant }) => (
           <Link
             key={url}
             href={url}
           >
-            <Box as="a"
-              variant={url === active ? "layout.header.links.active" : "layout.header.links" }
+            <Box
+              as="a"
+              sx={{
+                alignItems: 'center',
+                display: 'flex',
+                pb: variant === 'outline' ? '2px' : '0px',
+                pt: '2px',
+                px: variant ? '4px' : '0px',
+              }}
+              variant={`layout.header.links${variant ? '.' + variant : ''}${url === active ? '.active' : ''}`}
             >
               {page}
             </Box>
@@ -126,6 +134,10 @@ const NavMenu = ({ active, links }) => {
     const body = document.querySelector('body')
     body.style.overflowY = isOpen ? 'hidden' : 'auto'
   }, [isOpen])
+
+  console.log(links.filter(link => link.displayHeader).map(
+    ({ url, variant }) => (`layout.header.links${variant ? '.' + variant : ''}${url === active ? '.active' : ''}`)
+  ))
 
   return (
     <>

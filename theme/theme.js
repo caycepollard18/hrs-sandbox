@@ -1,5 +1,7 @@
 const palette = {
   white: '#ffffff',
+  white50: '#ffffff80',
+  white80: '#ffffffCC',
   gray: '#36393D',
   lightGray: '#35353A80',
   offBlack: '#161616',
@@ -211,15 +213,15 @@ const theme = {
       color: ['darkBone', 'darkBone', 'white'],
       fontSize: 2,
       fontWeight: '700',
-      lineHeight: 'body',
+      lineHeight: 'tight',
       textTransform: 'uppercase',
       dark: {
         backgroundColor: 'black',
       },
       links: {
-        cursor: 'pointer',
         borderBottom: '2px solid',
         borderColor: 'transparent',
+        cursor: 'pointer',
         '&:hover': {
           borderBottom: '2px solid',
           borderColor: 'white',
@@ -227,7 +229,64 @@ const theme = {
         active: {
           borderBottom: '2px solid',
           borderColor: 'white',
+          cursor: 'default',
         },
+        accent: {
+          backgroundColor: 'white',
+          borderBottom: '2px solid',
+          borderColor: 'transparent',
+          borderRadius: '2px 0px 0px 2px',
+          color: 'black',
+          cursor: 'pointer',
+          position: 'relative',
+          '&:hover': {
+            backgroundColor: 'white80',
+            '&::after': {
+              backgroundColor: 'white80',
+            },
+          },
+          '&:active': {
+            backgroundColor: 'white50',
+            '&::after': {
+              backgroundColor: 'white50',
+            },
+          },
+          '&::after': {
+            width: 'auto',
+            height: 'calc(100% - 2px)',
+            backgroundColor: 'white',
+            borderBottom: '2px solid',
+            borderColor: 'transparent',
+            borderRadius: '0px 2px 2px 0px',
+            content: '"→"',
+            display: 'block',
+            ml: '100%',
+            position: 'absolute',
+            top: 0, left: 0,
+            pr: '2px',
+            pt: '2px'
+          },
+          active: {
+            backgroundColor: 'white',
+            borderBottom: '2px solid',
+            borderColor: 'transparent',
+            color: 'black',
+            cursor: 'default',
+          },
+        },
+        outline: {
+          border: '1px solid white',
+          borderRadius: '2px',
+          '&:hover': {
+            bg: '#FFFFFF33',
+            cursor: 'pointer',
+          },
+          active: {
+            bg: '#FFFFFF50',
+            border: '1px solid white',
+            borderRadius: '2px',
+          }
+        }
       },
       menu: {
         backgroundColor: 'black',

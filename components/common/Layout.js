@@ -55,6 +55,13 @@ const sitePages = [
     displayHeader: false,
     displayNavMenu: true,
   },
+  {
+    url: '/preorder',
+    page: 'Preorder for SS22',
+    displayHeader: true,
+    displayNavMenu: true,
+    variant: 'outline',
+  },
   /*{
     url: '/policy/legal',
     page: 'Legal',
@@ -93,7 +100,7 @@ export default function Layout({ children }) {
         }}
         variant="layout.root"
       >
-        
+
         <Header links={headerLinks} active={router.pathname} home />
         <main
           sx={{
