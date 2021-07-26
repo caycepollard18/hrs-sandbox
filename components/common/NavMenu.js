@@ -135,10 +135,6 @@ const NavMenu = ({ active, links }) => {
     body.style.overflowY = isOpen ? 'hidden' : 'auto'
   }, [isOpen])
 
-  console.log(links.filter(link => link.displayHeader).map(
-    ({ url, variant }) => (`layout.header.links${variant ? '.' + variant : ''}${url === active ? '.active' : ''}`)
-  ))
-
   return (
     <>
       <MainMenu active={active} links={links} onClick={() => handleOnClick()} />
