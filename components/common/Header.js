@@ -82,7 +82,7 @@ const Header = ({ links, active }) => {
           zIndex: '10',
         }}
       />
-      <UserMenu onClick={toggleSidebar} />
+      <UserMenu onClick={() => (console.log("clicked!"))} />
     </Flex>
   )
 }
