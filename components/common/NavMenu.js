@@ -29,6 +29,7 @@ const MainMenu = ({ active, links, onClick }) => (
     }}
   >
     <Flex
+      as="a"
       sx={{
         cursor: 'pointer',
         display: ['block', 'block', 'none'],
