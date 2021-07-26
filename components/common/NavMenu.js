@@ -51,10 +51,10 @@ const MainMenu = ({ active, links, onClick }) => (
           <Link
             key={url}
             href={url}
+            passHref
           >
             <Box
               as="a"
-              href={url}
               sx={{
                 alignItems: 'center',
                 display: 'flex',

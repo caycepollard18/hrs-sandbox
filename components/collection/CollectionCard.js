@@ -24,7 +24,7 @@ const CollectionCardWrapper = ({ children, ...props }) => (
 )
 
 const ImageWrapper = ({ href, src, sx, ...props }) => (
-  <Link href={href}>
+  <Link href={href} passHref>
     <Box
         as="a"
         sx={{

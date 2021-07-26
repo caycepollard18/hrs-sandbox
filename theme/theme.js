@@ -225,6 +225,7 @@ const theme = {
         '&:hover': {
           borderBottom: '2px solid',
           borderColor: 'white',
+          cursor: 'pointer',
         },
         active: {
           borderBottom: '2px solid',
@@ -277,6 +278,7 @@ const theme = {
         outline: {
           border: '1px solid white',
           borderRadius: '2px',
+          cursor: 'pointer',
           '&:hover': {
             bg: '#FFFFFF33',
             cursor: 'pointer',
