@@ -20,6 +20,7 @@ const propTypes = {
     PropTypes.object,
   ]),
   backgroundPosition: PropTypes.string,
+  backgroundSize: PropTypes.string,
   justifyContent: PropTypes.string,
   size: PropTypes.oneOf(['small', 'default', 'large']),
   video: PropTypes.node,
@@ -32,6 +33,7 @@ const defaultProps = {
   href: '/',
   image: '/campaign/101.jpg',
   backgroundPosition: null,
+  backgroundSize: 'cover',
   justifyContent: 'center',
   size: 'default',
   video: null,
@@ -39,6 +41,7 @@ const defaultProps = {
 
 const HeroContainer = ({
   backgroundPosition,
+  backgroundSize,
   children,
   image,
   size,
@@ -58,7 +61,7 @@ const HeroContainer = ({
         backgroundImage: `url(${image})`,
         backgroundPosition: backgroundPosition ? backgroundPosition : 'center 75%',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        backgroundSize: backgroundSize,
         flexDirection: 'column',
         overflow: 'hidden',
         position: 'relative',
@@ -99,6 +102,7 @@ const Hero = ({
   href,
   image,
   backgroundPosition,
+  backgroundSize,
   justifyContent,
   size,
   video,
@@ -107,6 +111,7 @@ const Hero = ({
   return (
     <HeroContainer
       backgroundPosition={backgroundPosition}
+      backgroundSize={backgroundSize}
       image={image}
       size={size}
       sx={{ justifyContent: justifyContent }}

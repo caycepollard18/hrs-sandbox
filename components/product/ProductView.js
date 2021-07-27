@@ -147,7 +147,7 @@ const ProductView = ({ product }) => {
       'MMMM dd'
     ),
     format(
-      addDate(new Date('1 Aug 2021'), { days: 136 }),
+      addDate(new Date('1 Aug 2021'), { days: 152 }),
       'MMMM dd'
     )
   ]
