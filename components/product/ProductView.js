@@ -147,7 +147,7 @@ const ProductView = ({ product }) => {
       'MMMM dd'
     ),
     format(
-      addDate(new Date('1 Aug 2021'), { days: 136 }),
+      addDate(new Date('1 Aug 2021'), { days: 152 }),
       'MMMM dd'
     )
   ]
@@ -155,6 +155,15 @@ const ProductView = ({ product }) => {
   const [loading, setLoading] = useState(false)
   const [selectedColor, setColor] = useState(product?.colors?.find(color => color.id === product.id))
   const [selectedSize, setSize] = useState(null)
+
+  // return appropriate list of linked colorways
+  // e.g. for preorder, return other preorderable colorways
+  // for regular collection product page, do not link preorder colorways
+  const colorList = (product?.productType === "Preorder" ? (
+    product?.colors.filter(c => !(c.collections.includes("CURRENT")))
+  ) : (
+    product?.colors.filter(c => c.collections.includes("CURRENT"))
+  ))
 
   const delay = ms => new Promise(res => setTimeout(res, ms))
 
@@ -238,7 +247,7 @@ const ProductView = ({ product }) => {
             }}
           >
             <Selector
-              colors={product?.colors}
+              colors={colorList}
               createLinkProps={({ handle }) => ({
                 href: '/product/[handle]',
                 as: `/product/${handle}`,
@@ -314,7 +323,7 @@ const ProductView = ({ product }) => {
             
           />
           <Selector
-            colors={product?.colors}
+            colors={colorList}
             createLinkProps={({ handle }) => ({
               href: '/product/[handle]',
               as: `/product/${handle}`,

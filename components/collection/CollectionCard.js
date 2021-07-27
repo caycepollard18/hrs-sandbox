@@ -1,5 +1,5 @@
 import { Selector } from '@components/product'
-import { Button } from '@components/ui'
+import { Badge, Button } from '@components/ui'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
@@ -24,7 +24,7 @@ const CollectionCardWrapper = ({ children, ...props }) => (
 )
 
 const ImageWrapper = ({ href, src, sx, ...props }) => (
-  <Link href={href}>
+  <Link href={href} passHref>
     <Box
         as="a"
         sx={{
@@ -109,6 +109,19 @@ const ProductButton = ({
   </Button>
 )
 
+const PreorderBadge = ({ sx, variant }) => (
+  <Badge
+    sx={{
+      alignSelf: 'center',
+      mb: [3, 4],
+      ...sx
+    }}
+    variant={variant ?? "primary"}
+  >
+    SS22 Preorder
+  </Badge>
+)
+
 const CollectionCard = ({
   product,
   ...props
@@ -146,6 +159,10 @@ const CollectionCard = ({
         content={product.style || ' '}
         sx={{ order: [2, 1], }}
       />
+      {product.productType === "Preorder" &&
+        <PreorderBadge
+          sx={{ order: [1, 0] }}
+        />}
       <ProductDesc
         content={product.shortDescription || ' '}
         sx={{ order: [3, 4], }}

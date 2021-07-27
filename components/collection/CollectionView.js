@@ -37,7 +37,7 @@ const CollectionCardWrapper = ({ children, sx, ...props }) => (
   <Flex
     sx={{
       minHeight: ['330px', '540px'],
-      maxHeight: [null, '640px'],
+      maxHeight: [null, '720px'],
       width: ['auto', '50%', '33.33%'],
       maxWidth: [null, '50%', '33.33%', '640px'],
       alignItems: 'center',
@@ -60,7 +60,7 @@ const NewsletterCardWrapper = ({ children, image }) => (
   <Flex
     sx={{
       minHeight: ['330px', '540px'],
-      maxHeight: [null, '640px'],
+      maxHeight: [null, '720px'],
       alignItems: 'center',
       backgroundImage: `url(${image})`,
       backgroundPosition: 'left center',
@@ -100,9 +100,9 @@ const CollectionView = ({ hero, products }) => {
       {/* <CollectionMenu products={products} /> */}
       {hero}
       {products?.filter((product) => product?.style != 'Belmont')
-        .map((product) =>
+        .map((product, i) =>
           <CollectionCard
-            key={product.id}
+            key={product.id.concat(i)}
             product={product}
             as={CollectionCardWrapper}
           />

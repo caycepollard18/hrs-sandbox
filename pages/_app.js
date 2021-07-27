@@ -20,7 +20,7 @@ export default function MyApp({ Component, pageProps }) {
       gtag.pageview(url)
     }
 
-    if (process.env.NODE_ENV === "production" && process.browser) {
+    if (process.env.NODE_ENV === "production") {
       router.events.on('routeChangeComplete', handleRouteChange)
 
       return () => {

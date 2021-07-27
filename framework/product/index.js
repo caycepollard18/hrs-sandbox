@@ -205,6 +205,7 @@ export async function getColorsByStyle(products) {
     const _colors = allProducts?.filter(p => p.style === product.style)
       .map(p => ({
         id: p?.id,
+        collections: p?.collections?.edges?.map(e => e.node.title),
         color: p?.color,
         handle: p?.handle,
         swatch: p?.color && ('/swatches/'

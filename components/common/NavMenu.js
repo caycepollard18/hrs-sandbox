@@ -29,6 +29,7 @@ const MainMenu = ({ active, links, onClick }) => (
     }}
   >
     <Flex
+      as="a"
       sx={{
         cursor: 'pointer',
         display: ['block', 'block', 'none'],
@@ -47,13 +48,22 @@ const MainMenu = ({ active, links, onClick }) => (
       }}
     >
       {links.filter(link => link.displayHeader).map(
-        ({ url, page }) => (
+        ({ url, page, variant }) => (
           <Link
             key={url}
             href={url}
+            passHref
           >
-            <Box as="a"
-              variant={url === active ? "layout.header.links.active" : "layout.header.links" }
+            <Box
+              as="a"
+              sx={{
+                alignItems: 'center',
+                display: 'flex',
+                pb: variant === 'outline' ? '2px' : '0px',
+                pt: '2px',
+                px: variant ? '4px' : '0px',
+              }}
+              variant={`layout.header.links${variant ? '.' + variant : ''}${url === active ? '.active' : ''}`}
             >
               {page}
             </Box>
