@@ -249,8 +249,8 @@ const ProductView = ({ product }) => {
             <Selector
               colors={colorList}
               createLinkProps={({ handle }) => ({
-                href: '/product/[handle]',
-                as: `/product/${handle}`,
+                href: '/products/[handle]',
+                as: `/products/${handle}`,
                 scroll: false,
                 next: true,
               })}
@@ -325,8 +325,8 @@ const ProductView = ({ product }) => {
           <Selector
             colors={colorList}
             createLinkProps={({ handle }) => ({
-              href: '/product/[handle]',
-              as: `/product/${handle}`,
+              href: '/products/[handle]',
+              as: `/products/${handle}`,
               scroll: false,
               next: true,
             })}
