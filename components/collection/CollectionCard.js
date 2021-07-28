@@ -1,4 +1,4 @@
-import { Selector } from '@components/product'
+import { Selector } from '@components/products'
 import { Badge, Button } from '@components/ui'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
@@ -138,7 +138,7 @@ const CollectionCard = ({
     <CollectionCardWrapper {...props}>
       {selectedColor?.images && (
         <ImageWrapper
-          href={`/product/${selectedColor.handle}`}
+          href={`/products/${selectedColor.handle}`}
           src={selectedColor.images[1]?.small ? selectedColor.images[1]?.src : selectedColor.images[0]?.src }
           sx={{ order: [1, 2], }}
         />
@@ -177,7 +177,7 @@ const CollectionCard = ({
       />
       <ProductButton
         content={product?.style === "Del Rey Penny Loafer" ? "Shop Now" : "Preorder Now"}
-        href={`/product/${selectedColor.handle}`}
+        href={`s/${selectedColor.handle}`}
         sx={{ order: [7], }}
       />
     </CollectionCardWrapper>
