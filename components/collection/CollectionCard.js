@@ -1,4 +1,4 @@
-import { Selector } from '@components/products'
+import { Selector } from '@components/product'
 import { Badge, Button } from '@components/ui'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
