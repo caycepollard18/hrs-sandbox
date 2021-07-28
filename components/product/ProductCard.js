@@ -165,7 +165,7 @@ const ProductCard = ({
     <ProductCardWrapper {...props}>
       {selectedColor?.images && (
         <ImageWrapper
-          href={`/product/${selectedColor?.handle}`}
+          href={`/products/${selectedColor?.handle}`}
           src={featuredImage ? selectedColor?.images[featuredImage].src : selectedColor?.images[0].src}
         />
       )}
@@ -189,7 +189,7 @@ const ProductCard = ({
         />
         <ProductButton
           content={product?.style === "Del Rey Penny Loafer" ? "Shop Now" : "Preorder Now"}
-          href={`/product/${selectedColor?.handle}`}
+          href={`/products/${selectedColor?.handle}`}
         />
       </ProductDetailsWrapper>
     </ProductCardWrapper>

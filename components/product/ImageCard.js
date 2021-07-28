@@ -161,7 +161,7 @@ const ImageCard = ({
         />
         <ProductButton
           content={product?.style === "Del Rey Penny Loafer" ? "Shop Now" : "Preorder Now"}
-          href={`/product/${selectedColor?.handle}`}
+          href={`/products/${selectedColor?.handle}`}
         />
         <Selector
           colors={product?.colors}
