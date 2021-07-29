@@ -177,7 +177,7 @@ const CollectionCard = ({
       />
       <ProductButton
         content={product?.style === "Del Rey Penny Loafer" ? "Shop Now" : "Preorder Now"}
-        href={`s/${selectedColor.handle}`}
+        href={`/products/${selectedColor.handle}`}
         sx={{ order: [7], }}
       />
     </CollectionCardWrapper>
