@@ -60,8 +60,8 @@ const SidebarFooter = ({ checkoutUrl, itemCount, onClick, totalPrice }) => (
   <Flex
     as="footer"
     sx={{
-      minHeight: '80px',
-      alignItems: ['center'],
+      minHeight: ['160px', '80px'],
+      alignItems: ['flex-start', 'center'],
       flexDirection: 'row',
       justifyContent: 'space-between',
       px: [5, 5],
