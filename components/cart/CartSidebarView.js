@@ -57,65 +57,76 @@ const SidebarHeader = ({ itemCount, onClose, totalPrice }) => (
 )
 
 const SidebarFooter = ({ checkoutUrl, itemCount, onClick, totalPrice }) => (
-  <Flex
+  <Box
     as="footer"
     sx={{
-      minHeight: '80px',
-      alignItems: ['center'],
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      px: [5, 5],
-      pt: [3, 0],
-      pb: [2, 0],
+      display: ['fixed', 'flex'],
+      alignItems: 'stretch',
+      flexDirection: 'column',
+      bottom: 0, left: 0,
     }}
   >
     <Flex
       sx={{
-        alignItems: 'flex-start',
-        flexDirection: 'column',
+        alignItems: ['center'],
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        height: ['90px'],
+        px: [5, 5],
+        pt: [3, 0],
+        pb: [2, 0],
+        width: ['100%', 'unset'],
+        zIndex: 7,
       }}
     >
       <Flex
         sx={{
-          alignItems: ['center', 'flex-end'],
-          flexDirection: ['column', 'row'],
-          gap: [1, 2],
-          mb: ['19px', 0],
-          px: [2, 0],
+          alignItems: 'flex-start',
+          flexDirection: 'column',
         }}
       >
-        <Text as="span" variant="text.caption">Total</Text>
-        <Heading as="div" variant="styles.h4">
-          {totalPrice.amount} {totalPrice.currencyCode || 'USD'}
-        </Heading>
+        <Flex
+          sx={{
+            alignItems: ['center', 'flex-end'],
+            flexDirection: ['column', 'row'],
+            gap: [1, 2],
+            mb: ['19px', 0],
+            px: [2, 0],
+          }}
+        >
+          <Text as="span" variant="text.caption">Total</Text>
+          <Heading as="div" variant="styles.h4">
+            {totalPrice.amount} {totalPrice.currencyCode || 'USD'}
+          </Heading>
+        </Flex>
+        <Text
+          as="span"
+          sx={{ display: ['none', 'block'], }}
+          variant="text.tinyLight">
+          Complimentary shipping on all orders
+        </Text>
       </Flex>
-      <Text
-        as="span"
-        sx={{ display: ['none', 'block'], }}
-        variant="text.tinyLight">
-        Complimentary shipping on all orders
-      </Text>
-    </Flex>
-    <Flex
-      sx={{
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}
-    >
-      <Button as="a" disabled={itemCount === 0 || !(onClick)} href={onClick} width="184px">
-        Check Out
-      </Button>
-      <Text
-        as="span"
+      <Flex
         sx={{
-          display: ['block', 'none'],
-          mt: 2,
+          alignItems: 'center',
+          flexDirection: 'column',
         }}
-        variant="text.tinyLight">
-        Complimentary shipping on all orders
-      </Text>
+      >
+        <Button as="a" disabled={itemCount === 0 || !(onClick)} href={onClick} width="184px">
+          Check Out
+        </Button>
+        <Text
+          as="span"
+          sx={{
+            display: ['block', 'none'],
+            mt: 2,
+          }}
+          variant="text.tinyLight">
+          Complimentary shipping on all orders
+        </Text>
+      </Flex>
     </Flex>
-  </Flex>
+  </Box>
 )
 
 const CartItem = ({ item, onRemove }) => {

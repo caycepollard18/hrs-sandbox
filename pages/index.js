@@ -21,6 +21,7 @@ export async function getStaticProps() {
 }
 
 export default function Home({ products }) {
+  
   const featuredProducts = [
     products?.find(product => product.handle === 'del-rey-penny-pink'),
     products?.find(product => product.handle === 'luther-boot-black-gold'),
