@@ -60,7 +60,7 @@ const SidebarFooter = ({ checkoutUrl, itemCount, onClick, totalPrice }) => (
   <Box
     as="footer"
     sx={{
-      display: ['sticky', 'flex'],
+      display: ['fixed', 'flex'],
       alignItems: 'stretch',
       flexDirection: 'column',
       bottom: 0, left: 0,
@@ -71,10 +71,11 @@ const SidebarFooter = ({ checkoutUrl, itemCount, onClick, totalPrice }) => (
         alignItems: ['center'],
         flexDirection: 'row',
         justifyContent: 'space-between',
-        minHeight: ['80px'],
+        height: ['90px'],
         px: [5, 5],
         pt: [3, 0],
         pb: [2, 0],
+        width: ['100%', 'unset'],
         zIndex: 7,
       }}
     >
