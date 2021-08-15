@@ -46,11 +46,10 @@ const SidebarHeader = ({ itemCount, onClose, totalPrice }) => (
       <Close
         onClick={onClose}
         sx={{
-          height: '10px',
-          mt: '6px',
-          mb: '4px',
+          m: 0,
           p: 0,
         }}
+        variant="text"
       />
     </Flex>
   </Flex>
