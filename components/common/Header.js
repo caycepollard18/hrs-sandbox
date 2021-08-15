@@ -73,8 +73,6 @@ const UserMenu = ({ count, onClick }) => (
 const Header = ({ links, active }) => {
   const { toggleSidebar } = useUI()
   const { itemCount } = useCart()
-
-  console.log("cart count: " + itemCount)
   
   const isHome = active === '/'
   
