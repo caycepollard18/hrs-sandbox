@@ -1,11 +1,11 @@
 /** @jsxImportSource theme-ui */
-import { useCart } from '@framework/cart'
 import { NavMenu } from '@components/common'
 import {
   Bag as BagLogo,
   Search as SearchLogo
 } from '@components/icons'
 import { Logo, useUI } from '@components/ui'
+import { useCart } from '@framework/cart'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { Flex } from 'theme-ui'
