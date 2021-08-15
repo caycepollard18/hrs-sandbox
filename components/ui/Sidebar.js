@@ -65,7 +65,7 @@ const Sidebar = ({ children, open, onClose }) => {
               minHeight: '-webkit-fill-available',
               overflowX: 'hidden',
               overflowY: 'hidden',
-              position: 'absolute',
+              position: 'fixed',
               top: 0, right: 0,
               zIndex: 50,
             }}

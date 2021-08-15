@@ -17,8 +17,8 @@ const PreorderHero = () => (
     title="Preorder Chapter 3"
     subtitle="Return to Arcadia"
     image="/campaign/ss22/101.jpg"
-    backgroundPosition="0% 35%"
-    backgroundSize="120%"
+    backgroundPosition={["0% 35%"]}
+    backgroundSize={["cover", "120%"]}
     justifyContent="center"
     size="small"
     variant="layout.hero.collection"

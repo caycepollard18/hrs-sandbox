@@ -4,7 +4,8 @@ import {
   AffirmNotice,
   Badge,
   Button,
-  TabList
+  TabList,
+  useUI
 } from '@components/ui'
 import { useCart } from '@framework/cart'
 import addDate from 'date-fns/add'
@@ -141,6 +142,8 @@ const ProductView = ({ product }) => {
 
   const { addToCart } = useCart()
 
+  const { toggleSidebar } = useUI()
+
   const deliveryDates = [
     format(
       addDate(new Date('1 Aug 2021'), { days: 106 }),
@@ -197,6 +200,8 @@ const ProductView = ({ product }) => {
       variantId: selectedSize?.id,
     })
     // delay so user knows something happened
+    await delay(125)
+    toggleSidebar()
     await delay(250)
     setLoading(false)
   }

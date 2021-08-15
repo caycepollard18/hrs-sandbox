@@ -19,9 +19,18 @@ const propTypes = {
     PropTypes.string,
     PropTypes.object,
   ]),
-  backgroundPosition: PropTypes.string,
-  backgroundSize: PropTypes.string,
-  justifyContent: PropTypes.string,
+  backgroundPosition: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]),
+  backgroundSize: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]),
+  justifyContent: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]),
   size: PropTypes.oneOf(['small', 'default', 'large']),
   video: PropTypes.node,
 }

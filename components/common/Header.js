@@ -5,6 +5,7 @@ import {
   Search as SearchLogo
 } from '@components/icons'
 import { Logo, useUI } from '@components/ui'
+import { useCart } from '@framework/cart'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import { Flex } from 'theme-ui'
@@ -33,7 +34,7 @@ const Search = () => (
   </Flex>
 )
 
-const UserMenu = ({ onClick }) => (
+const UserMenu = ({ count, onClick }) => (
   <Flex
     sx={{
       alignItems: 'center',
@@ -44,14 +45,34 @@ const UserMenu = ({ onClick }) => (
       zIndex: '10',
     }}
   >
-    <Flex as="a" sx={{ cursor: 'pointer' }} onClick={onClick}>
+    <Flex
+      as="a"
+      sx={{ cursor: 'pointer', position: 'relative' }}
+      onClick={onClick}
+    >
       <BagLogo />
+      <Flex
+        as="div"
+        sx={{
+          width: '11px',
+          height: '11px',
+          borderRadius: '11px',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'absolute',
+          bottom: '2px', left: '8.5px',
+          variant: 'layout.header.menu.count',
+        }}
+      >
+        {count || '0'}
+      </Flex>
     </Flex>
   </Flex>
 )
 
 const Header = ({ links, active }) => {
   const { toggleSidebar } = useUI()
+  const { itemCount } = useCart()
   
   const isHome = active === '/'
   
@@ -82,7 +103,7 @@ const Header = ({ links, active }) => {
           zIndex: '10',
         }}
       />
-      <UserMenu onClick={() => toggleSidebar()} />
+      <UserMenu count={itemCount} onClick={() => toggleSidebar()} />
     </Flex>
   )
 }

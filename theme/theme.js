@@ -100,6 +100,13 @@ const theme = {
       fontSize: 0,
       lineHeight: 'heading',
       textTransform: 'uppercase'
+    },
+    microBold: {
+      fontFamily: 'body',
+      fontWeight: 'body',
+      fontSize: 0,
+      lineHeight: 'body',
+      textTransform: 'uppercase'
     }
   },
   shadows: {
@@ -299,7 +306,12 @@ const theme = {
         transition: 'slide',
         a: {
           cursor: 'pointer',
-        }
+        },
+        count: {
+          backgroundColor: 'accent',
+          color: 'primary',
+          fontSize: '9px',
+        },
       },
     },
     hero: {
