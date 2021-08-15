@@ -299,7 +299,12 @@ const theme = {
         transition: 'slide',
         a: {
           cursor: 'pointer',
-        }
+        },
+        count: {
+          backgroundColor: 'accent',
+          color: 'primary',
+          fontSize: '9px',
+        },
       },
     },
     hero: {
