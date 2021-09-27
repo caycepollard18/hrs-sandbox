@@ -55,13 +55,13 @@ const sitePages = [
     displayHeader: false,
     displayNavMenu: true,
   },
-  {
-    url: '/preorder',
-    page: 'Preorder for SS22',
-    displayHeader: true,
-    displayNavMenu: true,
-    variant: 'outline',
-  },
+  // {
+  //   url: '/preorder',
+  //   page: 'Preorder for SS22',
+  //   displayHeader: true,
+  //   displayNavMenu: true,
+  //   variant: 'outline',
+  // },
   /*{
     url: '/policy/legal',
     page: 'Legal',
